@@ -19,7 +19,7 @@
 }
 .text-indigo-300 {
     accent-color: rgba(24, 29, 69, 1);
-    color: rgba(24, 29, 69, 1);
+    color: rgba(255, 255, 255, 1);
 }
 .border-indigo-600{
     border-color:rgba(24, 29, 69, 1);
@@ -38,6 +38,7 @@
  }
 .lp-10{
     padding-right:10px;
+    padding-top:5px;
 }
 .footerBg{
     background: #171b47;
