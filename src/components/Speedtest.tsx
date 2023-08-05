@@ -85,7 +85,7 @@ const Speedtest: React.FC = () => {
           {status === "idle" && (
             <div className="w-full flex-col flex items-center justify-center">
               <button
-                className="rounded-full bg-white px-4 py-2.5 text-2xl font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-75"
+                className="rounded-full bg-eden px-4 py-2.5 text-2xl font-semibold text-black shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-75"
                 type="button"
                 onClick={() => sendTransaction?.()}
                 disabled={!initialWallet || !rpcUrls.length}

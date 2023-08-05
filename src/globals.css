@@ -1,3 +1,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.text-indigo-600{
+    color: rgba(24, 29, 69, 1);
+
+}
+.accent-indigo-600 {
+    accent-color: rgba(24, 29, 69, 1)
+}
+.to-indigo-700 {
+    background: #171b47
+
+}
+.from-indigo-600 {
+    background: #171b47
+
+}
+.text-indigo-300 {
+    accent-color: rgba(24, 29, 69, 1);
+    color: rgba(24, 29, 69, 1);
+}
+.border-indigo-600{
+    border-color:rgba(24, 29, 69, 1);
+}
+.bg-indigo-50 {
+    background: rgba(224, 224, 224, 1);
+}
+.text-indigo-900{
+    color: rgba(24, 29, 69, 1);
+}
+
+ 
+ .bg-eden{
+    background: linear-gradient(90deg, #5ED37D 9.02%, #CAF84C 107.87%);
+
+ }
+.lp-10{
+    padding-right:10px;
+}
+.footerBg{
+    background: #171b47;
+    padding: 20px
+}
+.headerBg{
+    background: #171b47;
+}
+.container {
+    max-width: 4024px;
+}

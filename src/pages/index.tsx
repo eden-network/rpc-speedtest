@@ -4,28 +4,34 @@ import Speedtest from "../components/Speedtest";
 function Page() {
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="container mx-auto max-w-7xl px-6">
+      <div className="container mx-auto px-6 headerBg">
         <nav
           className="flex items-center justify-between py-6"
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5 flex items-center">
-              <span className="text-2xl mr-2">{"🚀"}</span>
-              <span className="font-bold text-xl text-indigo-600">
-                RPC SpeedTest
+            
+              
+              <span className="font-bold text-xl text-white lp-10">
+                RPC SpeedTest by     
               </span>
-            </a>
+              <img src="eden-logo-white.svg" />
+            
           </div>
 
           <div className="flex lg:flex-1 lg:justify-end">
             <ConnectButton />
           </div>
         </nav>
-      </header>
+      </div>
       <main className="flex-1 flex flex-col">
         <Speedtest />
       </main>
+      <footer>
+        <div className="flex footerBg">
+          <img src="eden-logo-white.svg" />
+        </div>
+      </footer>
     </div>
   );
 }

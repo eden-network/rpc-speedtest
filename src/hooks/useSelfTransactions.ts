@@ -129,7 +129,7 @@ export const useSelfTransactions = ({
           iteration: i + 1,
           wallet: wallet.address,
           tx: "RPC Error",
-          blockNumber: 0,
+          blockNumber: Infinity,
           order: Infinity,
           label,
           firstSeen: [],
