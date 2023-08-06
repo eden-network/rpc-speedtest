@@ -1,24 +1,24 @@
 import { getDefaultWallets } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient } from "wagmi";
-import { mainnet, polygonMumbai } from "wagmi/chains";
+import { arbitrum, mainnet, polygonMumbai } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
+import { DEFAULT_RPC_URL } from "./core/rpcs"
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [mainnet, polygonMumbai],
+  [mainnet, arbitrum, polygonMumbai],
   [
     // set default jsonrpc per chain, preferred over publicprovider which is unreliable
     jsonRpcProvider({
       rpc(chain) {
-        if (chain.id === polygonMumbai.id) {
-          return {
-            http: "https://rpc.ankr.com/polygon_mumbai",
-          };
+        const rpcUrl = DEFAULT_RPC_URL[chain.id]
+        if (rpcUrl === undefined) {
+          throw new Error("RPC not found")
         }
 
         return {
-          http: "https://rpc.ankr.com/eth",
-        };
+          http: rpcUrl
+        }
       },
     }),
     publicProvider(),
