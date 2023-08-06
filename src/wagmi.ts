@@ -1,11 +1,11 @@
 import { getDefaultWallets } from "@rainbow-me/rainbowkit";
 import { configureChains, createClient } from "wagmi";
-import { mainnet, polygonMumbai } from "wagmi/chains";
+import { arbitrum, mainnet, polygonMumbai } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [mainnet, polygonMumbai],
+  [mainnet, arbitrum, polygonMumbai],
   [
     // set default jsonrpc per chain, preferred over publicprovider which is unreliable
     jsonRpcProvider({

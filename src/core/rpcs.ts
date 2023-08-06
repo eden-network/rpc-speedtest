@@ -1,5 +1,5 @@
 import { mainnet } from "wagmi";
-import { polygonMumbai } from "wagmi/chains";
+import { arbitrum, polygonMumbai } from "wagmi/chains";
 
 // Used for speed testing defaults
 export const RPC_URLS = {
@@ -10,6 +10,12 @@ export const RPC_URLS = {
     "https://rpc.flashbots.net/",
     "https://api.edennetwork.io/v1/rocket",
     "https://eth.rpc.blxrbdn.com/",
+  ],
+  [arbitrum.id]: [
+    "https://arb1.arbitrum.io/rpc",
+    "https://rpc.ankr.com/arbitrum",
+    "https://arbitrum-one.public.blastapi.io",
+    "https://arb-mainnet.g.alchemy.com/v2/demo",
   ],
   [polygonMumbai.id]: [
     "https://polygon-mumbai.blockpi.network/v1/rpc/public",
@@ -23,5 +29,6 @@ export const RPC_URLS = {
 // used for wallet seeding txs
 export const DEFAULT_RPC_URL = {
   [mainnet.id]: "https://rpc.ankr.com/eth",
+  [arbitrum.id]: "https://rpc.ankr.com/arbitrum",
   [polygonMumbai.id]: "https://rpc.ankr.com/polygon_mumbai",
 };
