@@ -27,7 +27,7 @@ export const RPC_URLS = {
 };
 
 // used for wallet seeding txs
-export const DEFAULT_RPC_URL = {
+export const DEFAULT_RPC_URL: Record<number, string> = {
   [mainnet.id]: "https://rpc.ankr.com/eth",
   [arbitrum.id]: "https://rpc.ankr.com/arbitrum",
   [polygonMumbai.id]: "https://rpc.ankr.com/polygon_mumbai",
