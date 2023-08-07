@@ -36,6 +36,25 @@ const Details = ({
       <dl className="mt-4 divide-y divide-gray-200 border-b border-t border-gray-200">
         <div className={`flex items-center p-2`}>
           <dt className="min-w-0 flex-1 text-sm leading-6 font-medium text-gray-900">
+            {"Selected RPCS"}
+            <p className="text-gray-500 text-xs">
+              {"Number of RPCs to test."}
+            </p>
+          </dt>
+          {rpcCount === 0 ? (
+            <dd className="ml-3 min-h-[1.25rem] text-right text-red-600 leading-none">
+              {rpcCount}
+              <br />
+              <span className="text-xs text-red-600 opacity-75">
+                {"Select at least one RPC"}
+              </span>
+            </dd>
+          ) : (
+            <dd className="ml-3 h-6">{rpcCount}</dd>
+          )}
+        </div>
+        <div className={`flex items-center p-2`}>
+          <dt className="min-w-0 flex-1 text-sm leading-6 font-medium text-gray-900">
             {"Loops"}
             <p className="text-gray-500 text-xs">
               {"Number of transactions sent to each RPC."}
