@@ -2,7 +2,7 @@ import { mainnet } from "wagmi";
 import { arbitrum, avalanche, polygonMumbai } from "wagmi/chains";
 
 // Used for speed testing defaults
-export const RPC_URLS = {
+const RPC_URLS = {
   [mainnet.id]: [
     "http://speed-eu-west.edennetwork.io",
     "http://speed-us-east.edennetwork.io",
@@ -28,7 +28,7 @@ export const RPC_URLS = {
     "https://matic-mumbai.chainstacklabs.com",
   ],
   [avalanche.id]: [
-    "https://rpc.ankr.com/avalanche	",
+    "https://rpc.ankr.com/avalanche",
     "https://api.avax.network/ext/bc/C/rpc",
     "https://avax.meowrpc.com",
     "https://avalanche.public-rpc.com",
@@ -42,4 +42,8 @@ export const DEFAULT_RPC_URL: Record<number, string> = {
   [arbitrum.id]: "https://rpc.ankr.com/arbitrum",
   [polygonMumbai.id]: "https://rpc.ankr.com/polygon_mumbai",
   [avalanche.id]: "https://rpc.ankr.com/avalanche",
+};
+
+export function getRpcUrls(chainId: number): string[] {
+  return RPC_URLS[chainId as 1 | 80001] || []
 };
