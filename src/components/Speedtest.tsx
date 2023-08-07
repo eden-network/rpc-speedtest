@@ -68,9 +68,9 @@ const Speedtest: React.FC = () => {
       <ol className="numList">
         <li>Connect your wallet</li>
         <li>Make sure you are on the network that support the speed test (Ethereum, Arbitrum, Avalanche, Polygon Mumbai)</li>
-        <li>Select the RPCs you want to test (You can add your own by clicking "+ custom RPC")</li>
+        <li>Select the RPCs you want to test (You can add your own by clicking + custom RPC)</li>
         <li>Review and modify test details if needed</li>
-        <li>Run the speed test by clicking "Start Speed Test"</li>
+        <li>Run the speed test by clicking Start Speed Test</li>
         <li>Wait for the results of the speed test, the remaining ETH (or other native token) will be refunded at the end of the test.</li>
       </ol>
         </div>
