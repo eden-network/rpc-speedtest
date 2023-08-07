@@ -52,7 +52,7 @@ const Details = ({
               </button>
               <button
                 className="bg-indigo-50 border border-indigo-600 text-sm rounded-full text-indigo-600 flex items-center justify-center h-5 w-5"
-                onClick={() => setLoops((x) => Math.max(0, x - 1))}
+                onClick={() => setLoops((x) => Math.max(1, x - 1))}
               >
                 {"-"}
               </button>
