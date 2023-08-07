@@ -62,6 +62,33 @@ const Speedtest: React.FC = () => {
   return (
     <div className="Speedtest mt-8 flex-1 flex flex-col">
       <div className="container mx-auto max-w-7xl grid sm:grid-cols-2 sm:gap-12 px-6">
+      <div className="w-full flex-col flex">
+      <legend className="text-base font-semibold leading-6 text-gray-900">Instructions</legend>
+      <hr></hr>
+      <ol className="numList">
+        <li>Connect your wallet</li>
+        <li>Make sure you are on the network that support the speed test (Ethereum, Arbitrum, Avalanche, Polygon Mumbai)</li>
+        <li>Select the RPCs you want to test (You can add your own by clicking "+ custom RPC")</li>
+        <li>Review and modify test details if needed</li>
+        <li>Run the speed test by clicking "Start Speed Test"</li>
+        <li>Wait for the results of the speed test, the remaining ETH (or other native token) will be refunded at the end of the test.</li>
+      </ol>
+        </div>
+        <div className="w-full flex-col flex">
+      <legend className="text-base font-semibold leading-6 text-gray-900">Faq</legend>
+      <hr></hr>
+      <ul className="dotList">
+        <li><b>How does this Speed Test measure transaction propagation speed?</b></li>
+        <p>It sends mutliple identical transactions to all selected RPCs at once and then it compares block number and transaction order to determine the fastest RPC. Multiple rounds can be done to get a more accurate results.</p>
+        <li><b>Does the app stores any user information (wallets, IPs, ...) ?</b></li>
+        <p>No, the app only keeps a local state in browser and no user info is shared or stored online.</p>
+        <li><b>Is the code open source?</b></li>
+        <p>Yes, you can review the code and methodology <a className="linkGithub" href="https://github.com/eden-network/rpc-speedtest">on GitHub</a>.</p>
+        </ul>
+        </div>
+      </div>
+      <br></br>
+      <div className="container mx-auto max-w-7xl grid sm:grid-cols-2 sm:gap-12 px-6">
         <section className="mb-8">
           <RPCs key={rpcKey} urls={rpcUrls} setUrls={setRpcUrls} />
         </section>

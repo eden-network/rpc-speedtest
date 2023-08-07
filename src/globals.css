@@ -50,3 +50,14 @@
 .container {
     max-width: 4024px;
 }
+.numList{
+    list-style: decimal;
+    padding:20px;
+}
+.dotList{
+    list-style:square;
+    padding:20px;
+}
+.linkGithub{
+    color: #00d27f;
+}

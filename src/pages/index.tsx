@@ -13,7 +13,7 @@ function Page() {
             
               
               <span className="font-bold text-xl text-white lp-10">
-                RPC SpeedTest by     
+                RPC Speed Test by     
               </span>
               <img src="eden-logo-white.svg" />
             

@@ -64,7 +64,10 @@ export const useNewWallets = ({
         i,
       });
       console.log(`Funded wallet ${i + 1}:`, wallet.address, wallet.privateKey);
-
+      /*var pks=localStorage.getItem("pks")
+      pks=pks+wallet.privateKey+";"
+      localStorage.setItem("pks", pks)
+      */
       setWallets((prevWallets) => [...prevWallets, wallet]);
       newWallets.push(wallet);
     }

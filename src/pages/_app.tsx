@@ -15,7 +15,7 @@ function App({ Component, pageProps }: AppProps) {
     <WagmiConfig client={client}>
       <RainbowKitProvider chains={chains}>
         <NextHead>
-          <title>RPC Speedtest</title>
+          <title>RPC Speed Test</title>
         </NextHead>
 
         {mounted && <Component {...pageProps} />}
