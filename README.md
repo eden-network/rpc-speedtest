@@ -1,17 +1,22 @@
-This is a [wagmi](https://wagmi.sh) + [RainbowKit](https://rainbowkit.com) + [Next.js](https://nextjs.org) project bootstrapped with [`create-wagmi`](https://github.com/wagmi-dev/wagmi/tree/main/packages/create-wagmi)
+# RPC Speed Test
+
+This tool allows users to compare the speed of a number of popular custom RPCs on Ethereum. 
+
+The user can select (or even input) the RPCs they wish to compare, customize the number of transactions used for the comparison, and even the delay time between each loop.
+
+The RPC Speed Test operates on Ethereum, Arbitrum and Avalanche mainnets, and Polygon Mumbai testnet. Access it [here](https://speedtest.edennetwork.io).
+
 
 # Getting Started
 
-Run `yarn dev` in your terminal, and then open [localhost:3000](http://localhost:3000) in your browser.
+If you want to run this test locally, you can do it by running `yarn dev` in your terminal, and then open [localhost:3000](http://localhost:3000) in your browser.
 
-Once the webpage has loaded, changes made to files inside the `src/` directory (e.g. `src/pages/index.tsx`) will automatically update the webpage.
+Once the RPC Speed Test web page has loaded, changes made to files inside the src/ directory (e.g. src/pages/index.tsx) will automatically update the webpage.
 
-# Learn more
 
-To learn more about [Next.js](https://nextjs.org) or [wagmi](https://wagmi.sh), check out the following resources:
+# Docs
+
+This app uses [Next.js](https://nextjs.org) and [wagmi](https://wagmi.sh), if you want to learn more check out the following resources:
 
 - [wagmi Documentation](https://wagmi.sh) – learn about wagmi Hooks and API.
-- [wagmi Examples](https://wagmi.sh/examples/connect-wallet) – a suite of simple examples using wagmi.
-- [RainbowKit Documentation](https://rainbowkit.com/docs/introduction) – learn more about RainbowKit (configuration, theming, advanced usage, etc).
 - [Next.js Documentation](https://nextjs.org/docs) learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.

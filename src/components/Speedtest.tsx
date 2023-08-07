@@ -67,21 +67,21 @@ const Speedtest: React.FC = () => {
       <hr></hr>
       <ol className="numList">
         <li>Connect your wallet</li>
-        <li>Make sure you are on the network that support the speed test (Ethereum, Arbitrum, Avalanche, Polygon Mumbai)</li>
-        <li>Select the RPCs you want to test (You can add your own by clicking + custom RPC)</li>
-        <li>Review and modify test details if needed</li>
-        <li>Run the speed test by clicking Start Speed Test</li>
-        <li>Wait for the results of the speed test, the remaining ETH (or other native token) will be refunded at the end of the test.</li>
+        <li>Select a network that supports the RPC Speed Test (Ethereum, Arbitrum, Avalanche, Polygon Mumbai)</li>
+        <li>Select the RPCs you want to test, and/or add your own by clicking &apos;+ Custom RPC&apos;</li>
+        <li>Review and modify test details as required</li>
+        <li>Click &apos;Start Speed Test&apos;</li>
+        <li>Once results are received, the remaining ETH (or other native token) will be refunded to your wallet</li>
       </ol>
         </div>
         <div className="w-full flex-col flex">
       <legend className="text-base font-semibold leading-6 text-gray-900">Faq</legend>
       <hr></hr>
       <ul className="dotList">
-        <li><b>How does this Speed Test measure transaction propagation speed?</b></li>
-        <p>It sends mutliple identical transactions to all selected RPCs at once and then it compares block number and transaction order to determine the fastest RPC. Multiple rounds can be done to get a more accurate results.</p>
-        <li><b>Does the app stores any user information (wallets, IPs, ...) ?</b></li>
-        <p>No, the app only keeps a local state in browser and no user info is shared or stored online.</p>
+        <li><b>How does the RPC Speed Test measure transaction propagation speed?</b></li>
+        <p>It sends multiple identical transactions to all selected RPCs at once, then compares block number and transaction order to determine the fastest RPC. The more loops you test, the more accurate the results will be.</p>
+        <li><b>Does the app store any user information (wallets, IPs, etc.)?</b></li>
+        <p>No, the app only keeps a local state in the browser and no user info is shared or stored online.</p>
         <li><b>Is the code open source?</b></li>
         <p>Yes, you can review the code and methodology <a className="linkGithub" href="https://github.com/eden-network/rpc-speedtest">on GitHub</a>.</p>
         </ul>
