@@ -10,6 +10,8 @@ import { formatNumber } from "../utils/formatNumber";
 import { formatEther } from "ethers/lib/utils.js";
 import RankingsTable from "./RankingsTable";
 import { scrollToBottom } from "../utils/scrollToBottom";
+import Instructions from "./Instructions";
+import FAQ from "./FAQ";
 
 function getCurrentIteration(
   loopCount: number,
@@ -62,29 +64,11 @@ const Speedtest: React.FC = () => {
   return (
     <div className="Speedtest mt-8 flex-1 flex flex-col">
       <div className="container mx-auto max-w-7xl grid sm:grid-cols-2 sm:gap-12 px-6">
-      <div className="w-full flex-col flex">
-      <legend className="text-base font-semibold leading-6 text-gray-900">Instructions</legend>
-      <hr></hr>
-      <ol className="numList">
-        <li>Connect your wallet</li>
-        <li>Select a network that supports the RPC Speed Test (Ethereum, Arbitrum, Avalanche, Polygon Mumbai)</li>
-        <li>Select the RPCs you want to test, and/or add your own by clicking &apos;+ Custom RPC&apos;</li>
-        <li>Review and modify test details as required</li>
-        <li>Click &apos;Start Speed Test&apos;</li>
-        <li>Once results are received, the remaining ETH (or other native token) will be refunded to your wallet</li>
-      </ol>
+        <div className="w-full flex-col flex">
+          <Instructions />
         </div>
         <div className="w-full flex-col flex">
-      <legend className="text-base font-semibold leading-6 text-gray-900">Faq</legend>
-      <hr></hr>
-      <ul className="dotList">
-        <li><b>How does the RPC Speed Test measure transaction propagation speed?</b></li>
-        <p>It sends multiple identical transactions to all selected RPCs at once, then compares block number and transaction order to determine the fastest RPC. The more loops you test, the more accurate the results will be.</p>
-        <li><b>Does the app store any user information (wallets, IPs, etc.)?</b></li>
-        <p>No, the app only keeps a local state in the browser and no user info is shared or stored online.</p>
-        <li><b>Is the code open source?</b></li>
-        <p>Yes, you can review the code and methodology <a className="linkGithub" href="https://github.com/eden-network/rpc-speedtest">on GitHub</a>.</p>
-        </ul>
+          <FAQ />
         </div>
       </div>
       <br></br>
