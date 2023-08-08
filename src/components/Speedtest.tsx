@@ -75,7 +75,7 @@ const Speedtest: React.FC = () => {
       </ol>
         </div>
         <div className="w-full flex-col flex">
-      <legend className="text-base font-semibold leading-6 text-gray-900">Faq</legend>
+      <legend className="text-base font-semibold leading-6 text-gray-900">FAQ</legend>
       <hr></hr>
       <ul className="dotList">
         <li><b>How does the RPC Speed Test measure transaction propagation speed?</b></li>
