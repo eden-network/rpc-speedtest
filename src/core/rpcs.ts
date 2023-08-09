@@ -4,9 +4,9 @@ import { arbitrum, avalanche, polygonMumbai } from "wagmi/chains";
 // Used for speed testing defaults
 const RPC_URLS = {
   [mainnet.id]: [
-    "http://speed-eu-west.edennetwork.io",
-    "http://speed-us-east.edennetwork.io",
-    "http://speed-tokyo.edennetwork.io",
+    "https://speed-eu-west.edennetwork.io",
+    "https://speed-us-east.edennetwork.io",
+    "https://speed-tokyo.edennetwork.io",
     "https://rpc.ankr.com/eth",
     "https://eth.llamarpc.com/",
     "https://api.securerpc.com/v1",
