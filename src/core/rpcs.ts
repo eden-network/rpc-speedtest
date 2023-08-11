@@ -1,6 +1,8 @@
 import { mainnet } from "wagmi";
 import { arbitrum, avalanche, polygonMumbai } from "wagmi/chains";
 
+export type SupportedChain = 1 | 80001 | 42161 | 43114;
+
 // Used for speed testing defaults
 const RPC_URLS = {
   [mainnet.id]: [
@@ -45,5 +47,5 @@ export const DEFAULT_RPC_URL: Record<number, string> = {
 };
 
 export function getRpcUrls(chainId: number): string[] {
-  return RPC_URLS[chainId as 1 | 80001] || []
-};
+  return RPC_URLS[chainId as SupportedChain] || [];
+}
