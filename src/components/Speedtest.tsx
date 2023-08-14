@@ -61,7 +61,7 @@ const Speedtest: React.FC = () => {
 
   return (
     <div className="Speedtest mt-8 flex-1 flex flex-col">
-      <div className="container mx-auto max-w-7xl grid sm:grid-cols-2 sm:gap-12 px-6">
+      <div className="container mx-auto max-w-7xl grid sm:grid-cols-2 sm:gap-12 px-4 md:px-6">
         <div className="w-full flex-col flex">
           <legend className="text-base font-semibold leading-6 text-gray-900">
             Instructions
@@ -128,7 +128,7 @@ const Speedtest: React.FC = () => {
           </ul>
         </div>
       </div>
-      <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 sm:gap-12 px-6">
+      <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 sm:gap-12 px-4 md:px-6">
         <section className="mb-8">
           <RPCs key={rpcKey} urls={rpcUrls} setUrls={setRpcUrls} />
         </section>
@@ -147,7 +147,7 @@ const Speedtest: React.FC = () => {
           />
         </section>
       </div>
-      <div className="bg-gradient-to-br from-indigo-600 to-indigo-700 text-white flex-1 flex flex-col px-6 py-10">
+      <div className="bg-gradient-to-br from-indigo-600 to-indigo-700 text-white flex-1 flex flex-col py-10">
         <div className="flex-1 flex">
           {status === "idle" && (
             <div className="w-full flex-col flex items-center justify-center">

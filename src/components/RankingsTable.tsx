@@ -12,8 +12,10 @@ const RankingsTable = ({ results }: { results: Result[] }) => {
 
   return (
     <div>
-      <h2 className="font-bold text-lg mb-2">{"RPC Rankings"}</h2>
-      <div className="overflow-x-scroll container mx-auto max-w-[4096px]">
+      <h2 className="font-bold text-lg mb-2 container max-w-7xl mx-auto px-4 md:px-6">
+        {"RPC Rankings"}
+      </h2>
+      <div className="overflow-x-scroll container mx-auto max-w-[4000px] px-4 md:px-6 hide-scroll">
         <table className="min-w-full divide-y divide-gray-300 bg-white text-gray-800 rounded-lg overflow-hidden">
           <thead>
             <tr>
