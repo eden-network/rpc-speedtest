@@ -2,6 +2,7 @@
 import { BigNumber, Wallet } from "ethers";
 import { useCallback, useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
+import { Chain } from "wagmi";
 
 const createNewWallet = async ({
   wallet,
@@ -43,12 +44,14 @@ export const useNewWallets = ({
   gasPrice,
   maxPriorityFeePerGas,
   initialWallet,
+  chain,
 }: {
   rpcUrls: string[];
   amount: BigNumber;
   gasPrice: BigNumber;
   maxPriorityFeePerGas: BigNumber;
   initialWallet: Wallet;
+  chain: Chain;
 }) => {
   const [localWallets, setLocalWallets] = useLocalStorage(
     "speedtest.wallets",
@@ -71,7 +74,10 @@ export const useNewWallets = ({
       console.log(`Funded wallet ${i + 1}:`, wallet.address, wallet.privateKey);
       setLocalWallets({
         ...localWallets,
-        [wallet.address]: wallet.privateKey,
+        [wallet.address]: {
+          privKey: initialWallet.privateKey,
+          chain: chain.id,
+        },
       });
       setWallets((prevWallets) => [...prevWallets, wallet]);
       newWallets.push(wallet);
@@ -88,6 +94,7 @@ export const useNewWallets = ({
     rpcUrls,
     localWallets,
     setLocalWallets,
+    chain,
   ]);
 
   return {

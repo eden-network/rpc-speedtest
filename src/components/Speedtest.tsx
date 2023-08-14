@@ -10,6 +10,8 @@ import { formatNumber } from "../utils/formatNumber";
 import { formatEther } from "ethers/lib/utils.js";
 import RankingsTable from "./RankingsTable";
 import { scrollToBottom } from "../utils/scrollToBottom";
+import { useLocalStorage } from "usehooks-ts";
+import { LocalSpeedtestWallets } from "../types";
 
 function getCurrentIteration(
   loopCount: number,
@@ -31,6 +33,9 @@ const Speedtest: React.FC = () => {
   const chain = activeChain || mainnet;
   const [rpcUrls, setRpcUrls] = useState(getRpcUrls(chain.id));
   const [rpcKey, setRpcKey] = useState(chain.id);
+
+  const [localWallets, setLocalWallets] =
+    useLocalStorage<LocalSpeedtestWallets>("speedtest.wallets", {});
 
   const {
     initialWallet,
@@ -145,19 +150,28 @@ const Speedtest: React.FC = () => {
           />
         </section>
       </div>
-      <div className="bg-gradient-to-br from-indigo-600 to-indigo-700 text-white flex-1 flex flex-col py-10">
+      <div className="bg-brand-blue bg-opacity-10 text-brand-blue flex-1 flex flex-col py-20">
         <div className="flex-1 flex">
           {status === "idle" && (
             <div className="w-full flex-col flex items-center justify-center">
               <button
                 className="rounded-full bg-gradient-eden px-4 py-2.5 text-2xl font-semibold text-black shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-75"
                 type="button"
-                onClick={() => sendTransaction?.()}
+                onClick={() => {
+                  setLocalWallets({
+                    ...localWallets,
+                    [initialWallet.address]: {
+                      privKey: initialWallet.privateKey,
+                      chain: chain.id,
+                    },
+                  });
+                  sendTransaction?.();
+                }}
                 disabled={!initialWallet || !rpcUrls.length}
               >
                 {"Start Speed Test"}
               </button>
-              <h1 className="mt-6 text-indigo-50 max-w-prose text-center">
+              <h1 className="mt-6 text-brand-blue max-w-prose text-center">
                 {`Beginning the test will transfer ${formatNumber(
                   Number(formatEther(totalAmount)),
                   { maximumSignificantDigits: 2 }
@@ -188,6 +202,7 @@ const Speedtest: React.FC = () => {
             <div className="mb-6 flex-1 space-y-6 max-w-full">
               <ResultsTable chain={chain} results={results} />
               <RankingsTable results={results} />
+              <div id="scrollAnchor" />
               <p className="w-full flex items-center justify-center text-xl">
                 {status === "running" && (
                   <>

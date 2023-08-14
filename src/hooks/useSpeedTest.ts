@@ -81,6 +81,7 @@ const useSpeedTest = ({
     gasPrice,
     maxPriorityFeePerGas,
     initialWallet,
+    chain,
   });
 
   const { results, startSelfTransactions, setResults } = useSelfTransactions({

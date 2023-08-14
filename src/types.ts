@@ -7,3 +7,8 @@ export type Result = {
   label: string;
   firstSeen?: { name: string; date: Date }[];
 };
+
+export type LocalSpeedtestWallets = Record<
+  `0x${string}`,
+  { privKey: `0x${string}`; chain: number }
+>;
