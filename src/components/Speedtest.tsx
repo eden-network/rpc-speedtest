@@ -61,13 +61,12 @@ const Speedtest: React.FC = () => {
 
   return (
     <div className="Speedtest mt-8 flex-1 flex flex-col">
-      <div className="container mx-auto max-w-7xl grid sm:grid-cols-2 sm:gap-12 px-4 md:px-6">
-        <div className="w-full flex-col flex">
-          <legend className="text-base font-semibold leading-6 text-gray-900">
+      <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6">
+        <div>
+          <legend className="text-base font-semibold leading-6 text-gray-900 border-b border-gray-200 pb-4">
             Instructions
           </legend>
-          <hr></hr>
-          <ol className="list-decimal p-5">
+          <ol className="list-decimal px-5 pt-4">
             <li>Connect your wallet</li>
             <li>
               Select a network that supports the RPC Speed Test (Ethereum,
@@ -85,12 +84,11 @@ const Speedtest: React.FC = () => {
             </li>
           </ol>
         </div>
-        <div className="w-full flex-col flex">
-          <legend className="text-base font-semibold leading-6 text-gray-900">
+        <div>
+          <legend className="text-base font-semibold leading-6 text-gray-900 border-b border-gray-200 pb-4">
             FAQ
           </legend>
-          <hr></hr>
-          <ul className="list-[square] p-5">
+          <ul className="list-[square] px-5 pt-4">
             <li>
               <b>
                 How does the RPC Speed Test measure transaction propagation
@@ -127,12 +125,10 @@ const Speedtest: React.FC = () => {
             </p>
           </ul>
         </div>
-      </div>
-      <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 sm:gap-12 px-4 md:px-6">
-        <section className="mb-8">
+        <section className="">
           <RPCs key={rpcKey} urls={rpcUrls} setUrls={setRpcUrls} />
         </section>
-        <section className="mb-8">
+        <section className="">
           <Details
             chain={chain}
             initialWallet={initialWallet}
