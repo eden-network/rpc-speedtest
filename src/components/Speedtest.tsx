@@ -67,7 +67,7 @@ const Speedtest: React.FC = () => {
             Instructions
           </legend>
           <hr></hr>
-          <ol className="numList">
+          <ol className="list-decimal p-5">
             <li>Connect your wallet</li>
             <li>
               Select a network that supports the RPC Speed Test (Ethereum,
@@ -90,7 +90,7 @@ const Speedtest: React.FC = () => {
             FAQ
           </legend>
           <hr></hr>
-          <ul className="dotList">
+          <ul className="list-[square] p-5">
             <li>
               <b>
                 How does the RPC Speed Test measure transaction propagation
@@ -128,8 +128,7 @@ const Speedtest: React.FC = () => {
           </ul>
         </div>
       </div>
-      <br></br>
-      <div className="container mx-auto max-w-7xl grid sm:grid-cols-2 sm:gap-12 px-6">
+      <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 sm:gap-12 px-6">
         <section className="mb-8">
           <RPCs key={rpcKey} urls={rpcUrls} setUrls={setRpcUrls} />
         </section>
@@ -149,7 +148,7 @@ const Speedtest: React.FC = () => {
         </section>
       </div>
       <div className="bg-gradient-to-br from-indigo-600 to-indigo-700 text-white flex-1 flex flex-col px-6 py-10">
-        <div className="container mx-auto max-w-[4024px] flex-1 flex">
+        <div className="flex-1 flex">
           {status === "idle" && (
             <div className="w-full flex-col flex items-center justify-center">
               <button
@@ -188,7 +187,7 @@ const Speedtest: React.FC = () => {
           {(status === "running" ||
             status === "success" ||
             status === "cleaning") && (
-            <div className="mb-6 flex-1 space-y-6">
+            <div className="mb-6 flex-1 space-y-6 max-w-full">
               <ResultsTable chain={chain} results={results} />
               <RankingsTable results={results} />
               <p className="w-full flex items-center justify-center text-xl">
