@@ -1,6 +1,7 @@
 // src/hooks/useNewWallets.ts
 import { BigNumber, Wallet } from "ethers";
 import { useCallback, useState } from "react";
+import { useLocalStorage } from "usehooks-ts";
 
 const createNewWallet = async ({
   wallet,
@@ -49,6 +50,10 @@ export const useNewWallets = ({
   maxPriorityFeePerGas: BigNumber;
   initialWallet: Wallet;
 }) => {
+  const [localWallets, setLocalWallets] = useLocalStorage(
+    "speedtest.wallets",
+    {}
+  );
   const [wallets, setWallets] = useState<Wallet[]>([]);
 
   const createWallets = useCallback(async () => {
@@ -64,10 +69,10 @@ export const useNewWallets = ({
         i,
       });
       console.log(`Funded wallet ${i + 1}:`, wallet.address, wallet.privateKey);
-      /*var pks=localStorage.getItem("pks")
-      pks=pks+wallet.privateKey+";"
-      localStorage.setItem("pks", pks)
-      */
+      setLocalWallets({
+        ...localWallets,
+        [wallet.address]: wallet.privateKey,
+      });
       setWallets((prevWallets) => [...prevWallets, wallet]);
       newWallets.push(wallet);
     }
@@ -75,7 +80,15 @@ export const useNewWallets = ({
     console.log("Wallet creation completed");
 
     return newWallets;
-  }, [amount, gasPrice, maxPriorityFeePerGas, initialWallet, rpcUrls]);
+  }, [
+    amount,
+    gasPrice,
+    maxPriorityFeePerGas,
+    initialWallet,
+    rpcUrls,
+    localWallets,
+    setLocalWallets,
+  ]);
 
   return {
     wallets,
