@@ -7,11 +7,15 @@ const resultSortFn = (a: Result, b: Result) => {
     return a.iteration - b.iteration;
   }
 
-  if (a.blockNumber !== b.blockNumber) {
-    return a.blockNumber - b.blockNumber;
+  if (a.blockNumber && b.blockNumber && a.order && b.order) {
+    if (a.blockNumber !== b.blockNumber) {
+      return a.blockNumber - b.blockNumber;
+    }
+
+    return a.order - b.order;
   }
 
-  return a.order - b.order;
+  return 0;
 };
 
 const ResultsTable = ({
@@ -77,7 +81,7 @@ const ResultsTable = ({
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-left overflow-hidden">
                     <a
                       title={result.tx}
-                      className="text-underline hover:no-underline"
+                      className="underline hover:no-underline"
                       href={`${chain?.blockExplorers?.default.url}/tx/${result.tx}`}
                       target="_blank"
                       rel="noreferrer nofollow"
@@ -86,27 +90,32 @@ const ResultsTable = ({
                     </a>
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-right">
-                    <a
-                      className="text-underline hover:no-underline"
-                      href={`${chain?.blockExplorers?.default.url}/block/${result.tx}`}
-                      target="_blank"
-                      rel="noreferrer nofollow"
-                    >
-                      {result.blockNumber}
-                    </a>
+                    {result.blockNumber ? (
+                      <a
+                        className="underline hover:no-underline"
+                        href={`${chain?.blockExplorers?.default.url}/block/${result.tx}`}
+                        target="_blank"
+                        rel="noreferrer nofollow"
+                      >
+                        {result.blockNumber}
+                      </a>
+                    ) : (
+                      "Pending"
+                    )}
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-right">
                     {result.order}
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-right">
-                    {result.firstSeen
-                      .sort((a, b) => a.date.getTime() - b.date.getTime())
-                      .map((fs, i) => (
-                        <div key={i} className="flex justify-between">
-                          <span>{fs.name}</span>
-                          <span>{fs.date.getTime()}</span>
-                        </div>
-                      ))}
+                    {!!result?.firstSeen &&
+                      result.firstSeen
+                        .sort((a, b) => a.date.getTime() - b.date.getTime())
+                        .map((fs, i) => (
+                          <div key={i} className="flex justify-between">
+                            <span>{fs.name}</span>
+                            <span>{fs.date.getTime()}</span>
+                          </div>
+                        ))}
                   </td>
                   <td className="whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium text-gray-900 text-right">
                     {result.label}

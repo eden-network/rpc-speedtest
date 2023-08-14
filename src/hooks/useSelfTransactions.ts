@@ -68,6 +68,14 @@ export const useSelfTransactions = ({
           `Transaction ${i + 1} from ${wallet.address}: ${txHash} (${label})`
         );
 
+        // show pending tx
+        onResult({
+          iteration: i + 1,
+          wallet: wallet.address,
+          tx: txHash,
+          label,
+        });
+
         const txReceipt = await initialProvider.waitForTransaction(txHash);
         const block = await initialProvider.getBlockWithTransactions(
           txReceipt.blockNumber
@@ -144,7 +152,27 @@ export const useSelfTransactions = ({
   const startSelfTransactions = useCallback(
     async (wallets: Wallet[]) => {
       const onResult = (result: Result) => {
-        setResults((prevResults) => [...prevResults, result]);
+        setResults((prevResults) => {
+          const existingResultIndex = prevResults.findIndex(
+            (x) =>
+              x.wallet === result.wallet && x.iteration === result.iteration
+          );
+
+          if (existingResultIndex > -1) {
+            return prevResults.map((x, i) => {
+              if (i === existingResultIndex) {
+                return {
+                  ...x,
+                  ...result,
+                };
+              }
+
+              return x;
+            });
+          }
+
+          return [...prevResults, result];
+        });
       };
 
       console.log("Beginning transactions");

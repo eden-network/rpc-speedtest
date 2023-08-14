@@ -23,7 +23,7 @@ function Page() {
             </span>
           </div>
 
-          <div className="flex lg:flex-1 lg:justify-end">
+          <div className="flex lg:flex-1 lg:justify-end text-xs sm:text-sm">
             <ConnectButton />
           </div>
         </nav>

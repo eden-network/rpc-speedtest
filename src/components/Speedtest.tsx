@@ -16,10 +16,12 @@ function getCurrentIteration(
   itemsToLoop: number,
   results: number
 ): number {
+  // if (results === 0 || results === itemsToLoop) return 1;
   const itemsPerIteration = Math.ceil(itemsToLoop / loopCount);
-  const currentIteration = Math.floor(results / itemsPerIteration) + 1;
+  const currentIteration = Math.floor(results / itemsPerIteration);
+  if (currentIteration === 0) return 1;
 
-  return Math.min(currentIteration, loopCount);
+  return Math.min(currentIteration + 1, loopCount);
 }
 
 const Speedtest: React.FC = () => {
@@ -60,8 +62,8 @@ const Speedtest: React.FC = () => {
   }, [results]);
 
   return (
-    <div className="Speedtest mt-8 flex-1 flex flex-col">
-      <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6">
+    <div className="Speedtest flex-1 flex flex-col">
+      <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
         <div>
           <legend className="text-base font-semibold leading-6 text-gray-900 border-b border-gray-200 pb-4">
             Instructions

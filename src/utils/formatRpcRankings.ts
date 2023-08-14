@@ -13,14 +13,14 @@ export const formatRpcRankings = (results: Result[]) => {
       const { label, order, blockNumber } = item;
       const existingRpc = rpcs.find((group) => group.label === label);
 
-      if (existingRpc) {
+      if (existingRpc && order && blockNumber) {
         existingRpc.orders.push(order);
         existingRpc.blockNumbers.push(blockNumber);
       } else {
         rpcs.push({
           label,
-          orders: [order],
-          blockNumbers: [blockNumber],
+          orders: order ? [order] : [],
+          blockNumbers: blockNumber ? [blockNumber] : [],
         });
       }
 
