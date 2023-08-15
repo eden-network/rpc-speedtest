@@ -1,7 +1,7 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Speedtest from "../components/Speedtest";
 import { useReadLocalStorage } from "usehooks-ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TestWallets from "../components/TestWallets";
 import { LocalSpeedtestWallets } from "../types";
 import { useNetwork } from "wagmi";

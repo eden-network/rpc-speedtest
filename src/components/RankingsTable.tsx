@@ -2,9 +2,18 @@ import { useMemo } from "react";
 import { Result } from "../types";
 import { getOrdinal } from "../utils/getOrdinal";
 import { formatRpcRankings } from "../utils/formatRpcRankings";
+import { addEthereumChain } from "../utils/addEthereumChain";
+import { Chain } from "wagmi";
 
-const RankingsTable = ({ results }: { results: Result[] }) => {
+const RankingsTable = ({
+  results,
+  chain,
+}: {
+  results: Result[];
+  chain: Chain;
+}) => {
   const rpcData = useMemo(() => formatRpcRankings(results), [results]);
+  const isMetaMask = window?.ethereum?.isMetaMask;
 
   if (!rpcData.length) {
     return null;
@@ -35,6 +44,7 @@ const RankingsTable = ({ results }: { results: Result[] }) => {
                   </th>
                 );
               })}
+              {isMetaMask && <th>{""}</th>}
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
@@ -57,14 +67,25 @@ const RankingsTable = ({ results }: { results: Result[] }) => {
                     return (
                       <td
                         key={`${i}-${rpc.label}`}
-                        className={`whitespace-nowrap ${
-                          i + 1 === length ? "pr-4 pl-3" : "px-3"
-                        } py-3 text-sm text-right overflow-hidden`}
+                        className={`whitespace-nowrap px-3 py-3 text-sm text-right overflow-hidden`}
                       >
                         {count}
                       </td>
                     );
                   })}
+                  {isMetaMask && (
+                    <td className="text-right pr-4 pl-3 py-3">
+                      <button
+                        type="button"
+                        className="rounded-lg text-xs py-1 px-2 font-bold border-2 border-brand-green hover:bg-brand-green hover:bg-opacity-50"
+                        onClick={() =>
+                          addEthereumChain({ chain, rpcUrl: rpc.label })
+                        }
+                      >
+                        {"Add to MetaMask"}
+                      </button>
+                    </td>
+                  )}
                 </tr>
               );
             })}

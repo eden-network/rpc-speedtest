@@ -203,7 +203,7 @@ const Speedtest: React.FC = () => {
             status === "cleaning") && (
             <div className="mb-6 flex-1 space-y-6 max-w-full">
               <ResultsTable chain={chain} results={results} />
-              <RankingsTable results={results} />
+              <RankingsTable chain={chain} results={results} />
               <CleanupTable chain={chain} txData={cleanupTxs} />
 
               <p className="w-full flex items-center justify-center text-xl">
