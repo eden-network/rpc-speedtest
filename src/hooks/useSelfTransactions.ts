@@ -55,6 +55,14 @@ export const useSelfTransactions = ({
           maxFeePerGas: gasPrice,
         };
 
+        // show rpc iteration beginning
+        onResult({
+          iteration: i + 1,
+          wallet: wallet.address,
+          label,
+          tx: "",
+        });
+
         const txRequest = await wallet
           .connect(initialProvider)
           .populateTransaction(tx);
@@ -154,8 +162,7 @@ export const useSelfTransactions = ({
       const onResult = (result: Result) => {
         setResults((prevResults) => {
           const existingResultIndex = prevResults.findIndex(
-            (x) =>
-              x.wallet === result.wallet && x.iteration === result.iteration
+            (x) => x.label === result.label && x.iteration === result.iteration
           );
 
           if (existingResultIndex > -1) {

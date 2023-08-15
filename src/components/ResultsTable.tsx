@@ -67,10 +67,10 @@ const ResultsTable = ({
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
-            {sortedResults?.map((result) => {
+            {sortedResults?.map((result, i) => {
               return (
                 <tr
-                  key={result.tx}
+                  key={i}
                   className={
                     result.iteration % 2 === 0 ? "bg-gray-100" : "bg-white"
                   }
