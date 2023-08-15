@@ -53,7 +53,10 @@ const useSpeedTest = ({
     return new Wallet(randomWallet.privateKey, initialProvider);
   }, [initialProvider]);
 
-  const { cleanup } = useCleanup({ initialProvider, chain });
+  const { cleanup, cleanupTxs, resetCleanup } = useCleanup({
+    initialProvider,
+    chain,
+  });
 
   const { maxPriorityFeePerGas, gasPrice } = useFeeData({
     initialWallet,
@@ -127,6 +130,7 @@ const useSpeedTest = ({
   const reset = () => {
     setWallets([]);
     setResults([]);
+    resetCleanup();
     setStatus("idle");
   };
 
@@ -144,6 +148,7 @@ const useSpeedTest = ({
     setResults,
     setWallets,
     wallets,
+    cleanupTxs,
     results,
     sendTransaction,
     totalAmount,

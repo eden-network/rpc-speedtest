@@ -12,6 +12,7 @@ import RankingsTable from "./RankingsTable";
 import { scrollToBottom } from "../utils/scrollToBottom";
 import { useLocalStorage } from "usehooks-ts";
 import { LocalSpeedtestWallets } from "../types";
+import CleanupTable from "./CleanupTable";
 
 function getCurrentIteration(
   loopCount: number,
@@ -46,6 +47,7 @@ const Speedtest: React.FC = () => {
     totalAmount,
     transferPrice,
     wallets,
+    cleanupTxs,
   } = useSpeedTest({
     chain,
     delay,
@@ -151,7 +153,7 @@ const Speedtest: React.FC = () => {
         </section>
       </div>
       <div className="bg-brand-blue bg-opacity-10 text-brand-blue flex-1 flex flex-col py-20">
-        <div className="flex-1 flex">
+        <div className="flex-1 flex flex-col">
           {status === "idle" && (
             <div className="w-full flex-col flex items-center justify-center">
               <button
@@ -202,7 +204,8 @@ const Speedtest: React.FC = () => {
             <div className="mb-6 flex-1 space-y-6 max-w-full">
               <ResultsTable chain={chain} results={results} />
               <RankingsTable results={results} />
-              <div id="scrollAnchor" />
+              <CleanupTable chain={chain} txData={cleanupTxs} />
+
               <p className="w-full flex items-center justify-center text-xl">
                 {status === "running" && (
                   <>
@@ -222,6 +225,7 @@ const Speedtest: React.FC = () => {
                     <Spinner />
                   </>
                 )}
+
                 {status === "success" && (
                   <span className="flex items-center space-x-4">
                     <button
@@ -246,6 +250,7 @@ const Speedtest: React.FC = () => {
           )}
         </div>
       </div>
+      <div id="scrollAnchor" />
     </div>
   );
 };

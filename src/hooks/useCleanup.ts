@@ -1,4 +1,5 @@
 import { Wallet, ethers } from "ethers";
+import { useState } from "react";
 import { Chain } from "wagmi";
 
 export const useCleanup = ({
@@ -8,6 +9,10 @@ export const useCleanup = ({
   initialProvider: ethers.providers.JsonRpcProvider;
   chain: Chain;
 }) => {
+  const [cleanupTxs, setCleanupTxs] = useState<any[]>([]);
+
+  const resetCleanup = () => setCleanupTxs([]);
+
   const cleanup = async ({
     wallets,
     returnWallet,
@@ -44,10 +49,28 @@ export const useCleanup = ({
         const txHash = await initialProvider.send("eth_sendRawTransaction", [
           signedTx,
         ]);
+
         console.log(`Swept to ${returnWallet} in tx ${txHash}`);
+        setCleanupTxs((arr) => [
+          ...arr,
+          {
+            wallet: wallet.address,
+            balance,
+            value,
+            txHash,
+          },
+        ]);
         allTransactions.push(txHash);
       } else {
         console.log(`Insufficient ${chain.nativeCurrency.symbol} to sweep`);
+        setCleanupTxs((arr) => [
+          ...arr,
+          {
+            wallet: wallet.address,
+            balance,
+            value,
+          },
+        ]);
       }
     }
 
@@ -63,5 +86,5 @@ export const useCleanup = ({
     return wallets;
   };
 
-  return { cleanup };
+  return { cleanup, cleanupTxs, resetCleanup };
 };
