@@ -75,7 +75,7 @@ export const useNewWallets = ({
       setLocalWallets({
         ...localWallets,
         [wallet.address]: {
-          privKey: initialWallet.privateKey,
+          privKey: wallet.privateKey,
           chain: chain.id,
         },
       });
