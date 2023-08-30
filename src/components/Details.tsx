@@ -62,13 +62,13 @@ const Details = ({
             <span className="text-indigo-600">{loops}</span>
             <span className="ml-2 flex flex-col space-y-1">
               <button
-                className="bg-gray-200 border border-indigo-600 text-sm rounded-full text-indigo-600 flex items-center justify-center h-5 w-5"
+                className="bg-brand-blue text-white rounded-md border-indigo-600 text-sm text-indigo-600 flex items-center justify-center h-5 w-5"
                 onClick={() => setLoops((x) => x + 1)}
               >
                 {"+"}
               </button>
               <button
-                className="bg-gray-200 border border-indigo-600 text-sm rounded-full text-indigo-600 flex items-center justify-center h-5 w-5"
+                className="bg-brand-blue text-white rounded-mdbg-brand-blue text-white rounded-md border-indigo-600 text-sm rounded-full text-indigo-600 flex items-center justify-center h-5 w-5"
                 onClick={() => setLoops((x) => Math.max(1, x - 1))}
               >
                 {"-"}

@@ -70,70 +70,8 @@ const Speedtest: React.FC = () => {
 
   return (
     <div className="Speedtest flex-1 flex flex-col">
+      <h1 className="mx-auto text-brand-blue text-4xl font-bold p-6">Take charge and Discover the Ultimate RPC Speed Data</h1>
       <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
-        <div>
-          <legend className="text-base font-semibold leading-6 text-gray-900 border-b border-gray-200 pb-4">
-            Instructions
-          </legend>
-          <ol className="list-decimal px-5 pt-4">
-            <li>Connect your wallet</li>
-            <li>
-              Select a network that supports the RPC Speed Test (Ethereum,
-              Arbitrum, Avalanche, Polygon Mumbai)
-            </li>
-            <li>
-              Select the RPCs you want to test, and/or add your own by clicking
-              &apos;+ Custom RPC&apos;
-            </li>
-            <li>Review and modify test details as required</li>
-            <li>Click &apos;Start Speed Test&apos;</li>
-            <li>
-              Once results are received, the remaining ETH (or other native
-              token) will be refunded to your wallet
-            </li>
-          </ol>
-        </div>
-        <div>
-          <legend className="text-base font-semibold leading-6 text-gray-900 border-b border-gray-200 pb-4">
-            FAQ
-          </legend>
-          <ul className="list-[square] px-5 pt-4">
-            <li>
-              <b>
-                How does the RPC Speed Test measure transaction propagation
-                speed?
-              </b>
-            </li>
-            <p>
-              It sends multiple identical transactions to all selected RPCs at
-              once, then compares block number and transaction order to
-              determine the fastest RPC. The more loops you test, the more
-              accurate the results will be.
-            </p>
-            <li>
-              <b>
-                Does the app store any user information (wallets, IPs, etc.)?
-              </b>
-            </li>
-            <p>
-              No, the app only keeps a local state in the browser and no user
-              info is shared or stored online.
-            </p>
-            <li>
-              <b>Is the code open source?</b>
-            </li>
-            <p>
-              Yes, you can review the code and methodology{" "}
-              <a
-                className="text-brand-green underline hover:no-underline"
-                href="https://github.com/eden-network/rpc-speedtest"
-              >
-                on GitHub
-              </a>
-              .
-            </p>
-          </ul>
-        </div>
         <section className="">
           <RPCs key={rpcKey} urls={rpcUrls} setUrls={setRpcUrls} />
         </section>
@@ -152,7 +90,7 @@ const Speedtest: React.FC = () => {
           />
         </section>
       </div>
-      <div className="bg-brand-blue bg-opacity-10 text-brand-blue flex-1 flex flex-col py-20">
+      <div className="text-brand-blue flex-1 flex flex-col py-20">
         <div className="flex-1 flex flex-col">
           {status === "idle" && (
             <div className="w-full flex-col flex items-center justify-center">
@@ -177,11 +115,9 @@ const Speedtest: React.FC = () => {
                 {`Beginning the test will transfer ${formatNumber(
                   Number(formatEther(totalAmount)),
                   { maximumSignificantDigits: 2 }
-                )} ${
-                  chain.nativeCurrency.symbol
-                } to the Genesis Wallet, create ${
-                  rpcUrls.length
-                } SpeedTest wallets, and send ${loops} transactions from each.`}
+                )} ${chain.nativeCurrency.symbol
+                  } to the Genesis Wallet, create ${rpcUrls.length
+                  } SpeedTest wallets, and send ${loops} transactions from each.`}
               </h1>
             </div>
           )}
@@ -191,9 +127,9 @@ const Speedtest: React.FC = () => {
                 {status === "starting"
                   ? "Funding Genesis Wallet"
                   : `Funding SpeedTest wallet ${Math.min(
-                      wallets.length + 1,
-                      rpcUrls.length
-                    )} of ${rpcUrls.length}`}
+                    wallets.length + 1,
+                    rpcUrls.length
+                  )} of ${rpcUrls.length}`}
               </span>
               <Spinner />
             </p>
@@ -201,56 +137,124 @@ const Speedtest: React.FC = () => {
           {(status === "running" ||
             status === "success" ||
             status === "cleaning") && (
-            <div className="mb-6 flex-1 space-y-6 max-w-full">
-              <ResultsTable chain={chain} results={results} />
-              <RankingsTable chain={chain} results={results} />
-              <CleanupTable chain={chain} txData={cleanupTxs} />
+              <div className="mb-6 flex-1 space-y-6 max-w-full">
+                <ResultsTable chain={chain} results={results} />
+                <RankingsTable chain={chain} results={results} />
+                <CleanupTable chain={chain} txData={cleanupTxs} />
 
-              <p className="w-full flex items-center justify-center text-xl">
-                {status === "running" && (
-                  <>
-                    <span className="mr-4">
-                      {`Running SpeedTest loop ${getCurrentIteration(
-                        loops,
-                        rpcUrls.length * loops,
-                        results.length
-                      )} of ${loops}`}
+                <p className="w-full flex items-center justify-center text-xl">
+                  {status === "running" && (
+                    <>
+                      <span className="mr-4 text-base">
+                        {`Running SpeedTest loop ${getCurrentIteration(
+                          loops,
+                          rpcUrls.length * loops,
+                          results.length
+                        )} of ${loops}`}
+                      </span>
+                      <Spinner />
+                    </>
+                  )}
+                  {status === "cleaning" && (
+                    <>
+                      <span className="mr-4">{"Running wallet cleanup"}</span>
+                      <Spinner />
+                    </>
+                  )}
+
+                  {status === "success" && (
+                    <span className="flex items-center space-x-4">
+                      <button
+                        onClick={() => reset()}
+                        className="flex-none text-sm font-medium ml-2 bg-white rounded-full px-3 py-1 text-indigo-600 hover:bg-indigo-100"
+                      >
+                        {"Clear Results"}
+                      </button>
+                      <button
+                        onClick={() => {
+                          reset();
+                          sendTransaction?.();
+                        }}
+                        className="flex-none text-sm font-medium ml-2 bg-white rounded-full px-3 py-1 text-indigo-600 hover:bg-indigo-100"
+                      >
+                        {"Run Again"}
+                      </button>
                     </span>
-                    <Spinner />
-                  </>
-                )}
-                {status === "cleaning" && (
-                  <>
-                    <span className="mr-4">{"Running wallet cleanup"}</span>
-                    <Spinner />
-                  </>
-                )}
-
-                {status === "success" && (
-                  <span className="flex items-center space-x-4">
-                    <button
-                      onClick={() => reset()}
-                      className="flex-none text-sm font-medium ml-2 bg-white rounded-full px-3 py-1 text-indigo-600 hover:bg-indigo-100"
-                    >
-                      {"Clear Results"}
-                    </button>
-                    <button
-                      onClick={() => {
-                        reset();
-                        sendTransaction?.();
-                      }}
-                      className="flex-none text-sm font-medium ml-2 bg-white rounded-full px-3 py-1 text-indigo-600 hover:bg-indigo-100"
-                    >
-                      {"Run Again"}
-                    </button>
-                  </span>
-                )}
-              </p>
-            </div>
-          )}
+                  )}
+                </p>
+              </div>
+            )}
         </div>
       </div>
       <div id="scrollAnchor" />
+      <div className="bg-[url('../public/eden-background.png')] bg-brand-blue bg-center bg-cover py-20">
+        <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
+          <div className="flex-1 bg-white p-6 rounded-2xl">
+            <legend className="text-base text-xl font-semibold leading-6 text-gray-900 pb-4">
+              Instructions
+            </legend>
+            <ol className="list-decimal px-5 pt-4">
+              <li>Connect your wallet</li>
+              <li>
+                Select a network that supports the RPC Speed Test (Ethereum,
+                Arbitrum, Avalanche, Polygon Mumbai)
+              </li>
+              <li>
+                Select the RPCs you want to test, and/or add your own by clicking
+                &apos;+ Custom RPC&apos;
+              </li>
+              <li>Review and modify test details as required</li>
+              <li>Click &apos;Start Speed Test&apos;</li>
+              <li>
+                Once results are received, the remaining ETH (or other native
+                token) will be refunded to your wallet
+              </li>
+            </ol>
+          </div>
+
+          <div className="flex-1 bg-white p-6 rounded-2xl">
+            <legend className="text-base text-xl font-semibold leading-6 text-gray-900 pb-4">
+              FAQ
+            </legend>
+            <ul className="list-none">
+              <li>
+                <b>
+                  How does the RPC Speed Test measure transaction propagation
+                  speed?
+                </b>
+              </li>
+              <p>
+                It sends multiple identical transactions to all selected RPCs at
+                once, then compares block number and transaction order to
+                determine the fastest RPC. The more loops you test, the more
+                accurate the results will be.
+              </p>
+              <li>
+                <b>
+                  Does the app store any user information (wallets, IPs, etc.)?
+                </b>
+              </li>
+              <p>
+                No, the app only keeps a local state in the browser and no user
+                info is shared or stored online.
+              </p>
+              <li>
+                <b>Is the code open source?</b>
+              </li>
+              <p>
+                Yes, you can review the code and methodology{" "}
+                <a
+                  className="text-brand-green underline hover:no-underline"
+                  href="https://github.com/eden-network/rpc-speedtest"
+                >
+                  on GitHub
+                </a>
+                .
+              </p>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
