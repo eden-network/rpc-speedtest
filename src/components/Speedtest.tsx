@@ -13,6 +13,7 @@ import { scrollToBottom } from "../utils/scrollToBottom";
 import { useLocalStorage } from "usehooks-ts";
 import { LocalSpeedtestWallets } from "../types";
 import CleanupTable from "./CleanupTable";
+import ExternalLink from "./ExternalLink";
 
 function getCurrentIteration(
   loopCount: number,
@@ -251,14 +252,7 @@ const Speedtest: React.FC = () => {
               </li>
               <p>
                 Yes, you can review the code and methodology{" "}
-                <a
-                  className="text-brand-green underline hover:no-underline"
-                  href="https://github.com/eden-network/rpc-speedtest"
-                  target="_blank"
-                >
-                  on GitHub
-                </a>
-                .
+                <ExternalLink url="https://github.com/eden-network/rpc-speedtest" content="Github"></ExternalLink>                .
               </p>
             </ul>
           </div>
