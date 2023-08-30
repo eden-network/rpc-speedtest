@@ -73,7 +73,7 @@ const Speedtest: React.FC = () => {
       <h1 className="mx-auto text-brand-blue text-4xl font-bold p-6">Take charge and Discover the Ultimate RPC Speed Data</h1>
       <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
         <section className="">
-          <RPCs key={rpcKey} urls={rpcUrls} setUrls={setRpcUrls} />
+          <RPCs rpcCount={rpcUrls.length} key={rpcKey} urls={rpcUrls} setUrls={setRpcUrls} />
         </section>
         <section className="">
           <Details
@@ -90,7 +90,7 @@ const Speedtest: React.FC = () => {
           />
         </section>
       </div>
-      <div className="text-brand-blue flex-1 flex flex-col py-20">
+      <div className="text-brand-blue flex-1 flex flex-col">
         <div className="flex-1 flex flex-col">
           {status === "idle" && (
             <div className="w-full flex-col flex items-center justify-center">
@@ -111,13 +111,13 @@ const Speedtest: React.FC = () => {
               >
                 {"Start Speed Test"}
               </button>
-              <h1 className="mt-6 text-brand-blue max-w-prose text-center">
+              <h1 className="mt-6 text-brand-blue text-center mb-12">
                 {`Beginning the test will transfer ${formatNumber(
                   Number(formatEther(totalAmount)),
                   { maximumSignificantDigits: 2 }
                 )} ${chain.nativeCurrency.symbol
                   } to the Genesis Wallet, create ${rpcUrls.length
-                  } SpeedTest wallets, and send ${loops} transactions from each.`}
+                  } SpeedTest wallets, and send  ${loops} transactions from each.`}
               </h1>
             </div>
           )}
@@ -187,6 +187,7 @@ const Speedtest: React.FC = () => {
         </div>
       </div>
       <div id="scrollAnchor" />
+      <div className="h-1 from-brand-green to-brand-green via-brand-lime bg-gradient-to-r animate-pulse" />
       <div className="bg-[url('../public/eden-background.png')] bg-brand-blue bg-center bg-cover py-20">
         <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
           <div className="flex-1 bg-white p-6 rounded-2xl">

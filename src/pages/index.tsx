@@ -53,7 +53,7 @@ function Page() {
       <main className="flex-1 flex flex-col">
         <Speedtest />
       </main>
-      <div className="h-10 from-brand-green to-brand-green via-brand-lime bg-gradient-to-r animate-pulse" />
+      <div className="h-1 from-brand-green to-brand-green via-brand-lime bg-gradient-to-r animate-pulse" />
       <footer className="bg-brand-blue text-white">
         <div className="mx-auto container max-w-7xl px-4 md:px-6 py-10">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 border-b border-gray-600 pb-6 mb-6">
