@@ -112,12 +112,19 @@ const Speedtest: React.FC = () => {
                 {"Start Speed Test"}
               </button>
               <h1 className="mt-6 text-brand-blue text-center mb-12">
-                {`Beginning the test will transfer ${formatNumber(
-                  Number(formatEther(totalAmount)),
-                  { maximumSignificantDigits: 2 }
-                )} ${chain.nativeCurrency.symbol
-                  } to the Genesis Wallet, create ${rpcUrls.length
-                  } SpeedTest wallets, and send  ${loops} transactions from each.`}
+                {"Beginning the test will transfer "}
+                <span className="font-bold">
+                  {`${formatNumber(Number(formatEther(totalAmount)), { maximumSignificantDigits: 2 })}`} {chain.nativeCurrency.symbol}
+                </span>
+                {" to the Genesis Wallet, create "}
+                <span className="font-bold">
+                  {`${rpcUrls.length}`} {"Speed Test"}
+                </span>
+                {" wallets, and send "}
+                <span className="font-bold">
+                  {`${loops}`} {"transactions "}
+                </span>
+                {"from each."}
               </h1>
             </div>
           )}
@@ -247,6 +254,7 @@ const Speedtest: React.FC = () => {
                 <a
                   className="text-brand-green underline hover:no-underline"
                   href="https://github.com/eden-network/rpc-speedtest"
+                  target="_blank"
                 >
                   on GitHub
                 </a>

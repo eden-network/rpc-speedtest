@@ -40,7 +40,7 @@ const RPCs = ({
     <>
       <fieldset>
         <div className="flex">
-          <legend className="flex-1 text-base font-semibold leading-6 text-gray-900">
+          <legend className="flex-1 text-lg font-semibold leading-6 text-gray-900 pl-2">
             {"Selected RPCs"}
           </legend>
           {rpcCount === 0 ? (
@@ -52,10 +52,10 @@ const RPCs = ({
               </span>
             </dd>
           ) : (
-            <dd className="mr-2 h-6"><span>{"Selected: "}</span>{rpcCount}</dd>
+            <dd className="mr-2 text-sm h-6"><span>{"Selected: "}</span>{rpcCount}</dd>
           )}
         </div>
-        <div className="mt-4 divide-y divide-gray-200 border-b border-t border-gray-200">
+        <div className="mt-4">
           {rpcUrls.map((rpc, i) => (
             <label
               htmlFor={`rpc-${rpc.url}`}
@@ -104,16 +104,6 @@ const RPCs = ({
           ))}
         </div>
         <div className="flex">
-          <div className="py-2 text-right">
-            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
-              onClick={() =>
-                console.log("here")
-              }
-              className="rounded-full border-indigo-600 border-2 px-2 py-1.5 text-xs font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            >
-              {"Add more RPCs from a list"}
-            </button>
-          </div>
           <div className="py-2 text-right">
             <button
               onClick={() =>

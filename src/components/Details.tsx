@@ -30,10 +30,10 @@ const Details = ({
 
   return (
     <aside>
-      <legend className="text-base font-semibold leading-6 text-gray-900">
+      <legend className="text-lg font-semibold leading-6 text-gray-900">
         {"Test Details"}
       </legend>
-      <dl className="mt-4 divide-y divide-gray-200 border-b border-t border-gray-200">
+      <dl className="mt-4">
         <div className={`flex items-center p-2`}>
           <dt className="min-w-0 flex-1 text-sm leading-6 font-medium text-gray-900">
             {"Loops"}
@@ -48,7 +48,7 @@ const Details = ({
             >
               {"-"}
             </button>
-            <span className="text-indigo-600 w-5 text-center">{loops}</span>
+            <span className="text-indigo-600 w-6 text-center">{loops}</span>
             <button
               className="bg-brand-blue text-white rounded-md border-indigo-600 text-sm text-indigo-600 flex items-center justify-center h-5 w-5 ml-1"
               onClick={() => setLoops((x) => x + 1)}
@@ -71,9 +71,9 @@ const Details = ({
             >
               {"-"}
             </button>
-            <span className="text-indigo-600 w-5 text-center">
+            <span className="text-indigo-600 w-6 text-center">
               {delay}
-              {/* <span className="text-xs opacity-75">{"s"}</span> */}
+              <span className="text-xs opacity-75">{"s"}</span>
             </span>
             <button
               className="bg-brand-blue text-white rounded-md border border-indigo-600 text-sm rounded-full text-indigo-600 flex items-center justify-center h-5 w-5 ml-1"
