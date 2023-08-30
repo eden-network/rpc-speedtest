@@ -1,3 +1,5 @@
+import ExternalLink from "./ExternalLink";
+
 function Footer() {
 
     return (
@@ -8,44 +10,16 @@ function Footer() {
                         <h4 className="text-brand-lime font-bold">{"Products"}</h4>
                         <ul className="space-y-2 mt-4">
                             <li className="">
-                                <a
-                                    rel="nofollow noreferrer"
-                                    href="https://docs.edennetwork.io/eden-rpc/overview"
-                                    className="hover:text-brand-lime"
-                                    target="_blank"
-                                >
-                                    Eden RPC
-                                </a>
+                                <ExternalLink style="hover:text-brand-lime" url="https://docs.edennetwork.io/eden-rpc/overview" content="Eden RPC" />
                             </li>
                             <li className="">
-                                <a
-                                    rel="nofollow noreferrer"
-                                    href="https://docs.edennetwork.io/eden-relay/overview"
-                                    className="hover:text-brand-lime"
-                                    target="_blank"
-                                >
-                                    Eden Relay
-                                </a>
+                                <ExternalLink style="hover:text-brand-lime" url="https://docs.edennetwork.io/eden-relay/overview" content="Eden Relay" />
                             </li>
                             <li className="">
-                                <a
-                                    rel="nofollow noreferrer"
-                                    href="https://docs.edennetwork.io/eden-bundles/overview"
-                                    className="hover:text-brand-lime"
-                                    target="_blank"
-                                >
-                                    Eden Bundles
-                                </a>
+                                <ExternalLink style="hover:text-brand-lime" url="https://docs.edennetwork.io/eden-bundles/overview" content="Eden Bundles" />
                             </li>
                             <li className="">
-                                <a
-                                    rel="nofollow noreferrer"
-                                    href="https://yieldyak.com/liquid-staking"
-                                    className="hover:text-brand-lime"
-                                    target="_blank"
-                                >
-                                    yyAVAX on Yield Yak
-                                </a>
+                                <ExternalLink style="hover:text-brand-lime" url="https://yieldyak.com/liquid-staking" content="yyAVAX on Yield Yak" />
                             </li>
                         </ul>
                     </nav>
@@ -53,34 +27,13 @@ function Footer() {
                         <h4 className="text-brand-lime font-bold">{"Developers"}</h4>
                         <ul className="mt-4 space-y-2">
                             <li className="">
-                                <a
-                                    href="https://docs.edennetwork.io/"
-                                    target="_blank"
-                                    rel="nofollow noreferrer"
-                                    className="hover:text-brand-lime"
-                                >
-                                    Docs
-                                </a>
+                                <ExternalLink style="hover:text-brand-lime" url="https://docs.edennetwork.io/" content="Docs" />
                             </li>
                             <li className="">
-                                <a
-                                    href="https://github.com/eden-network/"
-                                    target="_blank"
-                                    rel="nofollow noreferrer"
-                                    className="hover:text-brand-lime"
-                                >
-                                    GitHub
-                                </a>
+                                <ExternalLink style="hover:text-brand-lime" url="https://github.com/eden-network/" content="GitHub" />
                             </li>
                             <li className="">
-                                <a
-                                    href="https://github.com/0xprotect"
-                                    target="_blank"
-                                    rel="nofollow noreferrer"
-                                    className="hover:text-brand-lime"
-                                >
-                                    0xProtect
-                                </a>
+                                <ExternalLink style="hover:text-brand-lime" url="https://github.com/0xprotect" content="0xProtect" />
                             </li>
                         </ul>
                     </nav>
@@ -88,14 +41,7 @@ function Footer() {
                         <h4 className="text-brand-lime font-bold">{"Company"}</h4>
                         <ul className="mt-4 space-y-2">
                             <li className="">
-                                <a
-                                    href="https://www.linkedin.com/company/edennetwork/"
-                                    target="_blank"
-                                    rel="nofollow noreferrer"
-                                    className="hover:text-brand-lime"
-                                >
-                                    LinkedIn
-                                </a>
+                                <ExternalLink style="hover:text-brand-lime" url="https://www.linkedin.com/company/edennetwork/" content="LinkedIn" />
                             </li>
                         </ul>
                     </nav>
@@ -103,34 +49,13 @@ function Footer() {
                         <h4 className="text-brand-lime font-bold">{"Community"}</h4>
                         <ul className="mt-4 space-y-2">
                             <li className="">
-                                <a
-                                    href="https://discord.gg/ZhB9mpWWG3"
-                                    target="_blank"
-                                    rel="nofollow noreferrer"
-                                    className="hover:text-brand-lime"
-                                >
-                                    Discord
-                                </a>
+                                <ExternalLink style="hover:text-brand-lime" url="https://discord.gg/ZhB9mpWWG3" content="Community" />
                             </li>
                             <li className="">
-                                <a
-                                    href="https://twitter.com/edennetwork"
-                                    target="_blank"
-                                    rel="nofollow noreferrer"
-                                    className="hover:text-brand-lime"
-                                >
-                                    Twitter
-                                </a>
+                                <ExternalLink style="hover:text-brand-lime" url="https://twitter.com/edennetwork" content="Twitter" />
                             </li>
                             <li className="">
-                                <a
-                                    href="https://medium.com/EdenNetwork"
-                                    target="_blank"
-                                    rel="nofollow noreferrer"
-                                    className="hover:text-brand-lime"
-                                >
-                                    Medium
-                                </a>
+                                <ExternalLink style="hover:text-brand-lime" url="https://medium.com/EdenNetwork" content="Medium" />
                             </li>
                         </ul>
                     </nav>
