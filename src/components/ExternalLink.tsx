@@ -1,14 +1,19 @@
 const ExternalLink = ({
+    style,
     url,
     content
 }: {
+    style: string,
     url: string,
     content: string
 }) => {
 
 
     return (
-        <a className="text-brand-green underline hover:no-underline" href={url} target="_blank">
+        <a className={style}
+            href={url}
+            target="_blank"
+            rel="nofollow noreferrer">
             {content}
         </a>
     );

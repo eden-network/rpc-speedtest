@@ -252,7 +252,7 @@ const Speedtest: React.FC = () => {
               </li>
               <p>
                 Yes, you can review the code and methodology{" "}
-                <ExternalLink url="https://github.com/eden-network/rpc-speedtest" content="Github"></ExternalLink>                .
+                <ExternalLink style="text-brand-green underline hover:no-underline" url="https://github.com/eden-network/rpc-speedtest" content="Github"></ExternalLink>                .
               </p>
             </ul>
           </div>
