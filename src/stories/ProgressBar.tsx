@@ -1,27 +1,32 @@
 import React from 'react';
+import { Percentage } from './Percentage';
 
 interface ProgressBarProps {
-    /**
-     * Is this the principal call to action on the page?
-     */
     percentage?: string;
-    /**
-     * What background color to use
-     */
-    /**
-     * Optional click handler
-     */
+    color?: string
+    completed?: boolean
 }
-
-/**
- * Primary UI component for user interaction
- */
 export const ProgressBar = ({
-    percentage = "0%"
+    percentage = "25%",
+    color = "bg-emerald-400",
+    completed = false
 }: ProgressBarProps) => {
+    if (percentage === "0%") {
+        color = "bg-blueGray-300",
+            completed = false
+    } else if (percentage === "100%") {
+        color = "bg-lime-300",
+            completed = true
+    } else {
+        color = "bg-emerald-400",
+            completed = false
+    }
     return (
-        <div style={{ width: "200px" }} className="bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-            <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: percentage }}></div>
+        <div className="flex items-center">
+            <div style={{ width: "300px" }} className="bg-gray-200 rounded-md h-4 dark:bg-blueGray-300">
+                <div className={`${color} h-4 rounded-md`} style={{ width: percentage }}></div>
+            </div>
+            <Percentage percentage={percentage} completed={completed} />
         </div>
     );
 };

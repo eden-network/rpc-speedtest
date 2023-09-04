@@ -13,6 +13,8 @@ const RankingsTable = ({
   chain: Chain;
 }) => {
   const rpcData = useMemo(() => formatRpcRankings(results), [results]);
+  console.log(rpcData);
+
   const isMetaMask = window?.ethereum?.isMetaMask;
 
   if (!rpcData.length) {
@@ -36,9 +38,8 @@ const RankingsTable = ({
                 return (
                   <th
                     key={position}
-                    className={`py-3.5 text-right text-sm font-semibold text-gray-900 ${
-                      position === rpcData.length ? "pl-3 pr-4" : "px-3"
-                    }`}
+                    className={`py-3.5 text-right text-sm font-semibold text-gray-900 ${position === rpcData.length ? "pl-3 pr-4" : "px-3"
+                      }`}
                   >
                     {getOrdinal(position)}
                   </th>

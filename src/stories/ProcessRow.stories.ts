@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { ProgressBar } from './ProgressBar';
+import { ProcessRow } from './ProcessRow';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-    title: 'Example/ProgressBar',
-    component: ProgressBar,
+    title: 'Example/ProcessRow',
+    component: ProcessRow,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
         layout: 'centered',
@@ -16,7 +16,7 @@ const meta = {
     argTypes: {
 
     },
-} satisfies Meta<typeof ProgressBar>;
+} satisfies Meta<typeof ProcessRow>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
