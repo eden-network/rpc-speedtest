@@ -8,6 +8,15 @@ const meta = {
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
         layout: 'centered',
+        backgrounds: {
+            default: 'eden',
+            values: [
+                {
+                    name: 'eden',
+                    value: '#181E45'
+                }
+            ]
+        }
     },
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
     tags: ['autodocs'],
@@ -25,16 +34,50 @@ type Story = StoryObj<typeof meta>;
 
 export const Waiting: Story = {
     args: {
-
+        tasks: [{
+            percentage: 100,
+            name: "Transfer to the Genesis Wallet",
+            isActive: false,
+        },
+        {
+            percentage: 100,
+            name: "Create Speed Test wallets",
+            isActive: false,
+        },
+        {
+            percentage: 50,
+            name: "Transfer to wallets",
+            isActive: true,
+        },
+        {
+            percentage: 0,
+            name: "Loop 1",
+            isActive: true,
+        },
+        {
+            percentage: 0,
+            name: "Loop 2",
+            isActive: false,
+        },
+        {
+            percentage: 0,
+            name: "Loop 3",
+            isActive: false,
+        },
+        {
+            percentage: 0,
+            name: "Loop 4",
+            isActive: false,
+        }]
     },
 };
 
-export const InProgress: Story = {
-    args: {
-    },
-};
+// export const InProgress: Story = {
+//     args: {
+//     },
+// };
 
-export const Completed: Story = {
-    args: {
-    },
-};
+// export const Completed: Story = {
+//     args: {
+//     },
+// };

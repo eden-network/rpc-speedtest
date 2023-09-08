@@ -1,51 +1,35 @@
 import React from 'react';
 import { ProgressBar } from './ProgressBar';
-import { Percentage } from './Percentage';
 
 interface ProcessRowProps {
-    /**
-     * Is this the principal call to action on the page?
-     */
-    percentage?: string;
+
+    percentage: number;
     color?: string;
     name?: string;
-    completed?: boolean;
-
-    task?: {
-        percentage?: string;
-        color?: string;
-        name?: string;
-        completed?: boolean;
-    }
-    /**
-     * What background color to use
-     */
-    /**
-     * Optional click handler
-     */
+    isActive: boolean;
+    numOfFinishedTasks: number;
+    indexOfRow: number;
+    lastCompleted?: boolean;
 }
 
-/**
- * Primary UI component for user interaction
- */
 export const ProcessRow = ({
-    percentage = "25%",
-    name = "Transfer to the genesis wallet",
-    task = {
-        percentage: "0%",
-        color: ""
-    }
+    percentage,
+    color,
+    isActive,
+    name,
+    lastCompleted
 }: ProcessRowProps) => {
-    let textStyle = ""
-    if (percentage === "0%") {
-        textStyle = "font-normal text-gray"
+    let fontWeight = ""
+    if (percentage === 0) {
+        fontWeight = "font-normal text-gray-500"
     } else {
-        textStyle = "font-semibold text-black"
+        fontWeight = "font-semibold text-white"
     }
     return (
-        <div className="flex items-center mb-4">
-            <h1 className={`${textStyle} mr-2`}>{name}</h1>
-            <ProgressBar percentage={percentage} />
+
+        <div className="flex items-center mb-4 h-10">
+            <h1 className={`w-32 font-semibold ${fontWeight} mr-4`}>{name}</h1>
+            <ProgressBar lastCompleted={lastCompleted} isActive={isActive} percentage={percentage} />
         </div>
     );
 };

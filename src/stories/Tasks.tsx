@@ -1,45 +1,31 @@
 import React from 'react';
 import { ProcessRow } from './ProcessRow';
 
+type Task = {
+    percentage: number,
+    color?: string,
+    name: string,
+    isActive: boolean,
+}
+
 interface ResultsCardProps {
     title?: string;
-    tasks?: [{
-        name?: string,
-        percentage?: string
-    },
-        {
-            name?: string,
-            percentage?: string
-        },
-        {
-            name?: string,
-            percentage?: string
-        }];
-}[]
+    tasks: Task[];
+}
 
 export const Tasks = ({
-    title = "Tasks",
-    tasks = [
-        {
-            name: "Transfer to the Genesis Wallet",
-            percentage: "0%"
-        },
-        {
-            name: "Create SpeedTest wallets",
-            percentage: "20%"
-        },
-        {
-            name: "Transfer to wallets",
-            percentage: "100%"
-        },
-    ]
+    title = "Processes",
+    tasks = [],
 }: ResultsCardProps) => {
+
+    const finishedTasks: number = tasks.filter(task => task.percentage === 100).length
+
     return (
         <div>
-            <h1 className="text-lg font-semibold mb-4">{title}</h1>
+            <h1 className="text-xl text-white font-semibold mb-4">{title}</h1>
             <div>
                 {tasks.map((item, index) =>
-                    <ProcessRow name={item.name} percentage={item.percentage} key={index} />
+                    <ProcessRow lastCompleted={finishedTasks - 1 === index} numOfFinishedTasks={finishedTasks} indexOfRow={index + 1} isActive={item.isActive} name={item.name} percentage={item.percentage} key={index} />
                 )}
             </div>
         </div>

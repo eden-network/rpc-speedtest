@@ -10,6 +10,15 @@ const meta = {
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
         layout: 'centered',
+        backgrounds: {
+            default: 'eden',
+            values: [
+                {
+                    name: 'eden',
+                    value: '#181E45'
+                }
+            ]
+        }
     },
     // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/react/writing-docs/autodocs
     tags: ['autodocs'],
@@ -24,24 +33,23 @@ type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/react/writing-stories/args
 
-
-export const Waiting: Story = {
-    args: {
-        percentage: "0%",
-        completed: false
-    },
-};
-
 export const InProgress: Story = {
     args: {
-        percentage: "30%",
-        completed: false
+        percentage: 0,
     },
 };
 
 export const Completed: Story = {
     args: {
-        percentage: "100%",
-        completed: true
+        percentage: 100,
     },
+};
+
+export const RecentlyCompleted: Story = {
+    args: {
+        percentage: 100,
+        lastCompleted: true
+    },
+
+
 };

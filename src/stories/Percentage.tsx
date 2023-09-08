@@ -1,24 +1,42 @@
 import React from 'react';
-import Image from 'next/image'
+import { Check } from './icons/Check';
 
 interface PercentageProps {
-    percentage: string;
-    completed: boolean;
+    percentage: number;
+    lastCompleted?: boolean;
 }
 
-/**
- * Primary UI component for user interaction
- */
 export const Percentage = ({
-    percentage = "25%",
-    completed = false
+    percentage,
+    lastCompleted
+
 }: PercentageProps) => {
-    if (percentage === "100%") {
+
+    let completed: boolean = false
+    let color: string = ""
+    let fontWeight: string = ""
+    if (percentage === 100) {
         completed = true
     }
+    if (percentage === 0) {
+        fontWeight = "text-gray-500"
+    } else {
+        fontWeight = "text-white"
+    }
+
+    if (lastCompleted) {
+        color = "#49DA9D"
+    } else {
+        color = "#dce775"
+    }
     return (
-        <div>
-            {completed ? <Image className='ml-2' alt='completed' src={require('../../public/completed.png').default} /> : <span className="font-semibold text-black ml-2">{percentage}</span>}
+        <div className='w-24 flex justify-center'>
+            {
+                completed ?
+                    <Check color={color} />
+                    :
+                    <span className={`font-bold ${fontWeight}`}>{percentage.toString().concat("%")}</span>
+            }
         </div>
     );
 };
