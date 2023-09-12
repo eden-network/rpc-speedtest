@@ -1,0 +1,21 @@
+.animation-waiting {
+    background: repeating-linear-gradient(-80deg, rgb(132, 132, 132) 0px 14px, #9D9D9D 14px 49px);
+    animation: progressbar-animation 3s linear infinite;
+}
+
+.animation-inprogress {
+    background: repeating-linear-gradient(-80deg, rgb(33, 150, 107) 0px 14px, rgb(52 211 153) 14px 49px);
+    animation: progressbar-animation 3s linear infinite;
+}
+
+
+/* in order to make the animation without the glitch, we have to calculate the exact width that the boxes travel within keyframes.  */
+@keyframes progressbar-animation {
+    from {
+        background-position-x: 0px;
+    }
+
+    to {
+        background-position-x: 300px;
+    }
+}

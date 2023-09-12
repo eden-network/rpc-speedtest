@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-
-import { ProgressBar } from './ProgressBar';
+import { ScoreBoard } from './ScoreBoard';
 
 // More on how to set up stories at: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 const meta = {
-    title: 'Example/ProgressBar',
-    component: ProgressBar,
+    title: 'Example/ScoreBoard',
+    component: ScoreBoard,
     parameters: {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
         layout: 'centered',
@@ -25,7 +24,7 @@ const meta = {
     argTypes: {
 
     },
-} satisfies Meta<typeof ProgressBar>;
+} satisfies Meta<typeof ScoreBoard>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -35,39 +34,5 @@ type Story = StoryObj<typeof meta>;
 
 export const Waiting: Story = {
     args: {
-        percentage: 0,
-        isActive: false,
-        color: undefined
     },
-};
-
-export const InProgress: Story = {
-    args: {
-        percentage: 50,
-        isActive: true
-    },
-};
-
-export const Completed: Story = {
-    args: {
-        percentage: 100,
-        isActive: true
-    },
-};
-
-export const RecentlyCompleted: Story = {
-    args: {
-        percentage: 100,
-        isActive: true,
-        lastCompleted: true
-    },
-
-};
-
-export const Started: Story = {
-    args: {
-        percentage: 0,
-        isActive: true
-    },
-
 };

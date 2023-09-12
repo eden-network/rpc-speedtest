@@ -1,5 +1,6 @@
 import React from 'react';
 import { Percentage } from './Percentage';
+import './progressbar.css';
 
 interface ProgressBarProps {
     percentage: number;
@@ -26,7 +27,7 @@ export const ProgressBar = ({
     }
     else {
         //this is color for in progress task
-        foreGroundColor = "bg-emerald-400"
+        foreGroundColor = "animation-inprogress"
     }
 
     if (lastCompleted) {
@@ -35,11 +36,12 @@ export const ProgressBar = ({
     }
 
     let isBgAnimated: boolean = percentage === 0 && isActive === true
+    isBgAnimated ? "animation" : ""
     // let lastCompleted: boolean = finishedTasks - 1 === index - 1
 
     return (
         <div className="flex items-center">
-            <div style={{ width: "150px", border: isBgAnimated ? "1px solid green" : "none" }} className="bg-gray-200 rounded-md h-4 dark:bg-neutral-400">
+            <div style={{ width: "150px", backgroundSize: "200% 200%" }} className={`rounded-md h-4 dark:bg-neutral-400 ${isBgAnimated ? "animation-waiting" : ""}`}>
                 <div className={`${foreGroundColor} h-4 rounded-md`} style={{ width: percentage.toString().concat("%") }}></div>
             </div>
             <Percentage lastCompleted={lastCompleted} percentage={percentage} />
