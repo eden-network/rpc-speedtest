@@ -34,5 +34,19 @@ type Story = StoryObj<typeof meta>;
 
 export const Waiting: Story = {
     args: {
+        rows: [{
+            rank: 1,
+            rpc: "https://polygon-testnet.public.blastapi.io",
+            first: 2,
+            second: 0,
+            third: 1,
+        },
+        {
+            rank: 2,
+            rpc: "https://polygon-testnet.public.blastapi.io",
+            first: 1,
+            second: 1,
+            third: 1,
+        }]
     },
 };
