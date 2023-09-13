@@ -47,6 +47,13 @@ export const Waiting: Story = {
             first: 1,
             second: 1,
             third: 1,
+        },
+        {
+            rank: 3,
+            rpc: "https://polygon-testnet.public.blastapi.io",
+            first: 0,
+            second: 1,
+            third: 2,
         }]
     },
 };

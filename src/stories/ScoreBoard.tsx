@@ -18,7 +18,7 @@ export const ScoreBoard = ({
     rows = []
 }: ScoreBoardProps) => {
 
-    const isFirst = rows.map((item, index) => {
+    const isFirst = rows.map((item) => {
         item.rank === 1 ? item.isFirst = true : item.isFirst = false
     })
 
