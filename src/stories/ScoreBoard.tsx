@@ -32,7 +32,7 @@ export const ScoreBoard = ({
                             {"Rank"}
                         </th>
                         <th className="text-left px-2">
-                            {"RPC"}
+                            {"RPCCCC"}
                         </th>
                         <th className="px-4">
                             {"1ST"}
