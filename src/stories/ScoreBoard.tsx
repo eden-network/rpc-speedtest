@@ -1,29 +1,30 @@
 import React from 'react';
 import { CopyButton } from './CopyButton';
+import { EdenIcon } from './icons/EdenIcon';
+import { EdenText } from './icons/EdenText';
 
-type RpcRow = {
-    rank: number,
-    rpc: string,
+type Rpc = {
+    url: string,
     first: number,
     second: number,
     third: number,
-    isFirst?: boolean
 }
 
 interface ScoreBoardProps {
-    rows: RpcRow[]
+    rpcData: Rpc[]
 }
 
 export const ScoreBoard = ({
-    rows = []
+    rpcData = []
 }: ScoreBoardProps) => {
 
-    const isFirst = rows.map((item) => {
-        item.rank === 1 ? item.isFirst = true : item.isFirst = false
+    const rpcsRanked = rpcData.sort((a: Rpc, b: Rpc): number => {
+        const sorted = b.first - a.first;
+        return sorted;
     })
 
     return (
-        <div className="text-brand-darkblue text-center font-bold bg-gradient-eden p-8 rounded-md">
+        <div className="text-brand-darkblue text-center font-bold bg-gradient-eden p-6 rounded-md m-20">
             <table className="border-separate border-spacing-y-0.5">
                 <caption className="text-2xl">{"RPC Speed Test"}</caption>
                 <thead className="">
@@ -32,7 +33,7 @@ export const ScoreBoard = ({
                             {"Rank"}
                         </th>
                         <th className="text-left px-2">
-                            {"RPCCCC"}
+                            {"RPC"}
                         </th>
                         <th className="px-4">
                             {"1ST"}
@@ -46,30 +47,35 @@ export const ScoreBoard = ({
                     </tr>
                 </thead>
                 <tbody>
-                    {rows.map((item, index) =>
-                        <tr className={item.isFirst ? "bg-white/80" : "bg-white/40"} key={index}>
+                    {rpcsRanked.map((rpc, index) =>
+                        <tr className={index === 0 ? "bg-white/80" : "bg-white/40"} key={index}>
                             <td className="bg-brand-darkblue text-white text-xl font-medium px-5 py-4 leading-none">
-                                {item.rank}
+                                {index + 1}
                             </td>
-                            <td className="px-2 font-semibold">
-                                {item.rpc}
-                            </td>
-                            <td>
-                                {item.first}
+                            <td className="px-2 font-semibold mr-20 text-left">
+                                {rpc.url}
                             </td>
                             <td>
-                                {item.second}
+                                {rpc.first}
                             </td>
                             <td>
-                                {item.third}
+                                {rpc.second}
+                            </td>
+                            <td>
+                                {rpc.third}
                             </td>
                             <td className="px-4 pl-8">
-                                <CopyButton label="Copy" />
+                                <CopyButton label="Copy" url={rpc.url} />
                             </td>
                         </tr>
                     )}
                 </tbody>
             </table>
+            <div className="flex justify-end mt-10 gap-2">
+                <h1 className="flex items-end">{"Powered by"}</h1>
+                <EdenIcon />
+                <EdenText />
+            </div>
         </div>
     );
 };
