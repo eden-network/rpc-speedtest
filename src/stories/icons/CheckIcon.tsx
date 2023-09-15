@@ -1,13 +1,13 @@
 import React from 'react';
 
 
-interface CheckProps {
+interface CheckIconProps {
     color: string;
 }
 
-export const Check = ({
+export const CheckIcon = ({
     color
-}: CheckProps) => {
+}: CheckIconProps) => {
     return (
         <div className='w-24 flex justify-center lime-300'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke={color} className="w-6 h-6 lime-300">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check } from './icons/Check';
+import { CheckIcon } from './icons/CheckIcon';
 
 interface PercentageProps {
     percentage: number;
@@ -33,7 +33,7 @@ export const Percentage = ({
         <div className='w-24 flex justify-center'>
             {
                 completed ?
-                    <Check color={color} />
+                    <CheckIcon color={color} />
                     :
                     <span className={`font-bold ${fontWeight}`}>{percentage.toString().concat("%")}</span>
             }

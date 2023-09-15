@@ -1,6 +1,5 @@
 import React from 'react';
-import { Copy } from './icons/Copy';
-import { CopySolid } from './icons/CopySolid';
+import { CopyIcon } from './icons/CopyIcon';
 import { useState } from 'react';
 
 interface CopyButtonProps {
@@ -12,13 +11,15 @@ export const CopyButton = ({
     label,
     url
 }: CopyButtonProps) => {
-    const [visible, setVisible] = useState(false);
+    const [active, setActive] = useState(false);
 
     const handleClick = () => {
-        setVisible(true);
+        setActive(true);
         copyToClipboard()
-        setTimeout(() => setVisible(false), 1000)
+        const timeoutHandler = setTimeout(() => setActive(false), 1000)
+        // clearTimeout(timeoutHandler)
     };
+
 
     const copyToClipboard = async () => {
         try {
@@ -30,9 +31,8 @@ export const CopyButton = ({
     }
 
     return (
-
         <button onClick={handleClick} className='flex border border-brand-darkblue px-3 text-xs items-center'>
-            {visible ? <CopySolid /> : <Copy />}
+            <CopyIcon active={active} />
             {label}
         </button>
     );
