@@ -24,7 +24,7 @@ export const ScoreBoard = ({
     })
 
     return (
-        <div className="text-brand-darkblue text-center font-bold bg-gradient-eden p-6 rounded-md m-20">
+        <div className="text-brand-blue text-center font-bold bg-gradient-eden p-6 rounded-md m-20">
             <table className="border-separate border-spacing-y-0.5">
                 <caption className="text-2xl">{"RPC Speed Test"}</caption>
                 <thead className="">
@@ -49,7 +49,7 @@ export const ScoreBoard = ({
                 <tbody>
                     {rpcsRanked.map((rpc, index) =>
                         <tr className={index === 0 ? "bg-white/80" : "bg-white/40"} key={index}>
-                            <td className="bg-brand-darkblue text-white text-xl font-medium px-5 py-4 leading-none">
+                            <td className="bg-brand-blue text-white text-xl font-medium px-5 py-4 leading-none">
                                 {index + 1}
                             </td>
                             <td className="px-2 font-semibold mr-20 text-left">

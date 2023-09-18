@@ -11,12 +11,10 @@ module.exports = {
           "linear-gradient(90deg, #5ED37D 9.02%, #CAF84C 107.87%)",
         "gradient-fresh":
           "linear-gradient(90deg, #B6F509 1.7%, #75E327 61.22%, #14D674 98.99%)"
-
       },
       colors: {
         brand: {
           blue: "#171b47",
-          darkblue: "#181E45",
           green: "#0cd479",
           lime: "#caff00",
           gray: "#B9B9B9"

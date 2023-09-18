@@ -31,7 +31,7 @@ export const CopyButton = ({
     }
 
     return (
-        <button onClick={handleClick} className='flex border border-brand-darkblue px-3 text-xs items-center'>
+        <button onClick={handleClick} className='flex border border-brand-blue px-3 text-xs items-center'>
             <CopyIcon active={active} />
             {label}
         </button>
