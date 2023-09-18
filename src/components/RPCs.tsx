@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-
+import { PlusIcon } from "../stories/icons/PlusIcon";
 const RPCs = ({
   rpcCount,
   urls,
@@ -37,10 +37,10 @@ const RPCs = ({
   };
 
   return (
-    <>
+    <div className="bg-white rounded-md p-6 drop-shadow-xl">
       <fieldset>
-        <div className="flex">
-          <legend className="flex-1 text-lg font-semibold leading-6 text-gray-900 pl-2">
+        <div className="flex font-bold">
+          <legend className="flex-1 text-lg font-bold leading-6 text-gray-900 pl-2">
             {"Selected RPCs"}
           </legend>
           {rpcCount === 0 ? (
@@ -104,19 +104,20 @@ const RPCs = ({
           ))}
         </div>
         <div className="flex">
-          <div className="py-2 text-right">
+          <div className="text-right p-2">
             <button
               onClick={() =>
                 setRpcUrls((x) => [...x, { editable: true, url: "" }])
               }
-              className="rounded-full border-indigo-600 border-2 px-2 py-1.5 text-xs font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex gap-2 items-center rounded-md border-indigo-600 border-2 px-2 py-1.5 text-xs font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               {"Add a custom RPC"}
+              <PlusIcon />
             </button>
           </div>
         </div>
       </fieldset>
-    </>
+    </div>
   );
 };
 

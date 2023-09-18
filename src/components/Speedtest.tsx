@@ -70,9 +70,11 @@ const Speedtest: React.FC = () => {
   }, [results]);
 
   return (
-    <div className="Speedtest flex-1 flex flex-col">
-      <h1 className="mx-auto text-brand-blue text-4xl font-bold p-6">Take charge and Discover the Ultimate RPC Speed Data</h1>
-      <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
+    <div className="Speedtest bg-brand-darkblue flex-1 flex flex-col">
+      <h1 className="mx-auto text-white text-center text-4xl font-bold p-6 w-1/2">Accurately Measure
+        <span className="bg-gradient-fresh bg-clip-text text-transparent"> Transaction Propagation Speeds </span>
+        from Your Browser</h1>
+      <div className="z-10 container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
         <section className="">
           <RPCs rpcCount={rpcUrls.length} key={rpcKey} urls={rpcUrls} setUrls={setRpcUrls} />
         </section>
@@ -89,14 +91,10 @@ const Speedtest: React.FC = () => {
             transferCost={transferPrice}
             wallets={wallets}
           />
-        </section>
-      </div>
-      <div className="text-brand-blue flex-1 flex flex-col">
-        <div className="flex-1 flex flex-col">
           {status === "idle" && (
-            <div className="w-full flex-col flex items-center justify-center">
+            <div className="w-full flex-col flex items-center justify-center mt-10">
               <button
-                className="rounded-full bg-gradient-eden px-4 py-2.5 text-2xl font-semibold text-black shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-75"
+                className="rounded-md bg-gradient-fresh px-12 py-2.5 text-2xl font-semibold text-black shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-75"
                 type="button"
                 onClick={() => {
                   setLocalWallets({
@@ -112,23 +110,30 @@ const Speedtest: React.FC = () => {
               >
                 {"Start Speed Test"}
               </button>
-              <h1 className="mt-6 text-brand-blue text-center mb-12">
-                {"Beginning the test will transfer "}
-                <span className="font-bold">
-                  {`${formatNumber(Number(formatEther(totalAmount)), { maximumSignificantDigits: 2 })}`} {chain.nativeCurrency.symbol}
-                </span>
-                {" to the Genesis Wallet, create "}
-                <span className="font-bold">
-                  {`${rpcUrls.length}`} {"Speed Test"}
-                </span>
-                {" wallets, and send "}
-                <span className="font-bold">
-                  {`${loops}`} {"transactions "}
-                </span>
-                {"from each."}
-              </h1>
+
             </div>
           )}
+          <h1 className="text-white text-center mt-6">
+            {"Beginning the test will transfer "}
+            <span className="font-bold">
+              {`${formatNumber(Number(formatEther(totalAmount)), { maximumSignificantDigits: 2 })}`} {chain.nativeCurrency.symbol}
+            </span>
+            {" to the Genesis Wallet, create "}
+            <span className="font-bold">
+              {`${rpcUrls.length}`} {"Speed Test"}
+            </span>
+            {" wallets, and send "}
+            <span className="font-bold">
+              {`${loops}`} {"transactions "}
+            </span>
+            {"from each."}
+          </h1>
+        </section>
+      </div>
+      <div className="flex h-20 bg-gradient-fresh">
+      </div>
+      <div className="text-brand-blue flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col">
           {(status === "seeding" || status === "starting") && (
             <p className="w-full flex items-center justify-center text-xl">
               <span className="mr-4">
@@ -193,12 +198,13 @@ const Speedtest: React.FC = () => {
               </div>
             )}
         </div>
+
       </div>
       <div id="scrollAnchor" />
-      <div className="h-1 from-brand-green to-brand-green via-brand-lime bg-gradient-to-r animate-pulse" />
-      <div className="bg-[url('../public/eden-background.png')] bg-brand-blue bg-center bg-cover py-20">
+      <div className="bg-white bg-[url('../public/eden-background-white.svg')] bg-center bg-cover py-20">
+        <div className=""></div>
         <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
-          <div className="flex-1 bg-white p-6 rounded-2xl">
+          <div className="flex-1 bg-white p-6 rounded-2xl drop-shadow-2xl">
             <legend className="text-base text-xl font-semibold leading-6 text-gray-900 pb-4">
               Instructions
             </legend>
@@ -221,7 +227,7 @@ const Speedtest: React.FC = () => {
             </ol>
           </div>
 
-          <div className="flex-1 bg-white p-6 rounded-2xl">
+          <div className="flex-1 bg-white p-6 rounded-2xl drop-shadow-2xl">
             <legend className="text-base text-xl font-semibold leading-6 text-gray-900 pb-4">
               FAQ
             </legend>

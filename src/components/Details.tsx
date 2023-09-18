@@ -30,91 +30,99 @@ const Details = ({
 
   return (
     <aside>
-      <legend className="text-lg font-semibold leading-6 text-gray-900">
-        {"Test Details"}
+      <legend className="text-lg font-semibold leading-6 text-white">
+        {"Speed Test Configuration"}
       </legend>
       <dl className="mt-4">
-        <div className={`flex items-center p-2`}>
-          <dt className="min-w-0 flex-1 text-sm leading-6 font-medium text-gray-900">
-            {"Loops"}
-            <p className="text-gray-500 text-xs">
+        <div className={`flex items-center p-2 justify-between`}>
+          <div>
+            <p className="min-w-0 flex-1 text-sm leading-6 font-medium text-white">
+              {"Loops"}
+            </p>
+            <p className="text-brand-gray text-xs">
               {"Number of transactions sent to each RPC."}
             </p>
-          </dt>
+          </div>
           <dd className="ml-3 h-6 flex items-center">
             <button
-              className="bg-brand-blue text-white rounded-mdbg-brand-blue text-white rounded-md border-indigo-600 text-sm rounded-full text-indigo-600 flex items-center justify-center h-5 w-5 mr-1"
+              className="bg-gradient-fresh text-brand-darkblue rounded-md rounded-md border-indigo-600 text-xl rounded-full flex items-center justify-center h-5 w-5 mr-1 p-3"
               onClick={() => setLoops((x) => Math.max(1, x - 1))}
             >
               {"-"}
             </button>
-            <span className="text-indigo-600 w-6 text-center">{loops}</span>
+            <span className="text-white w-10 text-center">{loops}</span>
             <button
-              className="bg-brand-blue text-white rounded-md border-indigo-600 text-sm text-indigo-600 flex items-center justify-center h-5 w-5 ml-1"
+              className="bg-gradient-fresh text-brand-darkblue rounded-md border-indigo-600 text-sm text-indigo-600 flex items-center justify-center h-5 w-5 ml-1 p-3"
               onClick={() => setLoops((x) => x + 1)}
             >
               {"+"}
             </button>
           </dd>
         </div>
-        <div className={`flex items-center p-2`}>
-          <dt className="min-w-0 flex-1 text-sm leading-6 font-medium text-gray-900">
-            {"Delay"}
-            <p className="text-gray-500 text-xs">
-              {"How many seconds to wait between each loop."}
+        <div className={`flex items-center p-2 justify-between`}>
+          <div>
+            <p className="min-w-0 flex-1 text-sm leading-6 font-medium text-white">
+              {"Delay"}
             </p>
-          </dt>
+            <p className="text-brand-gray text-xs">
+              {"How many seconds to wait between each loop"}
+            </p>
+          </div>
           <dd className="ml-3 h-6 flex items-center">
             <button
-              className="bg-brand-blue text-white rounded-md border-indigo-600 text-sm rounded-full text-indigo-600 flex items-center justify-center h-5 w-5 mr-1"
+              className="bg-gradient-fresh text-brand-darkblue rounded-md border-indigo-600 text-xl rounded-full text-indigo-600 flex items-center justify-center h-5 w-5 mr-1 p-3"
               onClick={() => setDelay((x) => Math.max(0, x - 1))}
             >
               {"-"}
             </button>
-            <span className="text-indigo-600 w-6 text-center">
+            <span className="text-white w-10 text-center">
               {delay}
-              <span className="text-xs opacity-75">{"s"}</span>
+              {/* <span className="text-xs">{"s"}</span> */}
             </span>
             <button
-              className="bg-brand-blue text-white rounded-md border border-indigo-600 text-sm rounded-full text-indigo-600 flex items-center justify-center h-5 w-5 ml-1"
+              className="bg-gradient-fresh text-brand-darkblue rounded-md border-indigo-600 text-sm rounded-full text-indigo-600 flex items-center justify-center h-5 w-5 ml-1 p-3"
               onClick={() => setDelay((x) => x + 1)}
             >
               {"+"}
             </button>
           </dd>
         </div>
-        <div className={`flex items-center p-2 text-gray-800`}>
-          <dt className="min-w-0 flex-1 text-sm leading-6 font-medium">
-            {"Transactions"}
-            <p className="text-gray-500 text-xs">
+        <div className={`flex items-center p-2 justify-between`}>
+          <div>
+            <p className="min-w-0 flex-1 text-sm leading-6 font-medium text-white">
+              {"Transactions"}
+            </p>
+            <p className="text-brand-gray text-xs">
               {"Counting all RPC loops and test wallets created."}
             </p>
-          </dt>
-          <dd className="ml-3 h-6">{rpcCount * loops + rpcCount + 1}</dd>
+          </div>
+          <dd className="ml-3 h-6 text-white">{rpcCount * loops + rpcCount + 1}</dd>
         </div>
-        <div className={`flex items-center p-2 text-gray-800`}>
-          <dt className="min-w-0 flex-1 text-sm leading-6 font-medium">
-            {"Cost"}
-            <p className="text-gray-500 text-xs">
+        <div className={`flex items-center p-2 text-gray-800 justify-between`}>
+          <div>
+            <p className="min-w-0 flex-1 text-sm leading-6 font-medium text-white">
+              {"Cost"}
+            </p>
+            <p className="text-brand-gray text-xs">
               {"Includes 25% buffer. Any surplus is returned to your wallet."}
             </p>
-          </dt>
-          <dd className="ml-3 min-h-[1.25rem] text-right leading-none">
+          </div>
+          <dd className="ml-3 min-h-[1.25rem] text-right leading-none text-white">
             {formatEther(totalCost || "0")} {chain.nativeCurrency.symbol}
             <br />
-            <span className="text-xs opacity-75">
+            <span className="text-xs">
               {"("}
               {formatEther(transferCost)} {chain?.nativeCurrency.symbol}
               {" per tx)"}
             </span>
           </dd>
         </div>
-        <div className={`p-2 text-gray-800`}>
-          <dt className="min-w-0 flex-1 text-sm leading-6 font-medium flex justify-between">
+        <div className={`p-2`}>
+          <dt className="text-white min-w-0 flex-1 text-sm leading-6 font-medium flex justify-between">
             {"Wallets"}
             <button
               onClick={() => setShowWallets((x) => !x)}
-              className="text-indigo-500 underline text-xs"
+              className="text-white underline text-xs"
             >
               {`${showWallets ? "Hide" : "Show"} Wallets`}
             </button>
@@ -123,15 +131,15 @@ const Details = ({
             <dd className="text-xs">
               <dl className="space-y-2">
                 <div className="flex items-start">
-                  <dt className="min-w-0 text-xs leading-6 font-medium text-gray-500 whitespace-nowrap">
+                  <dt className="min-w-0 text-xs leading-6 font-medium text-brand-gray whitespace-nowrap">
                     {"Genesis"}
                   </dt>
-                  <dd className="flex-1 ml-3 text-right min-w-0 leading-none">
+                  <dd className="flex-1 ml-3 text-brand-gray text-right min-w-0 leading-none">
                     <span className="break-words text-xs">
                       {initialWallet.address}
                     </span>
                     <br />
-                    <span className="text-xs text-right py-1 opacity-75 break-words">
+                    <span className="text-xs text-right py-1 break-words">
                       {initialWallet.privateKey} 🔐
                     </span>
                   </dd>
