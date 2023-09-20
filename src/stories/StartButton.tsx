@@ -32,7 +32,7 @@ export const StartButton = ({
         <div className='text-center mt-4'>
             <button
                 onClick={onClick}
-                className={`${isActive} rounded-md px-12 py-2.5 text-3xl font-semibold shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-75`}
+                className={`${isActive} rounded-md px-12 py-2.5 text-3xl font-semibold shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-75 hover:bg-white`}
                 disabled={!initialWallet || !rpcUrls || !isConnected}
             >
                 Start SpeedTest

@@ -18,7 +18,8 @@ module.exports = {
           green: "#0cd479",
           lime: "#caff00",
           gray: "#9B9B9B",
-          textGray: "#696969"
+          textGray: "#696969",
+          hover: "#E5FFB1"
         },
         indigo: {
           600: "#181d45",

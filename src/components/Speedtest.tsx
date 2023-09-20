@@ -81,9 +81,6 @@ const Speedtest: React.FC = () => {
     sendTransaction?.();
   }
 
-
-  console.log(typeof initialWallet)
-
   return (
     <div className="Speedtest bg-brand-blue flex-1 flex flex-col">
       <h1 className="mx-auto text-white text-center text-4xl font-bold p-6 w-1/2">Accurately Measure

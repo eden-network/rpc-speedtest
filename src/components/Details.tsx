@@ -60,12 +60,12 @@ const Details = ({
             </p>
           </div>
           <dd className="ml-3 flex items-center">
-            <PlusMinusButton add={false} onClick={() => setLoops((x) => x - 1)} />
+            <PlusMinusButton add={false} onClick={() => setDelay((x) => x - 1)} />
             <span className="text-white w-10 text-center">
               {delay}
               <span className="text-xs">{"s"}</span>
             </span>
-            <PlusMinusButton add={true} onClick={() => setLoops((x) => x + 1)} />
+            <PlusMinusButton add={true} onClick={() => setDelay((x) => x + 1)} />
           </dd>
         </div>
         <div className={`flex items-center py-2 justify-between`}>
