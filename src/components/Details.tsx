@@ -46,7 +46,7 @@ const Details = ({
           </div>
           <dd className="ml-3 flex items-center">
             <PlusMinusButton add={false} onClick={() => setLoops((x) => x - 1)} />
-            <span className="text-white text-lg w-10 text-center">{loops}</span>
+            <span className="text-white text-lg w-10 text-center select-none">{loops}</span>
             <PlusMinusButton add={true} onClick={() => setLoops((x) => x + 1)} />
           </dd>
         </div>
@@ -61,7 +61,7 @@ const Details = ({
           </div>
           <dd className="ml-3 flex items-center">
             <PlusMinusButton add={false} onClick={() => setDelay((x) => x - 1)} />
-            <span className="text-white text-lg w-10 text-center">
+            <span className="text-white text-lg w-10 text-center select-none">
               {delay}
               <span className="text-base">{"s"}</span>
             </span>

@@ -88,7 +88,12 @@ const Speedtest: React.FC = () => {
         from Your Browser</h1>
       <div className="z-10 container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
         <section className="">
-          <RPCs rpcCount={rpcUrls.length} key={rpcKey} urls={rpcUrls} setUrls={setRpcUrls} />
+          <RPCs
+            rpcCount={rpcUrls.length}
+            key={rpcKey}
+            urls={rpcUrls}
+            setUrls={setRpcUrls}
+          />
         </section>
         <section className="">
           <Details
@@ -117,7 +122,7 @@ const Speedtest: React.FC = () => {
           )}
         </section>
       </div>
-      <div className="flex h-20 bg-gradient-fresh">
+      <div className="flex h-20 bg-gradient-to-r from-brand-green via-brand-lime to-brand-green">
       </div>
       <div className="text-brand-blue flex-1 flex flex-col">
         <div className="flex-1 flex flex-col">
@@ -141,7 +146,6 @@ const Speedtest: React.FC = () => {
                 <ResultsTable chain={chain} results={results} />
                 <RankingsTable chain={chain} results={results} />
                 <CleanupTable chain={chain} txData={cleanupTxs} />
-
                 <p className="w-full flex items-center justify-center text-xl">
                   {status === "running" && (
                     <>
