@@ -2,6 +2,7 @@ import { BigNumber, Wallet } from "ethers";
 import { formatEther } from "ethers/lib/utils.js";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Chain } from "wagmi";
+import { PlusMinusButton } from "../stories/PlusMinusButton";
 
 const Details = ({
   rpcCount,
@@ -29,8 +30,8 @@ const Details = ({
   const [showWallets, setShowWallets] = useState(true);
 
   return (
-    <aside>
-      <legend className="text-lg font-semibold leading-6 text-white pt-6">
+    <aside className="pt-6">
+      <legend className="text-lg font-semibold leading-6 text-white">
         {"Speed Test Configuration"}
       </legend>
       <dl className="mt-4">
@@ -43,20 +44,10 @@ const Details = ({
               {"Number of transactions sent to each RPC."}
             </p>
           </div>
-          <dd className="ml-3 h-6 flex items-center">
-            <button
-              className="bg-gradient-fresh text-brand-kblue rounded-md rounded-md border-indigo-600 text-xl rounded-full flex items-center justify-center h-5 w-5 mr-1 p-3"
-              onClick={() => setLoops((x) => Math.max(1, x - 1))}
-            >
-              {"-"}
-            </button>
+          <dd className="ml-3 flex items-center">
+            <PlusMinusButton add={false} onClick={() => setLoops((x) => x - 1)} />
             <span className="text-white w-10 text-center">{loops}</span>
-            <button
-              className="bg-gradient-fresh text-brand-blue rounded-md border-indigo-600 text-xl text-indigo-600 flex items-center justify-center h-5 w-5 ml-1 p-3"
-              onClick={() => setLoops((x) => x + 1)}
-            >
-              {"+"}
-            </button>
+            <PlusMinusButton add={true} onClick={() => setLoops((x) => x + 1)} />
           </dd>
         </div>
         <div className={`flex items-center py-2 justify-between`}>
@@ -68,23 +59,13 @@ const Details = ({
               {"How many seconds to wait between each loop"}
             </p>
           </div>
-          <dd className="ml-3 h-6 flex items-center">
-            <button
-              className="bg-gradient-fresh text-brand-blue rounded-md border-indigo-600 text-xl rounded-full text-indigo-600 flex items-center justify-center h-5 w-5 mr-1 p-3"
-              onClick={() => setDelay((x) => Math.max(0, x - 1))}
-            >
-              {"-"}
-            </button>
+          <dd className="ml-3 flex items-center">
+            <PlusMinusButton add={false} onClick={() => setLoops((x) => x - 1)} />
             <span className="text-white w-10 text-center">
               {delay}
-              {/* <span className="text-xs">{"s"}</span> */}
+              <span className="text-xs">{"s"}</span>
             </span>
-            <button
-              className="bg-gradient-fresh text-brand-blue rounded-md border-indigo-600 text-sm rounded-full text-indigo-600 flex items-center justify-center h-5 w-5 ml-1 p-3"
-              onClick={() => setDelay((x) => x + 1)}
-            >
-              {"+"}
-            </button>
+            <PlusMinusButton add={true} onClick={() => setLoops((x) => x + 1)} />
           </dd>
         </div>
         <div className={`flex items-center py-2 justify-between`}>

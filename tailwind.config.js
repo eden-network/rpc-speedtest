@@ -17,12 +17,14 @@ module.exports = {
           blue: "#171b47",
           green: "#0cd479",
           lime: "#caff00",
-          gray: "#B9B9B9"
+          gray: "#9B9B9B",
+          textGray: "#696969"
         },
         indigo: {
           600: "#181d45",
           700: "#171b47",
         },
+
       },
     },
   },

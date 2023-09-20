@@ -6,21 +6,21 @@ import Details from "./Details";
 import { getRpcUrls } from "../core/rpcs";
 import useSpeedTest from "../hooks/useSpeedTest";
 import Spinner from "./Spinner";
-import { formatNumber } from "../utils/formatNumber";
-import { formatEther } from "ethers/lib/utils.js";
 import RankingsTable from "./RankingsTable";
 import { scrollToBottom } from "../utils/scrollToBottom";
 import { useLocalStorage } from "usehooks-ts";
 import { LocalSpeedtestWallets } from "../types";
 import CleanupTable from "./CleanupTable";
 import ExternalLink from "./ExternalLink";
+import { StartButton } from "../stories/StartButton";
+import { useAccount } from 'wagmi'
 
 function getCurrentIteration(
   loopCount: number,
   itemsToLoop: number,
-  results: number
+  results: number,
 ): number {
-  // if (results === 0 || results === itemsToLoop) return 1;
+  if (results === 0 || results === itemsToLoop) return 1;
   const itemsPerIteration = Math.ceil(itemsToLoop / loopCount);
   const currentIteration = Math.floor(results / itemsPerIteration);
   if (currentIteration === 0) return 1;
@@ -35,6 +35,7 @@ const Speedtest: React.FC = () => {
   const chain = activeChain || mainnet;
   const [rpcUrls, setRpcUrls] = useState(getRpcUrls(chain.id));
   const [rpcKey, setRpcKey] = useState(chain.id);
+  const { isConnected } = useAccount()
 
   const [localWallets, setLocalWallets] =
     useLocalStorage<LocalSpeedtestWallets>("speedtest.wallets", {});
@@ -69,6 +70,20 @@ const Speedtest: React.FC = () => {
     }
   }, [results]);
 
+  const startTest = () => {
+    setLocalWallets({
+      ...localWallets,
+      [initialWallet.address]: {
+        privKey: initialWallet.privateKey,
+        chain: chain.id,
+      }
+    })
+    sendTransaction?.();
+  }
+
+
+  console.log(typeof initialWallet)
+
   return (
     <div className="Speedtest bg-brand-blue flex-1 flex flex-col">
       <h1 className="mx-auto text-white text-center text-4xl font-bold p-6 w-1/2">Accurately Measure
@@ -92,42 +107,17 @@ const Speedtest: React.FC = () => {
             wallets={wallets}
           />
           {status === "idle" && (
-            <div className="w-full flex-col flex items-center justify-center mt-10">
-              <button
-                className="rounded-md bg-gradient-fresh px-12 py-2.5 text-2xl font-semibold text-black shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-75"
-                type="button"
-                onClick={() => {
-                  setLocalWallets({
-                    ...localWallets,
-                    [initialWallet.address]: {
-                      privKey: initialWallet.privateKey,
-                      chain: chain.id,
-                    },
-                  });
-                  sendTransaction?.();
-                }}
-                disabled={!initialWallet || !rpcUrls.length}
-              >
-                {"Start Speed Test"}
-              </button>
-
-            </div>
+            <StartButton
+              amount={totalAmount}
+              currency={chain.nativeCurrency.symbol}
+              wallets={rpcUrls.length}
+              loops={loops}
+              onClick={startTest}
+              isConnected={isConnected}
+              initialWallet={initialWallet}
+              rpcUrls={rpcUrls.length}
+            />
           )}
-          <h1 className="text-white text-center mt-6">
-            {"Beginning the test will transfer "}
-            <span className="font-bold">
-              {`${formatNumber(Number(formatEther(totalAmount)), { maximumSignificantDigits: 2 })}`} {chain.nativeCurrency.symbol}
-            </span>
-            {" to the Genesis Wallet, create "}
-            <span className="font-bold">
-              {`${rpcUrls.length}`} {"Speed Test"}
-            </span>
-            {" wallets, and send "}
-            <span className="font-bold">
-              {`${loops}`} {"transactions "}
-            </span>
-            {"from each."}
-          </h1>
         </section>
       </div>
       <div className="flex h-20 bg-gradient-fresh">
