@@ -32,13 +32,13 @@ type Story = StoryObj<typeof meta>;
 
 export const Plus: Story = {
     args: {
-        plus: true
+        add: true
     },
 };
 
 export const Minus: Story = {
     args: {
-        plus: false,
+        add: false,
     },
 };
 

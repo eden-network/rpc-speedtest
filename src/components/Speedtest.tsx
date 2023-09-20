@@ -35,7 +35,7 @@ const Speedtest: React.FC = () => {
   const chain = activeChain || mainnet;
   const [rpcUrls, setRpcUrls] = useState(getRpcUrls(chain.id));
   const [rpcKey, setRpcKey] = useState(chain.id);
-  const { isConnected } = useAccount()
+  ç
 
   const [localWallets, setLocalWallets] =
     useLocalStorage<LocalSpeedtestWallets>("speedtest.wallets", {});
