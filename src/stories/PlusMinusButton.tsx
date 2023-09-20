@@ -15,7 +15,7 @@ export const PlusMinusButton = ({
 
     return (
         <>
-            <button onClick={onClick} className='bg-gradient-fresh rounded hover:bg-white'>
+            <button onClick={onClick} className='bg-gradient-to-r from-brand-lime to-brand-green hover:from-brand-hover hover:to-brand-hover rounded p-1'>
                 {addOrRemove}
             </button>
         </>

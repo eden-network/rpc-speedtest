@@ -19,7 +19,8 @@ module.exports = {
           lime: "#caff00",
           gray: "#9B9B9B",
           textGray: "#696969",
-          hover: "#E5FFB1"
+          hover: "#E5FFB1",
+          gradient: "linear-gradient(90deg, #B6F509 1.7%, #75E327 61.22%, #14D674 98.99%)"
         },
         indigo: {
           600: "#181d45",
