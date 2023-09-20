@@ -41,7 +41,7 @@ function Page() {
           <div className="flex lg:flex-1 lg:justify-end text-xs sm:text-sm whitespace-nowrap">
             {hasLocalWallets && (
               <button
-                className="rounded-xl bg-brand-green text-brand-blue font-bold p-2 mr-4 hover:bg-opacity-80"
+                className="rounded-md bg-gradient-to-r from-brand-lime to-brand-green text-brand-blue font-bold p-2 mr-4 hover:bg-opacity-80"
                 onClick={() => setShowTestWallets(true)}
               >
                 {"SpeedTest Wallets"}

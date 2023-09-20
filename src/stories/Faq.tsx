@@ -1,5 +1,8 @@
 import React from 'react';
+import { useEffect, useState } from "react";
+import TestWallets from "../components/TestWallets";
 import ExternalLink from '../components/ExternalLink';
+
 
 interface FaqProps {
 }
@@ -7,6 +10,7 @@ interface FaqProps {
 export const Faq = ({
 
 }: FaqProps) => {
+    const [showTestWallets, setShowTestWallets] = useState(false);
 
     return (
         <div className="flex-1 bg-white p-6 rounded-2xl drop-shadow-2xl">
@@ -48,9 +52,12 @@ export const Faq = ({
                     </b>
                 </li>
                 <p>
-                    Reclaim the funds sent to the wallets here: show the SpeedTest wallet addresses
+                    Reclaim the funds sent to the wallets here:  <ExternalLink style="text-black underline hover:no-underline cursor-pointer" onClick={() => setShowTestWallets(true)} content="show the speedTest wallet addresses"></ExternalLink>.
                 </p>
             </ul>
+            {showTestWallets && (
+                <TestWallets close={() => setShowTestWallets(false)} />
+            )}
         </div>
     );
 };

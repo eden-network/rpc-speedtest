@@ -1,16 +1,18 @@
 const ExternalLink = ({
     style,
     url,
-    content
+    content,
+    onClick
 }: {
     style: string,
-    url: string,
-    content: string
+    url?: string,
+    content?: string,
+    onClick?: () => void,
 }) => {
 
 
     return (
-        <a className={style}
+        <a onClick={onClick} className={style}
             href={url}
             target="_blank"
             rel="nofollow noreferrer">
