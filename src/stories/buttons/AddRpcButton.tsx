@@ -1,5 +1,5 @@
 import React from 'react';
-import { PlusIcon } from './icons/PlusIcon';
+import { PlusIcon } from '../icons/PlusIcon';
 
 interface AddRpcProps {
 }

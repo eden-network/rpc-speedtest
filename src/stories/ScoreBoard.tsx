@@ -1,5 +1,5 @@
 import React from 'react';
-import { CopyButton } from './CopyButton';
+import { CopyButton } from './buttons/CopyButton';
 import { EdenIcon } from './icons/EdenIcon';
 import { EdenText } from './icons/EdenText';
 

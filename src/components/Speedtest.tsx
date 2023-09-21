@@ -11,7 +11,7 @@ import { scrollToBottom } from "../utils/scrollToBottom";
 import { useLocalStorage } from "usehooks-ts";
 import { LocalSpeedtestWallets } from "../types";
 import CleanupTable from "./CleanupTable";
-import { StartButton } from "../stories/StartButton";
+import { StartButton } from "../stories/buttons/StartButton";
 import { Instructions } from "../stories/Instructions";
 import { Faq } from "../stories/Faq";
 
@@ -114,10 +114,10 @@ const Speedtest: React.FC = () => {
               currency={chain.nativeCurrency.symbol}
               wallets={rpcUrls.length}
               loops={loops}
-              onClick={startTest}
               isConnected={isConnected}
               initialWallet={initialWallet}
               rpcUrls={rpcUrls.length}
+              onClick={startTest}
             />
           )}
         </section>
@@ -194,7 +194,7 @@ const Speedtest: React.FC = () => {
       <div className="bg-white bg-[url('../public/eden-background-white.svg')] bg-center bg-cover">
         <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
           <Instructions />
-          <Faq />
+          <Faq isConnected={isConnected} />
         </div>
       </div>
     </div>

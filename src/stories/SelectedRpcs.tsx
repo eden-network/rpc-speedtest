@@ -1,6 +1,6 @@
 import React from 'react';
 import { RpcInput } from './RpcInput';
-import { AddRpcButton } from './AddRpcButton';
+import { AddRpcButton } from './buttons/AddRpcButton';
 
 
 type Rpc = {

@@ -2,7 +2,7 @@ import { BigNumber, Wallet } from "ethers";
 import { formatEther } from "ethers/lib/utils.js";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Chain } from "wagmi";
-import { PlusMinusButton } from "../stories/PlusMinusButton";
+import { PlusMinusButton } from "../stories/buttons/PlusMinusButton";
 
 const Details = ({
   rpcCount,

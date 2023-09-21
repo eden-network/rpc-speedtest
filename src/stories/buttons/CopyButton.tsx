@@ -1,5 +1,5 @@
 import React from 'react';
-import { CopyIcon } from './icons/CopyIcon';
+import { CopyIcon } from '../icons/CopyIcon';
 import { useState } from 'react';
 
 interface CopyButtonProps {

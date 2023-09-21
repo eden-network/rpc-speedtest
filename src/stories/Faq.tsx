@@ -5,10 +5,11 @@ import ExternalLink from '../components/ExternalLink';
 
 
 interface FaqProps {
+    isConnected: boolean
 }
 
 export const Faq = ({
-
+    isConnected
 }: FaqProps) => {
     const [showTestWallets, setShowTestWallets] = useState(false);
 
@@ -51,9 +52,15 @@ export const Faq = ({
                         What happens if the test is interrupted by closing or refreshing the browser window?
                     </b>
                 </li>
-                <p>
-                    Reclaim the funds sent to the wallets here:  <ExternalLink style="text-black underline hover:no-underline cursor-pointer" onClick={() => setShowTestWallets(true)} content="show the speedTest wallet addresses"></ExternalLink>.
-                </p>
+                {isConnected ?
+                    <p>
+                        Reclaim the funds sent to the wallets here:  <ExternalLink style="text-black underline hover:no-underline cursor-pointer" onClick={() => setShowTestWallets(true)} content="show the speedTest wallet addresses"></ExternalLink>.
+                    </p>
+                    :
+                    <p>
+                        Funds can be reclaimed from the speedTest wallets and the addresses will be provided once they are generated.
+                    </p>
+                }
             </ul>
             {showTestWallets && (
                 <TestWallets close={() => setShowTestWallets(false)} />
