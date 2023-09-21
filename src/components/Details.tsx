@@ -2,7 +2,7 @@ import { BigNumber, Wallet } from "ethers";
 import { formatEther } from "ethers/lib/utils.js";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Chain } from "wagmi";
-import { PlusMinusButton } from "../stories/buttons/PlusMinusButton";
+import { CounterButton } from "../stories/buttons/CounterButton";
 
 const Details = ({
   rpcCount,
@@ -45,9 +45,9 @@ const Details = ({
             </p>
           </div>
           <dd className="ml-3 flex items-center">
-            <PlusMinusButton add={false} onClick={() => setLoops((x) => x - 1)} />
+            <CounterButton add={false} onClick={() => setLoops((x) => x - 1)} />
             <span className="text-white text-lg w-10 text-center select-none">{loops}</span>
-            <PlusMinusButton add={true} onClick={() => setLoops((x) => x + 1)} />
+            <CounterButton add={true} onClick={() => setLoops((x) => x + 1)} />
           </dd>
         </div>
         <div className={`flex items-center py-2 justify-between`}>
@@ -60,12 +60,12 @@ const Details = ({
             </p>
           </div>
           <dd className="ml-3 flex items-center">
-            <PlusMinusButton add={false} onClick={() => setDelay((x) => x - 1)} />
+            <CounterButton add={false} onClick={() => setDelay((x) => x - 1)} />
             <span className="text-white text-lg w-10 text-center select-none">
               {delay}
               <span className="text-base">{"s"}</span>
             </span>
-            <PlusMinusButton add={true} onClick={() => setDelay((x) => x + 1)} />
+            <CounterButton add={true} onClick={() => setDelay((x) => x + 1)} />
           </dd>
         </div>
         <div className={`flex items-center py-2 justify-between`}>
@@ -98,7 +98,7 @@ const Details = ({
             </span>
           </dd>
         </div>
-        <div className={`py-2`}>
+        {/* <div className={`py-2`}>
           <dt className="text-white min-w-0 flex-1 text-sm leading-6 font-medium flex justify-between">
             {"Wallets"}
             <button
@@ -142,7 +142,7 @@ const Details = ({
               </dl>
             </dd>
           )}
-        </div>
+        </div> */}
       </dl>
     </aside>
   );

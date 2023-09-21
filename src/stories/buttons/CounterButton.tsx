@@ -2,15 +2,15 @@ import React from 'react';
 import { PlusIcon } from '../icons/PlusIcon';
 import { MinusIcon } from '../icons/MinusIcon';
 
-interface PlusMinusButtonProps {
+interface CounterButtonProps {
     add: boolean,
     onClick: () => void
 }
 
-export const PlusMinusButton = ({
+export const CounterButton = ({
     add,
     onClick
-}: PlusMinusButtonProps) => {
+}: CounterButtonProps) => {
     const addOrRemove = add ? <PlusIcon /> : <MinusIcon />
 
     return (

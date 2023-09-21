@@ -84,7 +84,7 @@ const Speedtest: React.FC = () => {
   return (
     <div className="Speedtest bg-brand-blue flex-1 flex flex-col">
       <h1 className="mx-auto text-white text-center text-4xl font-bold p-6 w-7/12">Accurately Measure
-        <span className="bg-gradient-fresh bg-clip-text text-transparent"> Transaction Propagation Speeds </span>
+        <span className="bg-gradient-fresh bg-clip-text text-transparent"> Transaction Propagation Speeds </span><br></br>
         from Your Browser</h1>
       <div className="z-10 container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
         <section className="">
