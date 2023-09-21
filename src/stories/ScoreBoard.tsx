@@ -4,7 +4,7 @@ import { EdenIcon } from './icons/EdenIcon';
 import { EdenText } from './icons/EdenText';
 
 type Rpc = {
-    url: string,
+    label: string,
     first: number,
     second: number,
     third: number,
@@ -53,7 +53,7 @@ export const ScoreBoard = ({
                                 {index + 1}
                             </td>
                             <td className="px-2 font-semibold mr-20 text-left">
-                                {rpc.url}
+                                {rpc.label}
                             </td>
                             <td>
                                 {rpc.first}
@@ -65,7 +65,7 @@ export const ScoreBoard = ({
                                 {rpc.third}
                             </td>
                             <td className="px-4 pl-8">
-                                <CopyButton label="Copy" url={rpc.url} />
+                                <CopyButton label="Copy" url={rpc.label} />
                             </td>
                         </tr>
                     )}
