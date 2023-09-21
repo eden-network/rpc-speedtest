@@ -1,6 +1,6 @@
 import React from 'react';
 import { Percentage } from './Percentage';
-import './progressbar.css';
+// import './progressbar.css';
 
 interface ProgressBarProps {
     percentage: number;

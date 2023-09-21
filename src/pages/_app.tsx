@@ -5,7 +5,6 @@ import NextHead from "next/head";
 import * as React from "react";
 import { WagmiConfig } from "wagmi";
 import "../globals.css";
-
 import { chains, client } from "../wagmi";
 
 function App({ Component, pageProps }: AppProps) {

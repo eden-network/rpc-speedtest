@@ -35,7 +35,7 @@ export const Percentage = ({
                 completed ?
                     <CheckIcon color={color} />
                     :
-                    <span className={`font-bold ${fontWeight}`}>{percentage.toString().concat("%")}</span>
+                    <span className={`font-bold ${fontWeight}`}>{Math.trunc(percentage).toString().concat("%")}</span>
             }
         </div>
     );
