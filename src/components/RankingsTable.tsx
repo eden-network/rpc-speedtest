@@ -13,7 +13,6 @@ const RankingsTable = ({
   chain: Chain;
 }) => {
   const rpcData = useMemo(() => formatRpcRankings(results), [results]);
-  console.log(rpcData);
 
   const isMetaMask = window?.ethereum?.isMetaMask;
 

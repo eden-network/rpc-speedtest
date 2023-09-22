@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import { mainnet, useNetwork, useAccount } from "wagmi";
 import ResultsTable from "./ResultsTable";
 import RPCs from "./RPCs";
@@ -15,6 +15,9 @@ import { StartButton } from "../stories/buttons/StartButton";
 import { Instructions } from "../stories/Instructions";
 import { Faq } from "../stories/Faq";
 import { Tasks } from "../stories/Tasks";
+import { formatRpcRankings } from "../utils/formatRpcRankings";
+import { Result } from "../types";
+
 import { ScoreBoard } from "../stories/ScoreBoard";
 
 function getCurrentIteration(
@@ -65,12 +68,12 @@ const Speedtest: React.FC = () => {
     setRpcKey(chain.id);
   }, [chain.id]);
 
-  useEffect(() => {
-    // any time new result comes in
-    if (!!results.length) {
-      scrollToBottom();
-    }
-  }, [results]);
+  // useEffect(() => {
+  //   // any time new result comes in
+  //   if (!!results.length) {
+  //     scrollToBottom();
+  //   }
+  // }, [results]);
 
   const startTest = () => {
     setLocalWallets({
@@ -91,12 +94,12 @@ const Speedtest: React.FC = () => {
         loops,
         rpcUrls.length * loops,
         results.length
-      ) > i + 1 && status === "running" ? 100 : 0,
+      ) > i + 1.5 && (status === "running" || status === "cleaning" || status === "success") ? 100 : 0,
       isActive: getCurrentIteration(
         loops,
         rpcUrls.length * loops,
         results.length
-      ) === i + 1 && status === "running"
+      ) === i + 1 && (status === "running")
     })
   }
 
@@ -112,10 +115,14 @@ const Speedtest: React.FC = () => {
         rpcUrls.length
       )} of ${rpcUrls.length}`,
     percentage: wallets.length / rpcUrls.length * 100,
-    isActive: status === "seeding"
+    isActive: status == "seeding" || status == "idle" || status == "starting"
   },
   ...loopsArr
   ]
+
+  const rpcData = useMemo(() => formatRpcRankings(results), [results]);
+  console.log(rpcData);
+  console.log(results)
 
   return (
 
@@ -166,9 +173,11 @@ const Speedtest: React.FC = () => {
       {(status === "seeding" || status === "starting" || status === "running") && (
         <div className="items-center">
           <h1 className="mx-auto text-white text-center text-4xl font-bold pb-2 w-7/12">Test in progress</h1>
-          <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl">Do not turn refresh your browser or close the page while the test is in progress</p>
-          {/* <ScoreBoard rpcData={results } /> */}
-          <Tasks tasks={tasks} />
+          <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl">Do not refresh your browser or close the page while the test is in progress</p>
+          <div className="flex mx-auto items-center justify-center">
+            <ScoreBoard rpcData={rpcData} />
+            <Tasks tasks={tasks} />
+          </div>
         </div>
       )}
       <div className="text-brand-blue flex-1 flex flex-col">
@@ -191,7 +200,7 @@ const Speedtest: React.FC = () => {
             status === "cleaning") && (
               <div className="mb-6 flex-1 space-y-6 max-w-full">
                 <ResultsTable chain={chain} results={results} />
-                <RankingsTable chain={chain} results={results} />
+                {/* <RankingsTable chain={chain} results={results} /> */}
                 <CleanupTable chain={chain} txData={cleanupTxs} />
                 <p className="w-full flex items-center justify-center text-xl">
                   {status === "running" && (

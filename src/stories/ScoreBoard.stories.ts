@@ -35,19 +35,19 @@ type Story = StoryObj<typeof meta>;
 export const Waiting: Story = {
     args: {
         rpcData: [{
-            url: "https://polygon-testnet.public.blastapi.io",
+            label: "https://polygon-testnet.public.blastapi.io",
             first: 2,
             second: 0,
             third: 1,
         },
         {
-            url: "https://eth.llamarpc.com",
+            label: "https://eth.llamarpc.com",
             first: 1,
             second: 1,
             third: 1,
         },
         {
-            url: "https://polygon-testnet.public.blastapi.io",
+            label: "https://polygon-testnet.public.blastapi.io",
             first: 0,
             second: 1,
             third: 2,
