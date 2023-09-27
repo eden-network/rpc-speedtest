@@ -21,7 +21,7 @@ export const Tasks = ({
     const finishedTasks: number = tasks.filter(task => task.percentage === 100).length
 
     return (
-        <div>
+        <div className='p-6'>
             <h1 className="text-xl text-white font-semibold mb-4">{title}</h1>
             <div>
                 {tasks.map((item, index) =>

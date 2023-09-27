@@ -23,7 +23,7 @@ export const ProgressBar = ({
     }
     else if (percentage === 100) {
         //this is color for completed task
-        foreGroundColor = "bg-lime-300"
+        foreGroundColor = "bg-brand-completed"
     }
     else {
         //this is color for in progress task

@@ -17,7 +17,6 @@ import { Faq } from "../stories/Faq";
 import { Tasks } from "../stories/Tasks";
 import { formatRpcRankings } from "../utils/formatRpcRankings";
 import { Result } from "../types";
-
 import { ScoreBoard } from "../stories/ScoreBoard";
 
 function getCurrentIteration(
@@ -94,12 +93,20 @@ const Speedtest: React.FC = () => {
         loops,
         rpcUrls.length * loops,
         results.length
-      ) > i + 1.5 && (status === "running" || status === "cleaning" || status === "success") ? 100 : 0,
+      ) > i + 1 && (status === "running" || status === "cleaning" || status === "success") ? 100 : 0,
       isActive: getCurrentIteration(
         loops,
         rpcUrls.length * loops,
         results.length
       ) === i + 1 && (status === "running")
+    })
+  }
+
+  const rpcUrlsArr = []
+  for (var i = 0; i < rpcUrls.length; i++) {
+    console.log(rpcUrls[i]);
+    rpcUrlsArr.push({
+      label: rpcUrls[i]
     })
   }
 
@@ -121,19 +128,31 @@ const Speedtest: React.FC = () => {
   ]
 
   const rpcData = useMemo(() => formatRpcRankings(results), [results]);
-  console.log(rpcData);
+  // console.log(rpcData);
   console.log(results)
+  // console.log(getCurrentIteration(
+  //   loops,
+  //   rpcUrls.length * loops,
+  //   results.length
+  // ));
+
+  // console.log(loops);
+  console.log(rpcUrls)
+
+
+
+
 
   return (
 
     <div className="Speedtest bg-brand-blue flex-1 flex flex-col">
-      {status}
+      {/* {status} */}
       {status === "idle" &&
-        <div>
+        <div className="border-b-[70px] border-brand-lime">
           <h1 className="mx-auto text-white text-center text-4xl font-bold p-6 w-7/12">Accurately Measure
             <span className="bg-gradient-fresh bg-clip-text text-transparent"> Transaction Propagation Speeds </span><br></br>
             from Your Browser</h1>
-          <div className="z-10 container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
+          <div className="relative top-8 z-10 container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6">
             <section className="">
               <RPCs
                 rpcCount={rpcUrls.length}
@@ -167,15 +186,15 @@ const Speedtest: React.FC = () => {
               />
             </section>
           </div>
-          <div className="flex h-20 bg-gradient-to-r from-brand-green via-brand-lime to-brand-green" />
+          {/* <div className="flex h-20 bg-gradient-to-r from-brand-green via-brand-lime to-brand-green" /> */}
         </div>
       }
-      {(status === "seeding" || status === "starting" || status === "running") && (
-        <div className="items-center">
+      {(status === "seeding" || status === "starting" || status === "running" || status === "success" || status === "cleaning") && (
+        <div className="">
           <h1 className="mx-auto text-white text-center text-4xl font-bold pb-2 w-7/12">Test in progress</h1>
-          <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl">Do not refresh your browser or close the page while the test is in progress</p>
-          <div className="flex mx-auto items-center justify-center">
-            <ScoreBoard rpcData={rpcData} />
+          <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl mb-10">Do not refresh your browser or close the page while the test is in progress</p>
+          <div className="flex mx-auto justify-center gap-10">
+            <ScoreBoard rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />
             <Tasks tasks={tasks} />
           </div>
         </div>
@@ -198,10 +217,11 @@ const Speedtest: React.FC = () => {
           {(status === "running" ||
             status === "success" ||
             status === "cleaning") && (
-              <div className="mb-6 flex-1 space-y-6 max-w-full">
+              <div className="mb-6 flex-1 space-y-6 max-w-full bg-white">
                 <ResultsTable chain={chain} results={results} />
-                {/* <RankingsTable chain={chain} results={results} /> */}
+                <RankingsTable chain={chain} results={results} />
                 <CleanupTable chain={chain} txData={cleanupTxs} />
+                <ScoreBoard rpcData={rpcData} />
                 <p className="w-full flex items-center justify-center text-xl">
                   {status === "running" && (
                     <>

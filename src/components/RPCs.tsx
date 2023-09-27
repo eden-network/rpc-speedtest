@@ -37,7 +37,7 @@ const RPCs = ({
   };
 
   return (
-    <div className="bg-white rounded-md p-6 drop-shadow-xl">
+    <div className="bg-white rounded-md p-6 drop-shadow-xl min-h-[55vh]">
       <fieldset>
         <div className="flex font-bold">
           <legend className="flex-1 text-lg font-bold leading-6 text-gray-900 pl-2">

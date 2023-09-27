@@ -27,7 +27,7 @@ export const Percentage = ({
     if (lastCompleted) {
         color = "#49DA9D"
     } else {
-        color = "#dce775"
+        color = "#9DFF61"
     }
     return (
         <div className='w-24 flex justify-center'>
