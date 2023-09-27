@@ -55,7 +55,7 @@ export const StartButton = ({
                         {"from each."}
                     </h1>
                     :
-                    <h1>Please connect wallet to start the test</h1>
+                    <h1>Please connect wallet to start the test.</h1>
                 }
             </div>
         </div >

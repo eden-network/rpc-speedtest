@@ -106,7 +106,10 @@ const Speedtest: React.FC = () => {
   for (var i = 0; i < rpcUrls.length; i++) {
     console.log(rpcUrls[i]);
     rpcUrlsArr.push({
-      label: rpcUrls[i]
+      label: rpcUrls[i],
+      first: 0,
+      second: 0,
+      third: 0
     })
   }
 
@@ -149,8 +152,8 @@ const Speedtest: React.FC = () => {
       {/* {status} */}
       {status === "idle" &&
         <div className="border-b-[70px] border-brand-lime">
-          <h1 className="mx-auto text-white text-center text-4xl font-bold p-6 w-7/12">Accurately Measure
-            <span className="bg-gradient-fresh bg-clip-text text-transparent"> Transaction Propagation Speeds </span><br></br>
+          <h1 className="mx-auto text-white text-center text-4xl font-bold p-6">Accurately Measure
+            <span className="bg-gradient-fresh bg-clip-text text-transparent"> Transaction Propagation Speeds</span><br></br>
             from Your Browser</h1>
           <div className="relative top-8 z-10 container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6">
             <section className="">
@@ -191,7 +194,7 @@ const Speedtest: React.FC = () => {
       }
       {(status === "seeding" || status === "starting" || status === "running" || status === "success" || status === "cleaning") && (
         <div className="">
-          <h1 className="mx-auto text-white text-center text-4xl font-bold pb-2 w-7/12">Test in progress</h1>
+          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Test in progress</h1>
           <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl mb-10">Do not refresh your browser or close the page while the test is in progress</p>
           <div className="flex mx-auto justify-center gap-10">
             <ScoreBoard rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />
