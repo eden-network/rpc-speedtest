@@ -26,7 +26,7 @@ export const ScoreBoard = ({
     return (
         <div className="text-brand-blue text-center font-bold bg-gradient-fresh p-6 rounded-md h-fit">
             <table className="border-separate border-spacing-y-0.5">
-                <caption className="text-2xl">{"RPC Speed Test"}</caption>
+                <caption className="text-2xl mb-2">{"RPC Speed Test"}</caption>
                 <thead className="">
                     <tr className="font-semibold text-base">
                         <th className="text-left">

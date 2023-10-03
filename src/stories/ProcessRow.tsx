@@ -10,6 +10,7 @@ interface ProcessRowProps {
     numOfFinishedTasks: number;
     indexOfRow: number;
     lastCompleted?: boolean;
+    allCompleted: boolean
 }
 
 export const ProcessRow = ({
@@ -17,7 +18,8 @@ export const ProcessRow = ({
     color,
     isActive,
     name,
-    lastCompleted
+    lastCompleted,
+    allCompleted
 }: ProcessRowProps) => {
     let fontWeight = ""
     if (percentage === 0) {
@@ -27,9 +29,9 @@ export const ProcessRow = ({
     }
     return (
 
-        <div className="flex items-center mb-4 h-10">
+        <div className="flex items-center mb-2 h-10">
             <h1 className={`w-40 font-semibold leading-tight ${fontWeight} mr-4`}>{name}</h1>
-            <ProgressBar lastCompleted={lastCompleted} isActive={isActive} percentage={percentage} />
+            <ProgressBar allCompleted={allCompleted} lastCompleted={lastCompleted} isActive={isActive} percentage={percentage} />
         </div>
     );
 };

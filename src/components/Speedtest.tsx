@@ -24,7 +24,10 @@ function getCurrentIteration(
   itemsToLoop: number,
   results: number,
 ): number {
-  if (results === 0 || results === itemsToLoop) return 1;
+
+  // || results === itemsToLoop
+  if (results === 0) return 0;
+  if (results === itemsToLoop) return loopCount + 1;
   const itemsPerIteration = Math.ceil(itemsToLoop / loopCount);
   const currentIteration = Math.floor(results / itemsPerIteration);
   if (currentIteration === 0) return 1;
@@ -85,16 +88,46 @@ const Speedtest: React.FC = () => {
     sendTransaction?.();
   }
 
+
+  let iteration: number = 0
+
+
+
+  const tasksProgress: { loop: number; order: number }[] = []
+  for (var i = 0; i < loops; i++) {
+    tasksProgress.push({
+      loop: i + 1,
+      order: 0
+    })
+  }
+  results.map((result, i) => {
+    iteration = result.iteration
+    tasksProgress.map((percentage, i) => {
+      if (result.iteration === percentage.loop) {
+        result.order ? percentage.order++ : 0
+      }
+    })
+  })
+
+
+
+  // getCurrentIteration(
+  // loops,
+  // rpcUrls.length * loops,
+  //results.length
+  //) > i + 1 && (status === "running" || status === "cleaning" || status === "success") ? 100 : 0
+  //getCurrentIteration(
+  //loops,
+  //rpcUrls.length * loops,
+  //results.length
+  //) === i + 1 && (status === "running")
+  //})
   const loopsArr = []
   for (var i = 0; i < loops; i++) {
     loopsArr.push({
       name: `Loop ${i + 1}`,
-      percentage: getCurrentIteration(
-        loops,
-        rpcUrls.length * loops,
-        results.length
-      ) > i + 1 && (status === "running" || status === "cleaning" || status === "success") ? 100 : 0,
-      isActive: getCurrentIteration(
+      percentage: tasksProgress[i].order / rpcUrls.length * 100,
+      isActive: iteration === i + 1 || getCurrentIteration(
         loops,
         rpcUrls.length * loops,
         results.length
@@ -104,7 +137,6 @@ const Speedtest: React.FC = () => {
 
   const rpcUrlsArr = []
   for (var i = 0; i < rpcUrls.length; i++) {
-    console.log(rpcUrls[i]);
     rpcUrlsArr.push({
       label: rpcUrls[i],
       first: 0,
@@ -127,29 +159,29 @@ const Speedtest: React.FC = () => {
     percentage: wallets.length / rpcUrls.length * 100,
     isActive: status == "seeding" || status == "idle" || status == "starting"
   },
-  ...loopsArr
+  ...loopsArr,
+  {
+    name: "Running wallet clean-up",
+    percentage: status === "success" ? 100 : 0,
+    isActive: status === "cleaning"
+  }
   ]
 
   const rpcData = useMemo(() => formatRpcRankings(results), [results]);
   // console.log(rpcData);
-  console.log(results)
+  // console.log(results)
   // console.log(getCurrentIteration(
   //   loops,
   //   rpcUrls.length * loops,
   //   results.length
-  // ));
-
-  // console.log(loops);
-  console.log(rpcUrls)
-
-
-
+  // ))
+  // console.log(rpcUrls)
 
 
   return (
 
     <div className="Speedtest bg-brand-blue flex-1 flex flex-col">
-      {/* {status} */}
+      {status}
       {status === "idle" &&
         <div className="border-b-[70px] border-brand-lime">
           <h1 className="mx-auto text-white text-center text-4xl font-bold p-6">Accurately Measure
@@ -164,7 +196,7 @@ const Speedtest: React.FC = () => {
                 setUrls={setRpcUrls}
               />
             </section>
-            <section className="">
+            <section className="flex-col justify-between">
               <Details
                 chain={chain}
                 initialWallet={initialWallet}
@@ -189,16 +221,35 @@ const Speedtest: React.FC = () => {
               />
             </section>
           </div>
-          {/* <div className="flex h-20 bg-gradient-to-r from-brand-green via-brand-lime to-brand-green" /> */}
         </div>
       }
-      {(status === "seeding" || status === "starting" || status === "running" || status === "success" || status === "cleaning") && (
+      {(status === "seeding" || status === "starting" || status === "running" || status === "cleaning") && (
         <div className="">
           <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Test in progress</h1>
           <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl mb-10">Do not refresh your browser or close the page while the test is in progress</p>
-          <div className="flex mx-auto justify-center gap-10">
+          <div className="flex mx-auto max-w-7xl justify-between px-6 gap-10">
             <ScoreBoard rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />
             <Tasks tasks={tasks} />
+          </div>
+        </div>
+      )}
+      {(status === "success") && (
+        <div className="">
+          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Test completed</h1>
+          <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl mb-10"></p>
+          <div className="flex mx-auto max-w-7xl justify-between px-6 gap-10">
+            <ScoreBoard rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />
+            <div className="text-white text-center text-2xl flex space-between">
+              <h1>Winner<br></br><span>has been determined</span></h1>
+              <button
+                className="border-brand-lime rounded-md text-sm"
+                onClick={() => {
+                  reset();
+                }}
+              >
+                {"Setup a new test"}
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -36,19 +36,22 @@ type Story = StoryObj<typeof meta>;
 export const InProgress: Story = {
     args: {
         percentage: 0,
+        allFinished: false,
     },
 };
 
 export const Completed: Story = {
     args: {
         percentage: 100,
+        allFinished: true
     },
 };
 
 export const RecentlyCompleted: Story = {
     args: {
         percentage: 100,
-        lastCompleted: true
+        lastCompleted: true,
+        allFinished: false
     },
 
 

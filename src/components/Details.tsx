@@ -50,7 +50,7 @@ const Details = ({
             <CounterButton add={true} onClick={() => setLoops((x) => x + 1)} />
           </dd>
         </div>
-        <div className={`flex items-center py-2 justify-between`}>
+        {/* <div className={`flex items-center py-2 justify-between`}>
           <div>
             <p className="min-w-0 flex-1 text-sm leading-6 font-medium text-white">
               {"Delay"}
@@ -67,7 +67,7 @@ const Details = ({
             </span>
             <CounterButton add={true} onClick={() => setDelay((x) => x + 1)} />
           </dd>
-        </div>
+        </div> */}
         <div className={`flex items-center py-2 justify-between`}>
           <div>
             <p className="min-w-0 flex-1 text-sm leading-6 font-medium text-white">

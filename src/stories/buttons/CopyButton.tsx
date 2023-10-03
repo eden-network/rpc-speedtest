@@ -24,9 +24,7 @@ export const CopyButton = ({
     const copyToClipboard = async () => {
         try {
             await navigator.clipboard.writeText(url);
-            console.log('Url copied to clipboard');
         } catch (err) {
-            console.error('Failed to copy: ', err);
         }
     }
 

@@ -6,13 +6,15 @@ interface ProgressBarProps {
     percentage: number;
     color?: string;
     isActive: boolean;
-    lastCompleted?: boolean
+    lastCompleted?: boolean;
+    allCompleted: boolean
 }
 export const ProgressBar = ({
     percentage,
     color,
     isActive,
-    lastCompleted
+    lastCompleted,
+    allCompleted
 }: ProgressBarProps) => {
 
     let foreGroundColor = color === undefined ? "bg-black" : color
@@ -35,6 +37,10 @@ export const ProgressBar = ({
         foreGroundColor = "bg-emerald-400"
     }
 
+    if (allCompleted) {
+        foreGroundColor = "bg-brand-completed"
+    }
+
     let isBgAnimated: boolean = percentage === 0 && isActive === true
     isBgAnimated ? "animation" : ""
     // let lastCompleted: boolean = finishedTasks - 1 === index - 1
@@ -44,7 +50,7 @@ export const ProgressBar = ({
             <div style={{ width: "150px", backgroundSize: "200% 200%" }} className={`rounded-md h-4 dark:bg-neutral-400 ${isBgAnimated ? "animation-waiting" : ""}`}>
                 <div className={`${foreGroundColor} h-4 rounded-md`} style={{ width: percentage.toString().concat("%") }}></div>
             </div>
-            <Percentage lastCompleted={lastCompleted} percentage={percentage} />
+            <Percentage allFinished={allCompleted} lastCompleted={lastCompleted} percentage={percentage} />
         </div>
     );
 };

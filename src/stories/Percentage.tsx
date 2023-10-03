@@ -4,11 +4,13 @@ import { CheckIcon } from './icons/CheckIcon';
 interface PercentageProps {
     percentage: number;
     lastCompleted?: boolean;
+    allFinished: boolean
 }
 
 export const Percentage = ({
     percentage,
-    lastCompleted
+    lastCompleted,
+    allFinished
 
 }: PercentageProps) => {
 
@@ -27,6 +29,10 @@ export const Percentage = ({
     if (lastCompleted) {
         color = "#49DA9D"
     } else {
+        color = "#9DFF61"
+    }
+
+    if (allFinished) {
         color = "#9DFF61"
     }
     return (

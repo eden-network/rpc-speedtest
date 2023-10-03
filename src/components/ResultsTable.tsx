@@ -32,10 +32,7 @@ const ResultsTable = ({
   const sortedResults = [...(results || [])].sort(resultSortFn);
 
   return (
-    <div>
-      <h2 className="font-bold text-lg mb-2 container mx-auto max-w-7xl px-4 md:px-6">
-        {"SpeedTest Results"}
-      </h2>
+    <div className="max-w-7xl mx-auto mt-10">
       <div className="overflow-x-scroll container mx-auto max-w-[4000px] hide-scroll px-4 md:px-6">
         <table className="min-w-full divide-y divide-gray-300 bg-white text-gray-800 rounded-lg overflow-hidden">
           <thead>
@@ -44,7 +41,7 @@ const ResultsTable = ({
                 scope="col"
                 className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900"
               >
-                {"Iteration"}
+                {"Loop"}
               </th>
               <th
                 scope="col"

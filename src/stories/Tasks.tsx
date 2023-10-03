@@ -19,13 +19,14 @@ export const Tasks = ({
 }: ResultsCardProps) => {
 
     const finishedTasks: number = tasks.filter(task => task.percentage === 100).length
+    const allCompleted: boolean = finishedTasks === tasks.length
 
     return (
         <div className='p-6'>
             <h1 className="text-xl text-white font-semibold mb-4">{title}</h1>
             <div>
                 {tasks.map((item, index) =>
-                    <ProcessRow lastCompleted={finishedTasks - 1 === index} numOfFinishedTasks={finishedTasks} indexOfRow={index + 1} isActive={item.isActive} name={item.name} percentage={item.percentage} key={index} />
+                    <ProcessRow allCompleted={allCompleted} lastCompleted={finishedTasks - 1 === index} numOfFinishedTasks={finishedTasks} indexOfRow={index + 1} isActive={item.isActive} name={item.name} percentage={item.percentage} key={index} />
                 )}
             </div>
         </div>
