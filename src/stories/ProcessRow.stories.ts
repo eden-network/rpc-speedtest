@@ -39,7 +39,8 @@ export const Waiting: Story = {
         isActive: true,
         numOfFinishedTasks: 0,
         indexOfRow: 0,
-        name: "Waiting"
+        name: "Waiting",
+        allCompleted: false
     },
 };
 
@@ -49,7 +50,8 @@ export const Started: Story = {
         isActive: true,
         numOfFinishedTasks: 0,
         indexOfRow: 0,
-        name: "Started"
+        name: "Started",
+        allCompleted: false
     },
 };
 
@@ -59,7 +61,8 @@ export const InProgress: Story = {
         isActive: true,
         numOfFinishedTasks: 1,
         indexOfRow: 1,
-        name: "In Progress"
+        name: "In Progress",
+        allCompleted: false
     },
 };
 
@@ -69,7 +72,8 @@ export const Completed: Story = {
         isActive: false,
         numOfFinishedTasks: 1,
         indexOfRow: 2,
-        name: "Completed"
+        name: "Completed",
+        allCompleted: true
     },
 };
 
@@ -80,6 +84,7 @@ export const RecentlyCompleted: Story = {
         numOfFinishedTasks: 1,
         indexOfRow: 2,
         name: "Recently completed",
-        lastCompleted: true
+        lastCompleted: true,
+        allCompleted: false
     },
 };

@@ -11,7 +11,7 @@ export const CounterButton = ({
     add,
     onClick
 }: CounterButtonProps) => {
-    const addOrRemove = add ? <PlusIcon /> : <MinusIcon />
+    const addOrRemove = add ? <PlusIcon size='w-6 h-6' /> : <MinusIcon />
 
     return (
         <>

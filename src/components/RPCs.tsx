@@ -37,10 +37,10 @@ const RPCs = ({
   };
 
   return (
-    <div className="bg-white rounded-md p-6 drop-shadow-xl min-h-[55vh]">
+    <div className="bg-white text-brand-blue rounded-md p-6 drop-shadow-xl min-h-[55vh]">
       <fieldset>
         <div className="flex font-bold">
-          <legend className="flex-1 text-lg font-bold leading-6 text-gray-900 pl-2">
+          <legend className="flex-1 text-lg font-bold leading-6 pl-2">
             {"Selected RPCs"}
           </legend>
           {rpcCount === 0 ? (
@@ -64,11 +64,11 @@ const RPCs = ({
                 }`}
             >
               <div className="min-w-0 flex-1 text-sm leading-6">
-                <span className="font-medium text-gray-900">
+                <span className="font-medium text-brand-blue">
                   {rpc.editable ? (
                     <input
                       type="text"
-                      className="block w-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                      className="block w-full rounded-md border-0 p-1.5 text-brand-blue shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                       placeholder="e.g. https://some-rpc.com/"
                       onChange={(e) =>
                         setRpcUrls((rpcs) => {
@@ -112,7 +112,7 @@ const RPCs = ({
               className="flex gap-2 items-center rounded-md border-indigo-600 border-2 px-2 py-1.5 text-xs font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               {"Add a custom RPC"}
-              <PlusIcon />
+              <PlusIcon css="border-2 rounded-full border-brand-blue" size="w-4 h-4" />
             </button>
           </div>
         </div>
