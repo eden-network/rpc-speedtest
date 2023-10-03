@@ -12,7 +12,7 @@ export const AddRpcButton = ({
             <button>
                 {"Add a custom RPC"}
             </button>
-            <PlusIcon css='border rounded-full border-brand-blue' />
+            <PlusIcon css='border rounded-full border-brand-blue' size='w-4 h-4' />
         </div>
     );
 }

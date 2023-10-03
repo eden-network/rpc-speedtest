@@ -37,7 +37,7 @@ function getCurrentIteration(
 
 const Speedtest: React.FC = () => {
   const [loops, setLoops] = useState(() => 4);
-  const [delay, setDelay] = useState(() => 13);
+  const [delay, setDelay] = useState(() => 1);
   const { chain: activeChain } = useNetwork();
   const chain = activeChain || mainnet;
   const [rpcUrls, setRpcUrls] = useState(getRpcUrls(chain.id));
@@ -127,11 +127,7 @@ const Speedtest: React.FC = () => {
     loopsArr.push({
       name: `Loop ${i + 1}`,
       percentage: tasksProgress[i].order / rpcUrls.length * 100,
-      isActive: iteration === i + 1 || getCurrentIteration(
-        loops,
-        rpcUrls.length * loops,
-        results.length
-      ) === i + 1 && (status === "running")
+      isActive: iteration === i + 1
     })
   }
 
@@ -255,7 +251,7 @@ const Speedtest: React.FC = () => {
       )}
       <div className="text-brand-blue flex-1 flex flex-col">
         <div className="flex-1 flex flex-col">
-          {(status === "seeding" || status === "starting") && (
+          {/* {(status === "seeding" || status === "starting") && (
             <p className="w-full flex items-center justify-center text-xl">
               <span className="mr-4">
                 {status === "starting"
@@ -267,16 +263,16 @@ const Speedtest: React.FC = () => {
               </span>
               <Spinner />
             </p>
-          )}
+          )} */}
           {(status === "running" ||
             status === "success" ||
             status === "cleaning") && (
-              <div className="mb-6 flex-1 space-y-6 max-w-full bg-white">
+              <div className="flex-1 space-y-6 max-w-full bg-white">
                 <ResultsTable chain={chain} results={results} />
-                <RankingsTable chain={chain} results={results} />
+                {/* <RankingsTable chain={chain} results={results} />
                 <CleanupTable chain={chain} txData={cleanupTxs} />
-                <ScoreBoard rpcData={rpcData} />
-                <p className="w-full flex items-center justify-center text-xl">
+                <ScoreBoard rpcData={rpcData} /> */}
+                {/* <p className="w-full flex items-center justify-center text-xl">
                   {status === "running" && (
                     <>
                       <span className="mr-4 text-base">
@@ -315,7 +311,7 @@ const Speedtest: React.FC = () => {
                       </button>
                     </span>
                   )}
-                </p>
+                </p> */}
               </div>
             )}
         </div>

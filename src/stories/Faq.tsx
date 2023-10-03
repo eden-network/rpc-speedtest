@@ -14,7 +14,7 @@ export const Faq = ({
     const [showTestWallets, setShowTestWallets] = useState(false);
 
     return (
-        <div className="flex-1 bg-white p-6 rounded-2xl drop-shadow-2xl">
+        <div className="relative flex-1 bg-white p-6 rounded-2xl drop-shadow-2xl">
             <legend className="text-base text-xl font-semibold leading-6 text-gray-900 pb-4">
                 FAQ
             </legend>
@@ -58,13 +58,15 @@ export const Faq = ({
                     </p>
                     :
                     <p>
-                        Funds can be reclaimed from the speedTest wallets and the addresses will be provided once they are generated.
+                        Funds can be reclaimed from the SpeedTest wallets and the addresses will be provided once they are generated.
                     </p>
                 }
             </ul>
-            {showTestWallets && (
-                <TestWallets close={() => setShowTestWallets(false)} />
-            )}
+            <div className="absolute">
+                {showTestWallets && (
+                    <TestWallets close={() => setShowTestWallets(false)} />
+                )}
+            </div>
         </div>
     );
 };

@@ -9,7 +9,7 @@ const meta = {
         // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/react/configure/story-layout
         layout: 'centered',
         backgrounds: {
-            default: 'white',
+            default: 'eden',
             values: [
                 {
                     name: 'eden',

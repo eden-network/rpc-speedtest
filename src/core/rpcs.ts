@@ -27,7 +27,6 @@ const RPC_URLS = {
     "https://polygon-testnet.public.blastapi.io",
     "https://rpc.ankr.com/polygon_mumbai",
     "https://polygon-mumbai.g.alchemy.com/v2/demo",
-    "https://matic-mumbai.chainstacklabs.com",
   ],
   [avalanche.id]: [
     "https://rpc.ankr.com/avalanche",
