@@ -88,7 +88,6 @@ const Speedtest: React.FC = () => {
     })
     sendTransaction?.();
   }
-
   let iteration: number = 0
 
   const tasksProgress: { loop: number; order: number }[] = []
@@ -173,7 +172,7 @@ const Speedtest: React.FC = () => {
           <h1 className="mx-auto text-white text-center text-4xl font-bold p-6">Accurately Measure<br className="lg:hidden"></br>
             <span className="bg-gradient-fresh bg-clip-text text-transparent"> Transaction Propagation Speeds</span><br className="lg:block"></br>
             from Your Browser</h1>
-          <div className="md:relative top-8 z-10 container mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-2 gap-14 sm:gap-4 px-4 md:px-6">
+          <div className="md:relative top-8 z-10 container mx-auto max-w-7xl grid md:grid-cols-2 sm:grid-cols-1 gap-14 sm:gap-4 px-4 md:px-6">
             <section className="lg:mr-2">
               <RPCs
                 rpcCount={rpcUrls.length}
