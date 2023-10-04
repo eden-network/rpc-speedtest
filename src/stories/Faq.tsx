@@ -54,7 +54,7 @@ export const Faq = ({
                 </li>
                 {isConnected ?
                     <p>
-                        Reclaim the funds sent to the wallets here:  <ExternalLink style="text-black underline hover:no-underline cursor-pointer" onClick={() => setShowTestWallets(true)} content="show the speedTest wallet addresses"></ExternalLink>.
+                        Click on SpeedTest Wallets button on top of the page to reclaim funds.
                     </p>
                     :
                     <p>

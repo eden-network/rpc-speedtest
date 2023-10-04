@@ -14,7 +14,7 @@ interface ResultsCardProps {
 }
 
 export const Tasks = ({
-    title = "Processes",
+    title = "Test progress",
     tasks = [],
 }: ResultsCardProps) => {
 
@@ -26,7 +26,14 @@ export const Tasks = ({
             <h1 className="text-xl text-white font-semibold mb-4">{title}</h1>
             <div>
                 {tasks.map((item, index) =>
-                    <ProcessRow allCompleted={allCompleted} lastCompleted={finishedTasks - 1 === index} numOfFinishedTasks={finishedTasks} indexOfRow={index + 1} isActive={item.isActive} name={item.name} percentage={item.percentage} key={index} />
+                    <ProcessRow
+                        allCompleted={allCompleted}
+                        lastCompleted={finishedTasks - 1 === index}
+                        numOfFinishedTasks={finishedTasks} indexOfRow={index + 1}
+                        isActive={item.isActive}
+                        name={item.name}
+                        percentage={item.percentage}
+                        key={index} />
                 )}
             </div>
         </div>

@@ -30,7 +30,7 @@ export const ProcessRow = ({
     return (
 
         <div className="flex items-center mb-2 h-10">
-            <h1 className={`w-40 font-semibold leading-tight ${fontWeight} mr-4`}>{name}</h1>
+            <h1 className={`w-32 font-semibold leading-tight ${fontWeight} mr-4`}>{name}</h1>
             <ProgressBar allCompleted={allCompleted} lastCompleted={lastCompleted} isActive={isActive} percentage={percentage} />
         </div>
     );

@@ -18,6 +18,7 @@ import { Tasks } from "../stories/Tasks";
 import { formatRpcRankings } from "../utils/formatRpcRankings";
 import { Result } from "../types";
 import { ScoreBoard } from "../stories/ScoreBoard";
+import { Winner } from "../stories/Winner";
 
 function getCurrentIteration(
   loopCount: number,
@@ -88,10 +89,7 @@ const Speedtest: React.FC = () => {
     sendTransaction?.();
   }
 
-
   let iteration: number = 0
-
-
 
   const tasksProgress: { loop: number; order: number }[] = []
   for (var i = 0; i < loops; i++) {
@@ -127,6 +125,7 @@ const Speedtest: React.FC = () => {
     loopsArr.push({
       name: `Loop ${i + 1}`,
       percentage: tasksProgress[i].order / rpcUrls.length * 100,
+      //tasksProgress[i-1].order / rpcUrls.length === 1, to not have that awkwar waiting time until the new loop starts
       isActive: iteration === i + 1
     })
   }
@@ -142,49 +141,40 @@ const Speedtest: React.FC = () => {
   }
 
   const tasks = [{
-    name: "Transfer to the Genesis Wallet",
+    name: "Fund test",
     percentage: status == "idle" ? 0 : 100,
     isActive: status === "starting"
   },
   {
-    name: status !== "seeding" ?
-      "Funding SpeedTest Wallets" : `Funding SpeedTest wallet ${Math.min(
-        wallets.length + 1,
-        rpcUrls.length
-      )} of ${rpcUrls.length}`,
+    name: "Create burners",
+    percentage: status == "seeding" || status === "running" || status === "success" || status === "cleaning" ? 100 : 0,
+    isActive: status === "starting"
+  },
+  {
+    name: "Fund burners",
     percentage: wallets.length / rpcUrls.length * 100,
-    isActive: status == "seeding" || status == "idle" || status == "starting"
+    isActive: status == "seeding" || status == "idle"
   },
   ...loopsArr,
   {
-    name: "Running wallet clean-up",
+    name: "Clean-up",
     percentage: status === "success" ? 100 : 0,
     isActive: status === "cleaning"
   }
   ]
 
   const rpcData = useMemo(() => formatRpcRankings(results), [results]);
-  // console.log(rpcData);
-  // console.log(results)
-  // console.log(getCurrentIteration(
-  //   loops,
-  //   rpcUrls.length * loops,
-  //   results.length
-  // ))
-  // console.log(rpcUrls)
-
 
   return (
 
     <div className="Speedtest bg-brand-blue flex-1 flex flex-col">
-      {status}
       {status === "idle" &&
-        <div className="border-b-[70px] border-brand-lime">
-          <h1 className="mx-auto text-white text-center text-4xl font-bold p-6">Accurately Measure
-            <span className="bg-gradient-fresh bg-clip-text text-transparent"> Transaction Propagation Speeds</span><br></br>
+        <div className="md:border-b-[70px] border-brand-lime">
+          <h1 className="mx-auto text-white text-center text-4xl font-bold p-6">Accurately Measure<br className="lg:hidden"></br>
+            <span className="bg-gradient-fresh bg-clip-text text-transparent"> Transaction Propagation Speeds</span><br className="lg:block"></br>
             from Your Browser</h1>
-          <div className="relative top-8 z-10 container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6">
-            <section className="">
+          <div className="md:relative top-8 z-10 container mx-auto max-w-7xl grid grid-cols-2 md:grid-cols-2 gap-14 sm:gap-4 px-4 md:px-6">
+            <section className="lg:mr-2">
               <RPCs
                 rpcCount={rpcUrls.length}
                 key={rpcKey}
@@ -217,35 +207,26 @@ const Speedtest: React.FC = () => {
               />
             </section>
           </div>
+          <div className="md:hidden mt-4 h-12 bg-gradient-fresh"></div>
         </div>
       }
       {(status === "seeding" || status === "starting" || status === "running" || status === "cleaning") && (
         <div className="">
-          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Test in progress</h1>
+          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Transaction Propagation Test in Progress</h1>
           <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl mb-10">Do not refresh your browser or close the page while the test is in progress</p>
-          <div className="flex mx-auto max-w-7xl justify-between px-6 gap-10">
-            <ScoreBoard rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />
+          <div className="flex mx-auto max-w-7xl justify-between px-6 gap-6">
+            <ScoreBoard status={status} rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />
             <Tasks tasks={tasks} />
           </div>
         </div>
       )}
       {(status === "success") && (
         <div className="">
-          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Test completed</h1>
+          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Transaction Propagation Test Completed</h1>
           <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl mb-10"></p>
           <div className="flex mx-auto max-w-7xl justify-between px-6 gap-10">
-            <ScoreBoard rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />
-            <div className="text-white text-center text-2xl flex space-between">
-              <h1>Winner<br></br><span>has been determined</span></h1>
-              <button
-                className="border-brand-lime rounded-md text-sm"
-                onClick={() => {
-                  reset();
-                }}
-              >
-                {"Setup a new test"}
-              </button>
-            </div>
+            <ScoreBoard status={status} rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />
+            <Tasks tasks={tasks} />
           </div>
         </div>
       )}
@@ -312,13 +293,14 @@ const Speedtest: React.FC = () => {
                     </span>
                   )}
                 </p> */}
+                <div className="h-4 bg-gradient-fresh"></div>
               </div>
             )}
         </div>
       </div>
       <div id="scrollAnchor" />
-      <div className="bg-white bg-[url('../public/eden-background-white.svg')] bg-center bg-cover">
-        <div className="container mx-auto max-w-7xl grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
+      <div className="lg:bg-white md:bg-brand-blue bg-[url('../public/eden-background-white.svg')] bg-center bg-cover">
+        <div className="container mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-2 sm:grid-cols-2 gap-6 sm:gap-12 px-4 md:px-6 py-4 md:py-8">
           <Instructions />
           <Faq isConnected={isConnected} />
         </div>

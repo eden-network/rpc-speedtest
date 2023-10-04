@@ -5,8 +5,8 @@ function Footer() {
     return (
         <footer className="bg-brand-blue text-white">
             <div className="mx-auto container max-w-7xl px-4 md:px-6 py-10">
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 border-b border-gray-600 pb-6 mb-6">
-                    <nav>
+                <div className="lg:flex lg:justify-between grid grid-cols-2 gap-4 border-b border-gray-600 pb-6 mb-6 flex lg:text-left">
+                    <nav className="flex flex-col">
                         <h4 className="text-brand-lime font-bold">{"Products"}</h4>
                         <ul className="space-y-2 mt-4">
                             <li className="">
@@ -23,7 +23,7 @@ function Footer() {
                             </li>
                         </ul>
                     </nav>
-                    <nav>
+                    <nav className="flex flex-col">
                         <h4 className="text-brand-lime font-bold">{"Developers"}</h4>
                         <ul className="mt-4 space-y-2">
                             <li className="">
@@ -37,7 +37,7 @@ function Footer() {
                             </li>
                         </ul>
                     </nav>
-                    <nav>
+                    <nav className="flex flex-col">
                         <h4 className="text-brand-lime font-bold">{"Company"}</h4>
                         <ul className="mt-4 space-y-2">
                             <li className="">
@@ -45,7 +45,7 @@ function Footer() {
                             </li>
                         </ul>
                     </nav>
-                    <nav>
+                    <nav className="flex flex-col">
                         <h4 className="text-brand-lime font-bold">{"Community"}</h4>
                         <ul className="mt-4 space-y-2">
                             <li className="">

@@ -33,6 +33,8 @@ const ResultsTable = ({
 
   return (
     <div className="max-w-7xl mx-auto mt-10">
+      <h1 className="text-center text-3xl font-bold mb-2">Speed Test Detailed Results</h1>
+      <h1 className="text-center text-l font-bold mb-6">Review of individual transactions from the speed test</h1>
       <div className="overflow-x-scroll container mx-auto max-w-[4000px] hide-scroll px-4 md:px-6">
         <table className="min-w-full divide-y divide-gray-300 bg-white text-gray-800 rounded-lg overflow-hidden">
           <thead>
