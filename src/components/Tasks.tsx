@@ -38,7 +38,7 @@ export const Tasks = ({
                 )}
             </div>
             <div className='mt-6 flex mx-auto bg-gradient-fresh p- w-fit p-0.5 rounded'>
-                <button className='bg-brand-blue rounded text-white hover:text-brand-lime mx-auto px-4 py-1 text-sm'>How to add a new RPC to wallet</button>
+                <button className='transition-all bg-brand-blue rounded text-white hover:text-brand-darkgreen mx-auto px-4 py-1 text-sm'>How to add a new RPC to wallet</button>
             </div>
         </div>
     );

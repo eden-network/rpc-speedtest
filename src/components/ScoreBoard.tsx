@@ -25,12 +25,8 @@ export const ScoreBoard = ({
         return sorted;
     })
 
-    // const isWinner: string = status === "success" ? "bg-white/80 animate-pulse" : "bg-white/40"
     const testCompleted: boolean = status === "success" ? true : false
-    const isRanked: boolean = status === "running" || status === "success" ? true : false
-
-
-    // {index + 1}
+    const isRanked: boolean = status === "running" || status === "success" || status === "cleaning" ? true : false
 
     return (
         <div className="w-full text-brand-blue text-center font-bold bg-gradient-fresh p-6 rounded-md h-fit mb-6">

@@ -148,7 +148,7 @@ const Speedtest: React.FC = () => {
             <span className="bg-gradient-fresh bg-clip-text text-transparent"> Transaction Propagation Speeds</span><br className="lg:block"></br>
             from Your Browser</h1>
           <div className="md:relative top-8 z-10 container mx-auto max-w-7xl grid md:grid-cols-2 sm:grid-cols-1 gap-14 sm:gap-4 px-4 md:px-6">
-            <section className="lg:mr-2">
+            <section className="lg:mr-6">
               <RPCs
                 rpcCount={rpcUrls.length}
                 key={rpcKey}
@@ -196,7 +196,7 @@ const Speedtest: React.FC = () => {
       )}
       {(status === "success") && (
         <div className="">
-          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Transaction Propagation Test Completed</h1>
+          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12 animate-pulse">Transaction Propagation Test Completed</h1>
           <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl mb-10">&#8203;</p>
           <div className="flex mx-auto max-w-7xl justify-between px-6 gap-16">
             <ScoreBoard status={status} rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />

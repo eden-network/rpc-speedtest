@@ -12,14 +12,16 @@ export const CopyButton = ({
     url
 }: CopyButtonProps) => {
     const [active, setActive] = useState(false);
+    const [timeoutId, setTimeoutId] = useState<NodeJS.Timeout | null>(null);
 
     const handleClick = () => {
         setActive(true);
         copyToClipboard()
-        const timeoutHandler = setTimeout(() => setActive(false), 1000)
-        // clearTimeout(timeoutHandler)
+        if (timeoutId != null) {
+            clearTimeout(timeoutId)
+        }
+        setTimeoutId(setTimeout(() => setActive(false), 1000))
     };
-
 
     const copyToClipboard = async () => {
         try {

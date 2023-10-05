@@ -31,13 +31,13 @@ const Details = ({
 
   return (
     <aside className="pt-6">
-      <legend className="text-lg font-semibold leading-6 text-white">
+      <legend className="text-2xl font-bold leading-6 text-white">
         {"Speed Test Configuration"}
       </legend>
       <dl className="mt-4">
-        <div className={`flex items-center py-2 justify-between`}>
+        <div className={`flex items-center py-1 justify-between`}>
           <div>
-            <p className="min-w-0 flex-1 text-sm leading-6 font-medium text-white">
+            <p className="min-w-0 flex-1 text-xl font-medium text-white">
               {"Loops"}
             </p>
             <p className="text-brand-gray text-xs">
@@ -46,38 +46,47 @@ const Details = ({
           </div>
           <dd className="ml-3 flex items-center">
             <CounterButton add={false} onClick={() => setLoops((x) => x - 1)} />
-            <span className="text-white text-lg w-10 text-center select-none">{loops}</span>
+            <span className="text-white text-xl w-10 text-center select-none">{loops}</span>
             <CounterButton add={true} onClick={() => setLoops((x) => x + 1)} />
           </dd>
         </div>
-        <div className={`flex items-center py-2 justify-between`}>
+        <div className={`flex items-center py-1 justify-between`}>
           <div>
-            <p className="min-w-0 flex-1 text-sm leading-6 font-medium text-white">
+            <p className="min-w-0 flex-1 text-xl font-medium text-white">
               {"Transactions"}
             </p>
             <p className="text-brand-gray text-xs">
               {"Counting all RPC loops and test wallets created."}
             </p>
           </div>
-          <dd className="ml-3 h-6 text-white">{rpcCount * loops + rpcCount + 1}</dd>
+          <dd className="ml-3 h-6 text-white text-xl">{rpcCount * loops + rpcCount + 1}</dd>
         </div>
-        <div className={`flex items-center py-2 text-gray-800 justify-between`}>
+        <div className={`flex items-center py-1 text-gray-800 justify-between`}>
           <div>
-            <p className="min-w-0 flex-1 text-sm leading-6 font-medium text-white">
-              {"Cost"}
+            <p className="min-w-0 flex-1 text-xl font-medium text-white">
+              {"Cost per transaction"}
             </p>
-            <p className="text-brand-gray text-xs">
-              {"Includes 25% buffer. Any surplus is returned to your wallet."}
+            <p className="text-brand-gray text-xs max-w-xs">
+              {"Estimated Cost per transaction, cost varies based on network conditions."}
             </p>
           </div>
           <dd className="ml-3 min-h-[1.25rem] text-right leading-none text-white">
-            {formatEther(totalCost || "0")} {chain.nativeCurrency.symbol}
-            <br />
-            <span className="text-xs">
-              {"("}
+            <span className="text-xl">
               {formatEther(transferCost)} {chain?.nativeCurrency.symbol}
-              {" per tx)"}
             </span>
+          </dd>
+        </div>
+        <div className={`flex items-center py-1 text-gray-800 justify-between`}>
+          <div>
+            <p className="min-w-0 flex-1 text-xl font-medium text-white">
+              {"Maximum Cost"}
+            </p>
+            <p className="text-brand-gray text-xs max-w-xs	">
+              {"Includes 25% buffer. Any surplus is returned to your wallet."}
+            </p>
+          </div>
+          <dd className="text-xl ml-3 min-h-[1.25rem] text-right leading-none text-white">
+            {formatEther(totalCost || "0")} {chain.nativeCurrency.symbol}
           </dd>
         </div>
       </dl>
