@@ -6,19 +6,14 @@ import Details from "./Details";
 import { getRpcUrls } from "../core/rpcs";
 import useSpeedTest from "../hooks/useSpeedTest";
 import Spinner from "./Spinner";
-import RankingsTable from "./RankingsTable";
-import { scrollToBottom } from "../utils/scrollToBottom";
 import { useLocalStorage } from "usehooks-ts";
 import { LocalSpeedtestWallets } from "../types";
-import CleanupTable from "./CleanupTable";
-import { StartButton } from "../stories/buttons/StartButton";
-import { Instructions } from "../stories/Instructions";
-import { Faq } from "../stories/Faq";
-import { Tasks } from "../stories/Tasks";
+import { StartButton } from "./StartButton";
+import { Instructions } from "./Instructions";
+import { Faq } from "./Faq";
+import { Tasks } from "./Tasks";
 import { formatRpcRankings } from "../utils/formatRpcRankings";
-import { Result } from "../types";
-import { ScoreBoard } from "../stories/ScoreBoard";
-import { Winner } from "../stories/Winner";
+import { ScoreBoard } from "./ScoreBoard";
 
 function getCurrentIteration(
   loopCount: number,
@@ -71,13 +66,6 @@ const Speedtest: React.FC = () => {
     setRpcKey(chain.id);
   }, [chain.id]);
 
-  // useEffect(() => {
-  //   // any time new result comes in
-  //   if (!!results.length) {
-  //     scrollToBottom();
-  //   }
-  // }, [results]);
-
   const startTest = () => {
     setLocalWallets({
       ...localWallets,
@@ -106,19 +94,6 @@ const Speedtest: React.FC = () => {
     })
   })
 
-
-
-  // getCurrentIteration(
-  // loops,
-  // rpcUrls.length * loops,
-  //results.length
-  //) > i + 1 && (status === "running" || status === "cleaning" || status === "success") ? 100 : 0
-  //getCurrentIteration(
-  //loops,
-  //rpcUrls.length * loops,
-  //results.length
-  //) === i + 1 && (status === "running")
-  //})
   const loopsArr = []
   for (var i = 0; i < loops; i++) {
     loopsArr.push({

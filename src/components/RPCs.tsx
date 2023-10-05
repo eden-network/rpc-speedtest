@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { PlusIcon } from "../stories/icons/PlusIcon";
+import { PlusIcon } from "./icons/PlusIcon";
 const RPCs = ({
   rpcCount,
   urls,

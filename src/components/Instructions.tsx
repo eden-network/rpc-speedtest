@@ -1,11 +1,6 @@
 import React from 'react';
 
-interface InstructionsProps {
-}
-
-export const Instructions = ({
-
-}: InstructionsProps) => {
+export const Instructions = ({ }) => {
 
     return (
         <div className="flex-1 bg-white p-6 rounded-2xl drop-shadow-2xl">

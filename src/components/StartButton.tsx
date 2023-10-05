@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatNumber } from '../../utils/formatNumber';
+import { formatNumber } from '../utils/formatNumber';
 import { formatEther } from 'ethers/lib/utils.js';
 import { BigNumber } from 'ethers';
 

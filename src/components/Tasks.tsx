@@ -33,7 +33,8 @@ export const Tasks = ({
                         isActive={item.isActive}
                         name={item.name}
                         percentage={item.percentage}
-                        key={index} />
+                        key={index}
+                    />
                 )}
             </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { CopyButton } from './buttons/CopyButton';
+import { CopyButton } from './CopyButton';
 import { EdenIcon } from './icons/EdenIcon';
 import { EdenText } from './icons/EdenText';
 
@@ -62,7 +62,7 @@ export const ScoreBoard = ({
                                 {isRanked ? index + 1 : "-"}
                             </td>
 
-                            <td className="px-2 font-semibold mr-60 text-left truncate">
+                            <td className="px-2 font-semibold text-left truncate max-w-[20vw]">
                                 {rpc.label.slice(8)}
                             </td>
                             <td>

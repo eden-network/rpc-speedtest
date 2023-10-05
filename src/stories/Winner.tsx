@@ -1,5 +1,5 @@
 import React from 'react';
-import { WinnerIcon } from './icons/WinnerIcon';
+import { WinnerIcon } from '../components/icons/WinnerIcon';
 
 
 interface WinnerProps {

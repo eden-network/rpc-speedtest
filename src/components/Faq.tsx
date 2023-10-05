@@ -1,16 +1,15 @@
 import React from 'react';
-import { useEffect, useState } from "react";
-import TestWallets from "../components/TestWallets";
-import ExternalLink from '../components/ExternalLink';
-
+import { useState } from "react";
+import TestWallets from "./TestWallets";
+import ExternalLink from './ExternalLink';
 
 interface FaqProps {
     isConnected: boolean
 }
-
 export const Faq = ({
     isConnected
 }: FaqProps) => {
+
     const [showTestWallets, setShowTestWallets] = useState(false);
 
     return (
