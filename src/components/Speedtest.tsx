@@ -196,7 +196,7 @@ const Speedtest: React.FC = () => {
       )}
       {(status === "success") && (
         <div className="">
-          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12 animate-pulse">Transaction Propagation Test Completed</h1>
+          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Transaction Propagation Test Completed</h1>
           <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl mb-10">&#8203;</p>
           <div className="flex mx-auto max-w-7xl justify-between px-6 gap-16">
             <ScoreBoard status={status} rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />
