@@ -118,11 +118,9 @@ export const useSelfTransactions = ({
           })
           .filter(Boolean) as Result["firstSeen"];
 
-        const result = `Transaction ${i + 1} from ${
-          wallet.address
-        } was included in block ${txReceipt.blockNumber} with order ${
-          index + 1
-        } (${label})`;
+        const result = `Transaction ${i + 1} from ${wallet.address
+          } was included in block ${txReceipt.blockNumber} with order ${index + 1
+          } (${label})`;
 
         onResult({
           iteration: i + 1,
@@ -137,9 +135,8 @@ export const useSelfTransactions = ({
         return result;
       } catch (e) {
         console.log(e);
-        const result = `Transaction ${i + 1} from ${
-          wallet.address
-        } threw an error (${label})`;
+        const result = `Transaction ${i + 1} from ${wallet.address
+          } threw an error (${label})`;
 
         onResult({
           iteration: i + 1,

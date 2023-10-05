@@ -32,10 +32,9 @@ const ResultsTable = ({
   const sortedResults = [...(results || [])].sort(resultSortFn);
 
   return (
-    <div>
-      <h2 className="font-bold text-lg mb-2 container mx-auto max-w-7xl px-4 md:px-6">
-        {"SpeedTest Results"}
-      </h2>
+    <div className="max-w-7xl mx-auto mt-10">
+      <h1 className="text-center text-3xl font-bold mb-2">Speed Test Detailed Results</h1>
+      <h1 className="text-center text-l font-bold mb-6">Review of individual transactions from the speed test</h1>
       <div className="overflow-x-scroll container mx-auto max-w-[4000px] hide-scroll px-4 md:px-6">
         <table className="min-w-full divide-y divide-gray-300 bg-white text-gray-800 rounded-lg overflow-hidden">
           <thead>
@@ -44,7 +43,13 @@ const ResultsTable = ({
                 scope="col"
                 className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900"
               >
-                {"Iteration"}
+                {"Loop"}
+              </th>
+              <th
+                scope="col"
+                className="py-3.5 pl-3 pr-4 text-left text-sm font-semibold text-gray-900"
+              >
+                {"RPC"}
               </th>
               <th className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                 {"Transaction"}
@@ -54,15 +59,6 @@ const ResultsTable = ({
               </th>
               <th className="px-3 py-3.5 text-right text-sm font-semibold text-gray-900">
                 {"Order"}
-              </th>
-              <th className="px-3 py-3.5 text-right text-sm font-semibold text-gray-900 whitespace-nowrap">
-                {"First seen"}
-              </th>
-              <th
-                scope="col"
-                className="py-3.5 pl-3 pr-4 text-right text-sm font-semibold text-gray-900"
-              >
-                {"RPC"}
               </th>
             </tr>
           </thead>
@@ -77,6 +73,9 @@ const ResultsTable = ({
                 >
                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
                     {result.iteration}
+                  </td>
+                  <td className="whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium text-gray-900 text-left">
+                    {result.label}
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-left overflow-hidden">
                     <a
@@ -105,20 +104,6 @@ const ResultsTable = ({
                   </td>
                   <td className="whitespace-nowrap px-3 py-4 text-sm text-right">
                     {result.order}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-4 text-sm text-right">
-                    {!!result?.firstSeen &&
-                      result.firstSeen
-                        .sort((a, b) => a.date.getTime() - b.date.getTime())
-                        .map((fs, i) => (
-                          <div key={i} className="flex justify-between">
-                            <span>{fs.name}</span>
-                            <span>{fs.date.getTime()}</span>
-                          </div>
-                        ))}
-                  </td>
-                  <td className="whitespace-nowrap py-4 pl-3 pr-4 text-sm font-medium text-gray-900 text-right">
-                    {result.label}
                   </td>
                 </tr>
               );

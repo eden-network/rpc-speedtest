@@ -1,5 +1,4 @@
 // Take the RPC data and calculate the podium finishes of each
-
 import { Result } from "../types";
 
 // loop by comparing blockNumber and order across all
@@ -78,9 +77,32 @@ export const formatRpcRankings = (results: Result[]) => {
       return rpcData.length;
     });
 
+    function countPositions(numbers: number[]): { first: number; second: number; third: number } {
+      let first = 0;
+      let second = 0;
+      let third = 0;
+
+      for (const num of numbers) {
+        if (num === 1) {
+          first += 1;
+        } else if (num === 2) {
+          second += 1;
+        } else if (num === 3) {
+          third += 1;
+        }
+      }
+
+      return { first, second, third };
+    }
+
+    const scoreboard = countPositions(positionRankings)
+
     return {
       ...rpc,
       rankings: positionRankings,
+      first: scoreboard.first,
+      second: scoreboard.second,
+      third: scoreboard.third
     };
   });
 
