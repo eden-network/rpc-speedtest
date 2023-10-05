@@ -22,7 +22,7 @@ export const Tasks = ({
     const allCompleted: boolean = finishedTasks === tasks.length
 
     return (
-        <div className='p-6'>
+        <div className='py-6'>
             <h1 className="text-xl text-white font-semibold mb-4">{title}</h1>
             <div>
                 {tasks.map((item, index) =>
@@ -36,6 +36,9 @@ export const Tasks = ({
                         key={index}
                     />
                 )}
+            </div>
+            <div className='mt-6 flex mx-auto bg-gradient-fresh p- w-fit p-0.5 rounded'>
+                <button className='bg-brand-blue rounded text-white hover:text-brand-lime mx-auto px-4 py-1 text-sm'>How to add a new RPC to wallet</button>
             </div>
         </div>
     );

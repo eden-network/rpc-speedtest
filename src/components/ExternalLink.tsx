@@ -10,7 +10,6 @@ const ExternalLink = ({
     onClick?: () => void,
 }) => {
 
-
     return (
         <a onClick={onClick} className={style}
             href={url}

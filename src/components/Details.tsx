@@ -50,24 +50,6 @@ const Details = ({
             <CounterButton add={true} onClick={() => setLoops((x) => x + 1)} />
           </dd>
         </div>
-        {/* <div className={`flex items-center py-2 justify-between`}>
-          <div>
-            <p className="min-w-0 flex-1 text-sm leading-6 font-medium text-white">
-              {"Delay"}
-            </p>
-            <p className="text-brand-gray text-xs">
-              {"How many seconds to wait between each loop"}
-            </p>
-          </div>
-          <dd className="ml-3 flex items-center">
-            <CounterButton add={false} onClick={() => setDelay((x) => x - 1)} />
-            <span className="text-white text-lg w-10 text-center select-none">
-              {delay}
-              <span className="text-base">{"s"}</span>
-            </span>
-            <CounterButton add={true} onClick={() => setDelay((x) => x + 1)} />
-          </dd>
-        </div> */}
         <div className={`flex items-center py-2 justify-between`}>
           <div>
             <p className="min-w-0 flex-1 text-sm leading-6 font-medium text-white">
@@ -98,51 +80,6 @@ const Details = ({
             </span>
           </dd>
         </div>
-        {/* <div className={`py-2`}>
-          <dt className="text-white min-w-0 flex-1 text-sm leading-6 font-medium flex justify-between">
-            {"Wallets"}
-            <button
-              onClick={() => setShowWallets((x) => !x)}
-              className="text-white underline text-xs"
-            >
-              {`${showWallets ? "Hide" : "Show"} Wallets`}
-            </button>
-          </dt>
-          {showWallets && (
-            <dd className="text-xs">
-              <dl className="space-y-2">
-                <div className="flex items-start">
-                  <dt className="min-w-0 text-xs leading-6 font-medium text-brand-gray whitespace-nowrap">
-                    {"Genesis"}
-                  </dt>
-                  <dd className="flex-1 ml-3 text-brand-gray text-right min-w-0 leading-none">
-                    <span className="break-words text-xs">
-                      {initialWallet.address}
-                    </span>
-                    <br />
-                    <span className="text-xs text-right py-1 break-words">
-                      {initialWallet.privateKey} 🔐
-                    </span>
-                  </dd>
-                </div>
-                {wallets?.map((w, i) => (
-                  <div className="flex items-start" key={w.address}>
-                    <dt className="min-w-0 text-xs leading-6 font-medium text-gray-500 whitespace-nowrap">
-                      {`SpeedTest ${i + 1}`}
-                    </dt>
-                    <dd className="flex-1 ml-3 text-right min-w-0 leading-none">
-                      <span className="break-words text-xs">{w.address}</span>
-                      <br />
-                      <span className="text-xs text-right py-1 opacity-75 break-words">
-                        {w.privateKey} 🔐
-                      </span>
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-            </dd>
-          )}
-        </div> */}
       </dl>
     </aside>
   );

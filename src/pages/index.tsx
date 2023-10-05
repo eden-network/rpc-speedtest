@@ -7,6 +7,7 @@ import { LocalSpeedtestWallets } from "../types";
 import { useNetwork } from "wagmi";
 import Footer from "../components/Footer";
 import { LogoIcon } from "../components/icons/LogoIcon";
+import logo from "../../public/logo_png.png"
 
 function Page() {
   const { chain } = useNetwork();
@@ -26,7 +27,6 @@ function Page() {
           aria-label="Global"
         >
           <div className="flex items-center">
-            <LogoIcon />
             <div className="lg:flex-1 flex flex-col select-none">
               <h1 className="font-bold mr-2 text-base sm:text-lg md:text-xl text-white">
                 {"RPC Speed Test"}
@@ -41,7 +41,6 @@ function Page() {
               </span>
             </div>
           </div>
-
           <div className="flex lg:flex-1 lg:justify-end text-xs sm:text-sm whitespace-nowrap">
             {hasLocalWallets && (
               <button

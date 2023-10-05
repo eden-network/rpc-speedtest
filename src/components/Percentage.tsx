@@ -36,7 +36,7 @@ export const Percentage = ({
         color = "#9DFF61"
     }
     return (
-        <div className='w-24 flex justify-center'>
+        <div className='w-10 flex justify-center'>
             {
                 completed ?
                     <CheckIcon color={color} />

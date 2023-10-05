@@ -99,7 +99,7 @@ const Speedtest: React.FC = () => {
     loopsArr.push({
       name: `Loop ${i + 1}`,
       percentage: tasksProgress[i].order / rpcUrls.length * 100,
-      //tasksProgress[i-1].order / rpcUrls.length === 1, to not have that awkwar waiting time until the new loop starts
+      //tasksProgress[i-1].order / rpcUrls.length === 1, to not have that awkward waiting time until the new loop starts
       isActive: iteration === i + 1
     })
   }
@@ -188,7 +188,7 @@ const Speedtest: React.FC = () => {
         <div className="">
           <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Transaction Propagation Test in Progress</h1>
           <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl mb-10">Do not refresh your browser or close the page while the test is in progress</p>
-          <div className="flex mx-auto max-w-7xl justify-between px-6 gap-6">
+          <div className="flex mx-auto max-w-7xl justify-between px-6 gap-16">
             <ScoreBoard status={status} rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />
             <Tasks tasks={tasks} />
           </div>
@@ -197,8 +197,8 @@ const Speedtest: React.FC = () => {
       {(status === "success") && (
         <div className="">
           <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Transaction Propagation Test Completed</h1>
-          <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl mb-10"></p>
-          <div className="flex mx-auto max-w-7xl justify-between px-6 gap-10">
+          <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl mb-10">&#8203;</p>
+          <div className="flex mx-auto max-w-7xl justify-between px-6 gap-16">
             <ScoreBoard status={status} rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />
             <Tasks tasks={tasks} />
           </div>
@@ -206,67 +206,11 @@ const Speedtest: React.FC = () => {
       )}
       <div className="text-brand-blue flex-1 flex flex-col">
         <div className="flex-1 flex flex-col">
-          {/* {(status === "seeding" || status === "starting") && (
-            <p className="w-full flex items-center justify-center text-xl">
-              <span className="mr-4">
-                {status === "starting"
-                  ? "Funding Genesis Wallet"
-                  : `Funding SpeedTest wallet ${Math.min(
-                    wallets.length + 1,
-                    rpcUrls.length
-                  )} of ${rpcUrls.length}`}
-              </span>
-              <Spinner />
-            </p>
-          )} */}
           {(status === "running" ||
             status === "success" ||
             status === "cleaning") && (
               <div className="flex-1 space-y-6 max-w-full bg-white">
                 <ResultsTable chain={chain} results={results} />
-                {/* <RankingsTable chain={chain} results={results} />
-                <CleanupTable chain={chain} txData={cleanupTxs} />
-                <ScoreBoard rpcData={rpcData} /> */}
-                {/* <p className="w-full flex items-center justify-center text-xl">
-                  {status === "running" && (
-                    <>
-                      <span className="mr-4 text-base">
-                        {`Running SpeedTest loop ${getCurrentIteration(
-                          loops,
-                          rpcUrls.length * loops,
-                          results.length
-                        )} of ${loops}`}
-                      </span>
-                      <Spinner />
-                    </>
-                  )}
-                  {status === "cleaning" && (
-                    <>
-                      <span className="mr-4">{"Running wallet cleanup"}</span>
-                      <Spinner />
-                    </>
-                  )}
-
-                  {status === "success" && (
-                    <span className="flex items-center space-x-4">
-                      <button
-                        onClick={() => reset()}
-                        className="flex-none text-sm font-medium ml-2 bg-white rounded-full px-3 py-1 text-indigo-600 hover:bg-indigo-100"
-                      >
-                        {"Clear Results"}
-                      </button>
-                      <button
-                        onClick={() => {
-                          reset();
-                          sendTransaction?.();
-                        }}
-                        className="flex-none text-sm font-medium ml-2 bg-white rounded-full px-3 py-1 text-indigo-600 hover:bg-indigo-100"
-                      >
-                        {"Run Again"}
-                      </button>
-                    </span>
-                  )}
-                </p> */}
                 <div className="h-4 bg-gradient-fresh"></div>
               </div>
             )}

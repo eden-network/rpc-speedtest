@@ -42,13 +42,39 @@ export const Waiting: Story = {
     },
 };
 
-export const InProgress: Story = {
+export const InProgress75: Story = {
+    args: {
+        percentage: 75,
+        isActive: true,
+        allCompleted: false
+    },
+};
+
+export const InProgress25: Story = {
+    args: {
+        percentage: 25,
+        isActive: true,
+        allCompleted: false
+    },
+};
+
+export const InProgress50: Story = {
     args: {
         percentage: 50,
         isActive: true,
         allCompleted: false
     },
 };
+
+export const Started: Story = {
+    args: {
+        percentage: 0,
+        isActive: true,
+        allCompleted: false
+    },
+
+};
+
 
 export const Completed: Story = {
     args: {
@@ -68,11 +94,3 @@ export const RecentlyCompleted: Story = {
 
 };
 
-export const Started: Story = {
-    args: {
-        percentage: 0,
-        isActive: true,
-        allCompleted: false
-    },
-
-};

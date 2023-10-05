@@ -33,8 +33,8 @@ export const ScoreBoard = ({
     // {index + 1}
 
     return (
-        <div className="text-brand-blue text-center font-bold bg-gradient-fresh p-6 rounded-md h-fit mb-6">
-            <table className="table-auto border-separate border-spacing-y-0.5">
+        <div className="w-full text-brand-blue text-center font-bold bg-gradient-fresh p-6 rounded-md h-fit mb-6">
+            <table className="w-full border-separate border-spacing-y-0.5">
                 <caption className="text-2xl mb-4">{"RPC Speed Test"}</caption>
                 <thead className="">
                     <tr className="font-semibold text-base">
@@ -61,7 +61,6 @@ export const ScoreBoard = ({
                             <td className="bg-brand-blue text-white text-xl font-medium px-5 py-4 leading-none">
                                 {isRanked ? index + 1 : "-"}
                             </td>
-
                             <td className="px-2 font-semibold text-left truncate max-w-[20vw]">
                                 {rpc.label.slice(8)}
                             </td>

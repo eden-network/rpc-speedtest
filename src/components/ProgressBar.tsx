@@ -45,9 +45,9 @@ export const ProgressBar = ({
     // let lastCompleted: boolean = finishedTasks - 1 === index - 1
 
     return (
-        <div className="flex items-center">
-            <div style={{ width: "150px", backgroundSize: "200% 200%" }} className={`rounded-md h-4 dark:bg-neutral-400 ${isBgAnimated ? "animation-waiting" : ""}`}>
-                <div className={`${foreGroundColor} h-4 rounded-md`} style={{ width: percentage.toString().concat("%") }}></div>
+        <div className="flex justify-between items-center">
+            <div style={{ width: "150px", backgroundSize: "50px" }} className={`mr-5 rounded-md h-4 dark:bg-neutral-400 ${isBgAnimated ? "animation-waiting" : ""}`}>
+                <div className={`${foreGroundColor} h-4 rounded-md`} style={{ width: percentage.toString().concat("%"), backgroundSize: "50px" }}></div>
             </div>
             <Percentage allFinished={allCompleted} lastCompleted={lastCompleted} percentage={percentage} />
         </div>
