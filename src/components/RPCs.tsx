@@ -103,13 +103,13 @@ const RPCs = ({
             </label>
           ))}
         </div>
-        <div className="flex">
+        <div className="flex mt-3">
           <div className="text-right p-2">
             <button
               onClick={() =>
                 setRpcUrls((x) => [...x, { editable: true, url: "" }])
               }
-              className="flex gap-3 items-center rounded-md border-indigo-600 border-2 px-4 py-1.5 text-xs font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="flex gap-3 items-center rounded-md border-indigo-600 border-2 px-4 py-1.5 text-base font-semibold text-indigo-600 shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             >
               {"Add a custom RPC"}
               <PlusIcon css="border-2 rounded-full border-brand-blue" size="w-4 h-4" />

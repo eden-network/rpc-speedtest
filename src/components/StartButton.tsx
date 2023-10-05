@@ -29,7 +29,7 @@ export const StartButton = ({
 
     const isActive: string = isConnected ? "bg-gradient-to-r from-brand-lime to-brand-green text-brand-blue" : "bg-brand-gray text-brand-textGray"
     return (
-        <div className='text-center mt-3'>
+        <div className='text-center mt-4'>
             <button
                 onClick={onClick}
                 className={`${isActive} rounded-md px-12 py-2.5 text-3xl font-semibold shadow-sm hover:bg-indigo-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:cursor-not-allowed disabled:opacity-75 hover:from-brand-hover hover:to-brand-hover`}

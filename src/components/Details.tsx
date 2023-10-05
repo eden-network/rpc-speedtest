@@ -46,7 +46,7 @@ const Details = ({
           </div>
           <dd className="ml-3 flex items-center">
             <CounterButton add={false} onClick={() => setLoops((x) => x - 1)} />
-            <span className="text-white text-xl w-10 text-center select-none">{loops}</span>
+            <span className="text-white text-xl w-10 text-center select-none font-semibold">{loops}</span>
             <CounterButton add={true} onClick={() => setLoops((x) => x + 1)} />
           </dd>
         </div>
@@ -59,7 +59,7 @@ const Details = ({
               {"Counting all RPC loops and test wallets created."}
             </p>
           </div>
-          <dd className="ml-3 h-6 text-white text-xl">{rpcCount * loops + rpcCount + 1}</dd>
+          <dd className="ml-3 h-6 text-white text-xl font-semibold">{rpcCount * loops + rpcCount + 1}</dd>
         </div>
         <div className={`flex items-center py-1 text-gray-800 justify-between`}>
           <div>
@@ -71,7 +71,7 @@ const Details = ({
             </p>
           </div>
           <dd className="ml-3 min-h-[1.25rem] text-right leading-none text-white">
-            <span className="text-xl">
+            <span className="text-xl font-semibold">
               {formatEther(transferCost)} {chain?.nativeCurrency.symbol}
             </span>
           </dd>
@@ -85,7 +85,7 @@ const Details = ({
               {"Includes 25% buffer. Any surplus is returned to your wallet."}
             </p>
           </div>
-          <dd className="text-xl ml-3 min-h-[1.25rem] text-right leading-none text-white">
+          <dd className="text-xl ml-3 min-h-[1.25rem] text-right leading-none text-white font-semibold">
             {formatEther(totalCost || "0")} {chain.nativeCurrency.symbol}
           </dd>
         </div>
