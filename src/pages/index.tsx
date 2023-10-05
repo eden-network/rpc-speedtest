@@ -6,8 +6,6 @@ import TestWallets from "../components/TestWallets";
 import { LocalSpeedtestWallets } from "../types";
 import { useNetwork } from "wagmi";
 import Footer from "../components/Footer";
-import { LogoIcon } from "../components/icons/LogoIcon";
-import logo from "../../public/logo_png.png"
 
 function Page() {
   const { chain } = useNetwork();

@@ -61,11 +61,6 @@ export const Faq = ({
                     </p>
                 }
             </ul>
-            <div className="absolute">
-                {showTestWallets && (
-                    <TestWallets close={() => setShowTestWallets(false)} />
-                )}
-            </div>
         </div>
     );
 };

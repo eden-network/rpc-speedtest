@@ -21,7 +21,6 @@ function getCurrentIteration(
   results: number,
 ): number {
 
-  // || results === itemsToLoop
   if (results === 0) return 0;
   if (results === itemsToLoop) return loopCount + 1;
   const itemsPerIteration = Math.ceil(itemsToLoop / loopCount);
