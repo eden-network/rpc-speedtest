@@ -37,6 +37,7 @@ const Speedtest: React.FC = () => {
   const chain = activeChain || mainnet;
   const [rpcUrls, setRpcUrls] = useState(getRpcUrls(chain.id));
   const [rpcKey, setRpcKey] = useState(chain.id);
+  const [currentChainId, setCurrentChainId] = useState(activeChain);
   const { isConnected } = useAccount()
 
   const [localWallets, setLocalWallets] =
@@ -75,6 +76,17 @@ const Speedtest: React.FC = () => {
     })
     sendTransaction?.();
   }
+
+  useEffect(() => {
+    if (currentChainId !== activeChain) {
+      setCurrentChainId(activeChain);
+      reset()
+    }
+  }, [activeChain]);
+
+  console.log(status);
+
+
   let iteration: number = 0
 
   const tasksProgress: { loop: number; order: number }[] = []

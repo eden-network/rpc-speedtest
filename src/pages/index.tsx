@@ -21,10 +21,12 @@ function Page() {
     <div className="flex flex-col min-h-screen w-full">
       <div className="bg-brand-blue text-white">
         <nav
-          className="flex items-center justify-between p-4 md:px-6 mx-auto container max-w-7xl"
+          className="flex items-center justify-between p-4 md:px-6 mx-auto container max-w-7xl h-auto"
           aria-label="Global"
         >
           <div className="flex items-center">
+            <img className="h-[40px] mr-2" src="rpcst_logo.png" />
+
             <div className="lg:flex-1 flex flex-col select-none">
               <h1 className="font-bold mr-2 text-base sm:text-lg md:text-xl text-white">
                 {"RPC Speed Test"}

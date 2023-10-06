@@ -1,5 +1,6 @@
 import React from 'react';
 import { ProcessRow } from './ProcessRow';
+import ExternalLink from './ExternalLink';
 
 type Task = {
     percentage: number,
@@ -37,9 +38,11 @@ export const Tasks = ({
                     />
                 )}
             </div>
-            <div className='mt-6 flex mx-auto bg-gradient-fresh p- w-fit p-0.5 rounded'>
-                <button className='transition-all bg-brand-blue rounded text-white hover:text-brand-darkgreen mx-auto px-4 py-1 text-sm'>How to add a new RPC to wallet</button>
-            </div>
+            <ExternalLink style='hello' url='https://docs.edennetwork.io/eden-rpc/speed-rpc/'>
+                <div className='mt-6 flex mx-auto bg-gradient-fresh p- w-fit p-0.5 rounded'>
+                    <button className='transition-all bg-brand-blue rounded text-white hover:text-brand-darkgreen mx-auto px-4 py-1 text-sm'>How to add a new RPC to wallet</button>
+                </div>
+            </ExternalLink>
         </div>
     );
 };

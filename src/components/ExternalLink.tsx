@@ -2,12 +2,14 @@ const ExternalLink = ({
     style,
     url,
     content,
-    onClick
+    onClick,
+    children
 }: {
     style: string,
     url?: string,
     content?: string,
     onClick?: () => void,
+    children?: React.ReactNode
 }) => {
 
     return (
@@ -15,7 +17,7 @@ const ExternalLink = ({
             href={url}
             target="_blank"
             rel="nofollow noreferrer">
-            {content}
+            {children}{content}
         </a>
     );
 };

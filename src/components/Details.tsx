@@ -3,7 +3,7 @@ import { formatEther } from "ethers/lib/utils.js";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Chain } from "wagmi";
 import { CounterButton } from "./CounterButton";
-
+import { ToolTip } from "./ToolTip";
 const Details = ({
   rpcCount,
   loops,
@@ -46,7 +46,9 @@ const Details = ({
           </div>
           <dd className="ml-3 flex items-center">
             <CounterButton add={false} onClick={() => setLoops((x) => x - 1)} />
-            <span className="text-white text-xl w-10 text-center select-none font-semibold">{loops}</span>
+            <ToolTip loops={loops}>
+              <span data-tooltip-target="tooltip-light" data-tooltip-style="light" className="text-white text-xl w-10 text-center cursor-pointer hover:text-brand-hover font-semibold">{loops}</span>
+            </ToolTip>
             <CounterButton add={true} onClick={() => setLoops((x) => x + 1)} />
           </dd>
         </div>
