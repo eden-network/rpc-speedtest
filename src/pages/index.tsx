@@ -25,7 +25,7 @@ function Page() {
           aria-label="Global"
         >
           <div className="flex items-center">
-            <img className="h-[40px] mr-2" src="rpcst_logo.png" />
+            <img alt="rpcst_logo" className="h-[40px] mr-2" src="rpcst_logo.png" />
 
             <div className="lg:flex-1 flex flex-col select-none">
               <h1 className="font-bold mr-2 text-base sm:text-lg md:text-xl text-white">

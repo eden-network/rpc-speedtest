@@ -82,9 +82,8 @@ const Speedtest: React.FC = () => {
       setCurrentChainId(activeChain);
       reset()
     }
-  }, [activeChain]);
+  }, [currentChainId, activeChain, reset]);
 
-  console.log(status);
 
 
   let iteration: number = 0
