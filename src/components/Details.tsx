@@ -45,7 +45,7 @@ const Details = ({
             </p>
           </div>
           <dd className="ml-3 flex items-center">
-            <CounterButton add={false} onClick={() => setLoops((x) => x > 0 ? x - 1 : x)} />
+            <CounterButton add={false} onClick={() => setLoops((x) => x > 1 ? x - 1 : x)} />
             <ToolTip loops={loops}>
               <span data-tooltip-target="tooltip-light" data-tooltip-style="light" className="text-white text-xl w-10 text-center select-none font-semibold">{loops}</span>
             </ToolTip>
