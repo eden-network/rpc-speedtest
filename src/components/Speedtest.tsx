@@ -153,7 +153,7 @@ const Speedtest: React.FC = () => {
 
     <div className="Speedtest bg-brand-blue flex-1 flex flex-col">
       {status === "idle" &&
-        <div className="md:border-b-[70px] border-brand-lime">
+        <div className="border-brand-lime">
           <h1 className="mx-auto text-white text-center text-4xl font-bold p-6">Accurately Measure<br className="lg:hidden"></br>
             <span className="bg-gradient-fresh bg-clip-text text-transparent"> Transaction Propagation Speeds</span><br className="lg:block"></br>
             from Your Browser</h1>
@@ -194,6 +194,7 @@ const Speedtest: React.FC = () => {
           <div className="md:hidden mt-4 h-12 bg-gradient-fresh"></div>
         </div>
       }
+      <div className="h-16 bg-gradient-border"></div>
       {(status === "seeding" || status === "starting" || status === "running" || status === "cleaning") && (
         <div className="">
           <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Transaction Propagation Test in Progress</h1>

@@ -13,7 +13,7 @@ export const ToolTip = ({
     const isTooltip: string = loops < 3 ? "" : "group-hover:"
 
     return (
-        <div className={`group relative flex ${isTooltip}scale-100`}>
+        <div className={`group relative flex group-hover:scale-100`}>
             <span className={`w-56 right-[-32px] absolute border transition-all border-white bottom-10 scale-0 rounded-md bg-brand-blue p-2 text-xs text-white ${isTooltip}scale-100`}>
                 <b>Did you know?</b>
                 <br></br><br></br>
