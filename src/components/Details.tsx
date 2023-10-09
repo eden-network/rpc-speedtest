@@ -36,18 +36,18 @@ const Details = ({
       </legend>
       <dl className="mt-4">
         <div className={`flex items-center py-1 justify-between`}>
-          <div>
+          <div className="w-80">
             <p className="min-w-0 flex-1 text-xl font-medium text-white">
               {"Loops"}
             </p>
             <p className="text-brand-gray text-xs">
-              {"Number of transactions sent to each RPC."}
+              {"Number of transactions sent to each RPC. Increasing the number of loops improves accuracy on the test."}
             </p>
           </div>
           <dd className="ml-3 flex items-center">
-            <CounterButton add={false} onClick={() => setLoops((x) => x - 1)} />
+            <CounterButton add={false} onClick={() => setLoops((x) => x > 0 ? x - 1 : x)} />
             <ToolTip loops={loops}>
-              <span data-tooltip-target="tooltip-light" data-tooltip-style="light" className="text-white text-xl w-10 text-center cursor-pointer hover:text-brand-hover font-semibold">{loops}</span>
+              <span data-tooltip-target="tooltip-light" data-tooltip-style="light" className="text-white text-xl w-10 text-center select-none font-semibold">{loops}</span>
             </ToolTip>
             <CounterButton add={true} onClick={() => setLoops((x) => x + 1)} />
           </dd>

@@ -194,7 +194,9 @@ const Speedtest: React.FC = () => {
           <div className="md:hidden mt-4 h-12 bg-gradient-fresh"></div>
         </div>
       }
-      <div className="h-16 bg-gradient-border"></div>
+      {status == "idle" &&
+        <div className="h-16 bg-gradient-border"></div>
+      }
       {(status === "seeding" || status === "starting" || status === "running" || status === "cleaning") && (
         <div className="">
           <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Transaction Propagation Test in Progress</h1>
