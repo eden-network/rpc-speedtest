@@ -5,6 +5,7 @@ import RPCs from "./RPCs";
 import Details from "./Details";
 import { getRpcUrls } from "../core/rpcs";
 import useSpeedTest from "../hooks/useSpeedTest";
+import { useCleanup } from "../hooks/useCleanup";
 import Spinner from "./Spinner";
 import { useLocalStorage } from "usehooks-ts";
 import { LocalSpeedtestWallets } from "../types";
@@ -60,6 +61,7 @@ const Speedtest: React.FC = () => {
     rpcUrls,
   });
 
+
   useEffect(() => {
     setRpcUrls(getRpcUrls(chain.id));
     // ensure RPCs list is refreshed
@@ -83,8 +85,6 @@ const Speedtest: React.FC = () => {
       reset()
     }
   }, [currentChainId, activeChain, reset]);
-
-
 
   let iteration: number = 0
 
@@ -142,7 +142,7 @@ const Speedtest: React.FC = () => {
   ...loopsArr,
   {
     name: "Clean-up",
-    percentage: status === "success" ? 100 : 0,
+    percentage: cleanupTxs.length / rpcUrls.length * 100,
     isActive: status === "cleaning"
   }
   ]
