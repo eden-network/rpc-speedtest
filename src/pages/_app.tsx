@@ -22,6 +22,14 @@ function App({ Component, pageProps }: AppProps) {
       >
         <Head>
           <title>RPC Speed Test</title>
+          <meta
+            name="description"
+            content="Accurately Measure Transaction Propagation Speeds from Your Browser"
+          />
+          <meta
+            name="keywords"
+            content="RPC, Speed Test, Eden Network, Transaction, Propagation, Speed"
+          />
           <link rel="icon" href="rpcst_logo.png" />
         </Head>
 

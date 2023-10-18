@@ -1,4 +1,5 @@
 import { BigNumber, Wallet, ethers } from "ethers";
+// import { parseUnits } from "ethers/lib/utils.js";
 import { useCleanup } from "./useCleanup";
 import { useNewWallets } from "./useNewWallets";
 import { useSelfTransactions } from "./useSelfTransactions";
@@ -37,6 +38,7 @@ const useSpeedTest = ({
   const { data: blockNumber } = useBlockNumber({
     chainId: chain.id,
   });
+
   // user's account
   const user = useAccount();
 
@@ -58,16 +60,16 @@ const useSpeedTest = ({
     chain,
   });
 
-  const { maxPriorityFeePerGas, gasPrice } = useFeeData({
-    initialWallet,
+  const { gasPrice, estimateGas } = useFeeData({
     blockNumber,
+    initialProvider
   });
 
   // return address
   const userWallet = user?.address;
 
   // current gas price * 21k transfer gas limit
-  const transferPrice = gasPrice?.mul("21000");
+  const transferPrice = gasPrice?.mul(estimateGas)
 
   // transfer price * the amount of times it needs to send (+ a 25% buffer)
   const amount =
@@ -81,8 +83,6 @@ const useSpeedTest = ({
   const { wallets, createWallets, setWallets } = useNewWallets({
     rpcUrls,
     amount,
-    gasPrice,
-    maxPriorityFeePerGas,
     initialWallet,
     chain,
   });
@@ -100,9 +100,6 @@ const useSpeedTest = ({
     request: {
       to: initialWallet?.address as string,
       value: totalAmount,
-      maxPriorityFeePerGas,
-      maxFeePerGas: gasPrice,
-      gasLimit: "21000",
     },
     enabled: !!initialWallet?.address && !!gasPrice && !!amount,
   });
@@ -117,10 +114,10 @@ const useSpeedTest = ({
       setStatus("seeding");
       const newWallets = await createWallets();
       setStatus("running");
-      await startSelfTransactions(newWallets);
+      await startSelfTransactions(newWallets, estimateGas);
       if (userWallet) {
         setStatus("cleaning");
-        await cleanup({ wallets: newWallets, returnWallet: userWallet });
+        await cleanup({ wallets: newWallets, returnWallet: userWallet, estimateGas: estimateGas });
       }
       setStatus("success");
     },
@@ -153,7 +150,7 @@ const useSpeedTest = ({
     sendTransaction,
     totalAmount,
     transferPrice,
-    reset,
+    reset
   };
 };
 

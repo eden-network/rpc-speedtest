@@ -169,15 +169,11 @@ const Speedtest: React.FC = () => {
             <section className="flex-col justify-between">
               <Details
                 chain={chain}
-                initialWallet={initialWallet}
                 loops={loops}
                 setLoops={setLoops}
-                delay={delay}
-                setDelay={setDelay}
                 rpcCount={rpcUrls.length}
                 totalCost={totalAmount}
                 transferCost={transferPrice}
-                wallets={wallets}
               />
               <StartButton
                 amount={totalAmount}
@@ -199,7 +195,7 @@ const Speedtest: React.FC = () => {
       }
       {(status === "seeding" || status === "starting" || status === "running" || status === "cleaning") && (
         <div className="">
-          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Transaction Propagation Test in Progress</h1>
+          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2">Transaction Propagation Test in Progress</h1>
           <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl mb-10">Do not refresh your browser or close the page while the test is in progress</p>
           <div className="flex mx-auto max-w-7xl justify-between px-6 gap-16">
             <ScoreBoard status={status} rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />

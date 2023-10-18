@@ -7,14 +7,10 @@ import { Chain } from "wagmi";
 const createNewWallet = async ({
   wallet,
   amount,
-  gasPrice,
-  maxPriorityFeePerGas,
   i,
 }: {
   wallet: Wallet;
   amount: BigNumber;
-  gasPrice: BigNumber;
-  maxPriorityFeePerGas: BigNumber;
   i: number;
 }): Promise<Wallet> => {
   const randomWallet = Wallet.createRandom();
@@ -22,9 +18,6 @@ const createNewWallet = async ({
   const tx = {
     to: randomWallet.address,
     value: amount,
-    gasLimit: "21000",
-    maxPriorityFeePerGas,
-    maxFeePerGas: gasPrice,
   };
 
   const txResponse = await wallet.sendTransaction(tx);
@@ -41,15 +34,11 @@ const createNewWallet = async ({
 export const useNewWallets = ({
   rpcUrls,
   amount,
-  gasPrice,
-  maxPriorityFeePerGas,
   initialWallet,
   chain,
 }: {
   rpcUrls: string[];
   amount: BigNumber;
-  gasPrice: BigNumber;
-  maxPriorityFeePerGas: BigNumber;
   initialWallet: Wallet;
   chain: Chain;
 }) => {
@@ -64,11 +53,10 @@ export const useNewWallets = ({
     const newWallets: Wallet[] = [];
 
     for (let i = 0; i < rpcUrls.length; i++) {
+      //remove await to fund all the wallets at once
       const wallet = await createNewWallet({
         wallet: initialWallet,
         amount,
-        gasPrice,
-        maxPriorityFeePerGas,
         i,
       });
       console.log(`Funded wallet ${i + 1}:`, wallet.address, wallet.privateKey);
@@ -88,8 +76,6 @@ export const useNewWallets = ({
     return newWallets;
   }, [
     amount,
-    gasPrice,
-    maxPriorityFeePerGas,
     initialWallet,
     rpcUrls,
     localWallets,

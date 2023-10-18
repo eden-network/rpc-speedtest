@@ -1,4 +1,4 @@
-import { BigNumber, Wallet } from "ethers";
+import { BigNumber } from "ethers";
 import { formatEther } from "ethers/lib/utils.js";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Chain } from "wagmi";
@@ -8,26 +8,17 @@ const Details = ({
   rpcCount,
   loops,
   setLoops,
-  delay,
-  setDelay,
   totalCost,
   transferCost,
   chain,
-  initialWallet,
-  wallets,
 }: {
   chain: Chain;
   rpcCount: number;
   loops: number;
   setLoops: Dispatch<SetStateAction<number>>;
-  delay: number;
-  setDelay: Dispatch<SetStateAction<number>>;
   totalCost: BigNumber;
   transferCost: BigNumber;
-  initialWallet: Wallet;
-  wallets?: Wallet[];
 }) => {
-  const [showWallets, setShowWallets] = useState(true);
 
   return (
     <aside className="pt-6">
