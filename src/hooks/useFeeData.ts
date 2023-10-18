@@ -1,34 +1,45 @@
-import { BigNumber, Wallet, ethers } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { parseUnits } from "ethers/lib/utils.js";
 import { useEffect, useState } from "react";
-
 const useFeeData = ({
-  initialWallet,
   blockNumber,
+  initialProvider
 }: {
-  initialWallet: Wallet;
   blockNumber?: number;
+  initialProvider: ethers.providers.JsonRpcProvider
 }) => {
   const [feeData, setFeeData] = useState<ethers.providers.FeeData>();
+  const [estimateGasData, setEstimateGasData] = useState<BigNumber>();
 
+  ///update every block change
+  ///push key to an object
   useEffect(() => {
     (async () => {
-      if (initialWallet && blockNumber) {
-        const x = await initialWallet.getFeeData();
-        setFeeData(x);
-      }
+      const feeData = (await initialProvider.getFeeData());
+      const estimateGas = await initialProvider.estimateGas({ to: ethers.constants.AddressZero as string, value: 0 });
+      setFeeData(feeData);
+      setEstimateGasData(estimateGas);
     })();
-  }, [initialWallet, blockNumber]);
+  }, [initialProvider, blockNumber]);
 
   const maxPriorityFeePerGas =
     feeData?.maxPriorityFeePerGas || parseUnits("1", "gwei");
 
+  const lastBaseFeePerGas =
+    feeData?.lastBaseFeePerGas || parseUnits("1", "gwei");
+
+  //add transfer price + amount + buffer
   const gasPrice =
-    feeData?.lastBaseFeePerGas?.add(maxPriorityFeePerGas) || BigNumber.from(0);
+    lastBaseFeePerGas.add(maxPriorityFeePerGas);
+
+  const estimateGas =
+    estimateGasData || BigNumber.from(21000);
 
   return {
     maxPriorityFeePerGas,
     gasPrice,
+    estimateGas,
+    initialProvider
   };
 };
 

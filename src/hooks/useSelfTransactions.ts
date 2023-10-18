@@ -35,6 +35,7 @@ export const useSelfTransactions = ({
       onResult,
       i,
       label,
+      estimateGas
     }: {
       wallet: Wallet;
       gasPrice?: BigNumber;
@@ -43,14 +44,16 @@ export const useSelfTransactions = ({
       onResult: (args: Result) => void;
       i: number;
       label: string;
+      estimateGas?: BigNumber
     }) => {
       try {
         console.log(`Building transaction ${i + 1} from ${wallet.address}`);
-        const tx = {
+
+        const typeTwoTx = {
           to: wallet.address,
           from: wallet.address,
           value: 0,
-          gasLimit: "21000",
+          gasLimit: estimateGas,
           maxPriorityFeePerGas: maxFee,
           maxFeePerGas: gasPrice,
         };
@@ -63,12 +66,11 @@ export const useSelfTransactions = ({
           tx: "",
         });
 
+        //////// try / catch the variable for transaction type to avoid code duplication
         const txRequest = await wallet
           .connect(initialProvider)
-          .populateTransaction(tx);
-        console.log(txRequest);
+          .populateTransaction(typeTwoTx);
         const signedTx = await wallet.signTransaction(txRequest);
-        console.log(signedTx);
         const txHash = await provider.send("eth_sendRawTransaction", [
           signedTx,
         ]);
@@ -135,27 +137,94 @@ export const useSelfTransactions = ({
         return result;
       } catch (e) {
         console.log(e);
-        const result = `Transaction ${i + 1} from ${wallet.address
-          } threw an error (${label})`;
 
-        onResult({
-          iteration: i + 1,
-          wallet: wallet.address,
-          tx: "RPC Error",
-          blockNumber: Infinity,
-          order: Infinity,
-          label,
-          firstSeen: [],
-        });
+        try {
+          const typeZeroTx = {
+            to: wallet.address,
+            from: wallet.address,
+            value: 0,
+            gasLimit: estimateGas,
+            gasPrice: gasPrice
+          };
 
-        return result;
+          const txRequest0 = await wallet
+            .connect(initialProvider)
+            .populateTransaction(typeZeroTx);
+          const signedTx0 = await wallet.signTransaction(txRequest0);
+          const txHash0 = await provider.send("eth_sendRawTransaction", [
+            signedTx0,
+          ]);
+          console.log(
+            `Transaction ${i + 1} from ${wallet.address}: ${txHash0} (${label})`
+          );
+
+          // show pending tx
+          onResult({
+            iteration: i + 1,
+            wallet: wallet.address,
+            tx: txHash0,
+            label,
+          });
+
+          const txReceipt0 = await initialProvider.waitForTransaction(txHash0);
+          const block0 = await initialProvider.getBlockWithTransactions(
+            txReceipt0.blockNumber
+          );
+          const index0 = block0.transactions.findIndex((x) => x.hash === txHash0);
+
+          // fetch block data
+          const zeroMevReq0 = await fetch(
+            `https://api.zeromev.org/zmblock/${txReceipt0.blockNumber}`
+          ).catch((e) => e);
+          const zeroMevJson0 = (await zeroMevReq0.json()) as {
+            pop: [{ name: string; times: { t: number }[] }];
+          };
+          // get the matching block
+          const zeroMevData0 =
+            zeroMevJson0.pop?.filter(
+              (x: { times: { t: number }[] }) =>
+                x.times.length === block0.transactions.length
+            ) || [];
+
+          // pull out the first seen dates for different regions
+          const firstSeen0 = zeroMevData0
+            .map((x) => {
+              const ticks = x.times[index0]?.t;
+
+              if (ticks) {
+                return {
+                  name: x.name,
+                  date: ticksToDate(ticks),
+                };
+              }
+            })
+            .filter(Boolean) as Result["firstSeen"];
+
+          const result0 = `Transaction ${i + 1} from ${wallet.address
+            } was included in block ${txReceipt0.blockNumber} with order ${index0 + 1
+            } (${label})`;
+
+          onResult({
+            iteration: i + 1,
+            wallet: wallet.address,
+            tx: txHash0,
+            blockNumber: txReceipt0.blockNumber,
+            order: index0 + 1,
+            label,
+            firstSeen: firstSeen0,
+          });
+
+          return result0;
+        } catch (e0) {
+          console.error("Fallback transaction failed: ", e0);
+        }
       }
     },
     [initialProvider]
   );
 
   const startSelfTransactions = useCallback(
-    async (wallets: Wallet[]) => {
+    async (wallets: Wallet[], estimateGas: BigNumber) => {
       const onResult = (result: Result) => {
         setResults((prevResults) => {
           const existingResultIndex = prevResults.findIndex(
@@ -183,10 +252,12 @@ export const useSelfTransactions = ({
 
       for (let i = 0; i < loops; i++) {
         const promises = [];
+        //import getFeeData only in one hook (useSpeedTest)
         const { lastBaseFeePerGas, maxPriorityFeePerGas } =
           await initialWallet.getFeeData();
         const maxFee = maxPriorityFeePerGas || parseUnits("1", "gwei");
         const gasPrice = lastBaseFeePerGas?.add(maxFee) || undefined;
+
 
         console.log("Iteration ", i + 1);
         console.log("Gas", {
@@ -205,6 +276,7 @@ export const useSelfTransactions = ({
               onResult,
               i,
               label: rpcUrls[j],
+              estimateGas
             })
           );
         }

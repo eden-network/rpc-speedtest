@@ -1,7 +1,7 @@
 import "@rainbow-me/rainbowkit/styles.css";
 import { RainbowKitProvider, lightTheme } from "@rainbow-me/rainbowkit";
 import type { AppProps } from "next/app";
-import NextHead from "next/head";
+import Head from "next/head";
 import * as React from "react";
 import { WagmiConfig } from "wagmi";
 import "../globals.css";
@@ -20,9 +20,18 @@ function App({ Component, pageProps }: AppProps) {
           accentColorForeground: "#171b47",
         })}
       >
-        <NextHead>
+        <Head>
           <title>RPC Speed Test</title>
-        </NextHead>
+          <meta
+            name="description"
+            content="Accurately Measure Transaction Propagation Speeds from Your Browser"
+          />
+          <meta
+            name="keywords"
+            content="RPC, Speed Test, Eden Network, Transaction, Propagation, Speed"
+          />
+          <link rel="icon" href="rpcst_logo.png" />
+        </Head>
 
         {mounted && <Component {...pageProps} />}
       </RainbowKitProvider>

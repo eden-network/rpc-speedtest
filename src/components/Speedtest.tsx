@@ -5,6 +5,7 @@ import RPCs from "./RPCs";
 import Details from "./Details";
 import { getRpcUrls } from "../core/rpcs";
 import useSpeedTest from "../hooks/useSpeedTest";
+import { useCleanup } from "../hooks/useCleanup";
 import Spinner from "./Spinner";
 import { useLocalStorage } from "usehooks-ts";
 import { LocalSpeedtestWallets } from "../types";
@@ -37,6 +38,7 @@ const Speedtest: React.FC = () => {
   const chain = activeChain || mainnet;
   const [rpcUrls, setRpcUrls] = useState(getRpcUrls(chain.id));
   const [rpcKey, setRpcKey] = useState(chain.id);
+  const [currentChainId, setCurrentChainId] = useState(activeChain);
   const { isConnected } = useAccount()
 
   const [localWallets, setLocalWallets] =
@@ -59,6 +61,7 @@ const Speedtest: React.FC = () => {
     rpcUrls,
   });
 
+
   useEffect(() => {
     setRpcUrls(getRpcUrls(chain.id));
     // ensure RPCs list is refreshed
@@ -75,6 +78,14 @@ const Speedtest: React.FC = () => {
     })
     sendTransaction?.();
   }
+
+  useEffect(() => {
+    if (currentChainId !== activeChain) {
+      setCurrentChainId(activeChain);
+      reset()
+    }
+  }, [currentChainId, activeChain, reset]);
+
   let iteration: number = 0
 
   const tasksProgress: { loop: number; order: number }[] = []
@@ -131,7 +142,7 @@ const Speedtest: React.FC = () => {
   ...loopsArr,
   {
     name: "Clean-up",
-    percentage: status === "success" ? 100 : 0,
+    percentage: cleanupTxs.length / rpcUrls.length * 100,
     isActive: status === "cleaning"
   }
   ]
@@ -142,7 +153,7 @@ const Speedtest: React.FC = () => {
 
     <div className="Speedtest bg-brand-blue flex-1 flex flex-col">
       {status === "idle" &&
-        <div className="md:border-b-[70px] border-brand-lime">
+        <div className="border-brand-lime">
           <h1 className="mx-auto text-white text-center text-4xl font-bold p-6">Accurately Measure<br className="lg:hidden"></br>
             <span className="bg-gradient-fresh bg-clip-text text-transparent"> Transaction Propagation Speeds</span><br className="lg:block"></br>
             from Your Browser</h1>
@@ -158,15 +169,11 @@ const Speedtest: React.FC = () => {
             <section className="flex-col justify-between">
               <Details
                 chain={chain}
-                initialWallet={initialWallet}
                 loops={loops}
                 setLoops={setLoops}
-                delay={delay}
-                setDelay={setDelay}
                 rpcCount={rpcUrls.length}
                 totalCost={totalAmount}
                 transferCost={transferPrice}
-                wallets={wallets}
               />
               <StartButton
                 amount={totalAmount}
@@ -183,9 +190,12 @@ const Speedtest: React.FC = () => {
           <div className="md:hidden mt-4 h-12 bg-gradient-fresh"></div>
         </div>
       }
+      {status == "idle" &&
+        <div className="h-16 bg-gradient-border"></div>
+      }
       {(status === "seeding" || status === "starting" || status === "running" || status === "cleaning") && (
         <div className="">
-          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2 w-7/12">Transaction Propagation Test in Progress</h1>
+          <h1 className="mx-auto text-white text-center text-4xl font-bold pt-6 pb-2">Transaction Propagation Test in Progress</h1>
           <p className="text-center bg-gradient-fresh bg-clip-text text-transparent text-xl mb-10">Do not refresh your browser or close the page while the test is in progress</p>
           <div className="flex mx-auto max-w-7xl justify-between px-6 gap-16">
             <ScoreBoard status={status} rpcData={results.length === 0 ? rpcUrlsArr : rpcData} />

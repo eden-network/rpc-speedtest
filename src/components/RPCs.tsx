@@ -22,7 +22,7 @@ const RPCs = ({
 
   useEffect(() => {
     setUrls(selectedUrls);
-  }, [selectedUrls]);
+  });
 
   const handleRpcChange = (url: string) => {
     setSelectedUrls((urls) => {

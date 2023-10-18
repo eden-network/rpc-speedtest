@@ -39,8 +39,8 @@ const RPC_URLS = {
 
 // used for wallet seeding txs
 export const DEFAULT_RPC_URL: Record<number, string> = {
-  [mainnet.id]: "https://rpc.ankr.com/eth",
-  [arbitrum.id]: "https://rpc.ankr.com/arbitrum",
+  [mainnet.id]: "https://eth.llamarpc.com/",
+  [arbitrum.id]: "https://arbitrum.llamarpc.com/",
   [polygonMumbai.id]: "https://rpc.ankr.com/polygon_mumbai",
   [avalanche.id]: "https://rpc.ankr.com/avalanche",
 };

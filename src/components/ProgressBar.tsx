@@ -47,9 +47,9 @@ export const ProgressBar = ({
     return (
         <div className="flex justify-between items-center">
             <div style={{ width: "150px", backgroundSize: "50px" }} className={`mr-5 rounded-md h-4 dark:bg-neutral-400 ${isBgAnimated ? "animation-waiting" : ""}`}>
-                <div className={`${foreGroundColor} h-4 rounded-md`} style={{ width: percentage.toString().concat("%"), backgroundSize: "50px" }}></div>
+                <div className={`${foreGroundColor} h-4 rounded-md`} style={{ width: percentage.toString().concat("%"), backgroundSize: "50px", transition: `all 1s ease-in-out` }}></div>
             </div>
-            <Percentage allFinished={allCompleted} lastCompleted={lastCompleted} percentage={percentage} />
+            <Percentage allCompleted={allCompleted} lastCompleted={lastCompleted} percentage={percentage} />
         </div>
     );
 };

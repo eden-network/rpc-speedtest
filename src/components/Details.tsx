@@ -1,33 +1,24 @@
-import { BigNumber, Wallet } from "ethers";
+import { BigNumber } from "ethers";
 import { formatEther } from "ethers/lib/utils.js";
 import { Dispatch, SetStateAction, useState } from "react";
 import { Chain } from "wagmi";
 import { CounterButton } from "./CounterButton";
-
+import { ToolTip } from "./ToolTip";
 const Details = ({
   rpcCount,
   loops,
   setLoops,
-  delay,
-  setDelay,
   totalCost,
   transferCost,
   chain,
-  initialWallet,
-  wallets,
 }: {
   chain: Chain;
   rpcCount: number;
   loops: number;
   setLoops: Dispatch<SetStateAction<number>>;
-  delay: number;
-  setDelay: Dispatch<SetStateAction<number>>;
   totalCost: BigNumber;
   transferCost: BigNumber;
-  initialWallet: Wallet;
-  wallets?: Wallet[];
 }) => {
-  const [showWallets, setShowWallets] = useState(true);
 
   return (
     <aside className="pt-6">
@@ -36,17 +27,19 @@ const Details = ({
       </legend>
       <dl className="mt-4">
         <div className={`flex items-center py-1 justify-between`}>
-          <div>
+          <div className="w-80">
             <p className="min-w-0 flex-1 text-xl font-medium text-white">
               {"Loops"}
             </p>
             <p className="text-brand-gray text-xs">
-              {"Number of transactions sent to each RPC."}
+              {"Number of transactions sent to each RPC. Increasing the number of loops improves accuracy on the test."}
             </p>
           </div>
           <dd className="ml-3 flex items-center">
-            <CounterButton add={false} onClick={() => setLoops((x) => x - 1)} />
-            <span className="text-white text-xl w-10 text-center select-none font-semibold">{loops}</span>
+            <CounterButton add={false} onClick={() => setLoops((x) => x > 1 ? x - 1 : x)} />
+            <ToolTip loops={loops}>
+              <span data-tooltip-target="tooltip-light" data-tooltip-style="light" className="text-white text-xl w-10 text-center select-none font-semibold">{loops}</span>
+            </ToolTip>
             <CounterButton add={true} onClick={() => setLoops((x) => x + 1)} />
           </dd>
         </div>

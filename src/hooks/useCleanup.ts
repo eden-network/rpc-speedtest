@@ -1,4 +1,4 @@
-import { Wallet, ethers } from "ethers";
+import { BigNumber, Wallet, ethers } from "ethers";
 import { useState } from "react";
 import { Chain } from "wagmi";
 
@@ -16,9 +16,11 @@ export const useCleanup = ({
   const cleanup = async ({
     wallets,
     returnWallet,
+    estimateGas
   }: {
     wallets: Wallet[];
     returnWallet: `0x${string}`;
+    estimateGas: BigNumber
   }) => {
     const allTransactions = [];
     console.log("Cleaning up wallets");
@@ -27,40 +29,44 @@ export const useCleanup = ({
       const wallet = wallets[i];
       const balance = await initialProvider.getBalance(wallet.address);
       const gasPrice = await wallet.connect(initialProvider).getGasPrice();
-      const value = balance.sub(gasPrice.mul("21000"));
+      const value = balance.sub(gasPrice.mul(estimateGas));
 
       if (balance.gt(0) && value.gt(0)) {
         console.log(
-          `Sweeping ${ethers.utils.formatEther(balance)} ${
-            chain.nativeCurrency.symbol
+          `Sweeping ${ethers.utils.formatEther(balance)} ${chain.nativeCurrency.symbol
           } from ${wallet.address}`
         );
-        const tx = {
-          to: returnWallet,
-          from: wallet.address,
-          value,
-          gasLimit: "21000",
-          gasPrice: gasPrice,
-        };
-        const txRequest = await wallet
-          .connect(initialProvider)
-          .populateTransaction(tx);
-        const signedTx = await wallet.signTransaction(txRequest);
-        const txHash = await initialProvider.send("eth_sendRawTransaction", [
-          signedTx,
-        ]);
 
-        console.log(`Swept to ${returnWallet} in tx ${txHash}`);
-        setCleanupTxs((arr) => [
-          ...arr,
-          {
-            wallet: wallet.address,
-            balance,
+        try {
+          const tx = {
+            to: returnWallet,
+            from: wallet.address,
             value,
-            txHash,
-          },
-        ]);
-        allTransactions.push(txHash);
+            gasLimit: estimateGas,
+            gasPrice: gasPrice,
+          };
+          const txRequest = await wallet
+            .connect(initialProvider)
+            .populateTransaction(tx);
+          const signedTx = await wallet.signTransaction(txRequest);
+          const txHash = await initialProvider.send("eth_sendRawTransaction", [
+            signedTx,
+          ]);
+
+          console.log(`Swept to ${returnWallet} in tx ${txHash}`);
+          setCleanupTxs((arr) => [
+            ...arr,
+            {
+              wallet: wallet.address,
+              balance,
+              value,
+              txHash,
+            },
+          ]);
+          allTransactions.push(txHash);
+        } catch (e) {
+          console.error(e)
+        }
       } else {
         console.log(`Insufficient ${chain.nativeCurrency.symbol} to sweep`);
         setCleanupTxs((arr) => [
